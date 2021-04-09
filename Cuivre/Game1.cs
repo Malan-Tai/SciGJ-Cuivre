@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
+using Newtonsoft.Json;
+using Cuivre.Code;
+using System.Collections.Generic;
 
 namespace Cuivre
 {
@@ -18,9 +22,14 @@ namespace Cuivre
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+
+            List<Poet> poets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json"));
+            
+            foreach (Poet poet in poets)
+            {
+                System.Diagnostics.Debug.WriteLine(poet.Name);
+            }
         }
 
         protected override void LoadContent()
