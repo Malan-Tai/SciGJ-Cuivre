@@ -5,6 +5,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Cuivre.Code;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Cuivre
 {
@@ -28,7 +29,7 @@ namespace Cuivre
             
             foreach (Poet poet in poets)
             {
-                System.Diagnostics.Debug.WriteLine(poet.Name);
+                Debug.WriteLine(poet.Name);
             }
         }
 
