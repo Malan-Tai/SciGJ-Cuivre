@@ -22,6 +22,7 @@ namespace Cuivre.Code
         private bool called = false;
         private const double oracleDelay = 500;
         private double curDelay = 0;
+        private bool ongoingEvent = false;
 
         public Timeline()
         {
@@ -50,7 +51,7 @@ namespace Cuivre.Code
 
 
         //renvoie -1 si on ne peut pas depenser ce nombre de points, le nombre de points restant sinon (0 si on change de jour)
-        public int SpendActionPoints(int amount)
+        public int SpendActionPoints(int amount, bool freeze)
         {
             Day day = days[currentDay];
 
@@ -73,7 +74,7 @@ namespace Cuivre.Code
             }
 
             
-            if (day.ActionPoints <= 0)
+            if (day.ActionPoints <= 0 && !freeze)
             {
                 currentDay++;
             }
@@ -128,8 +129,9 @@ namespace Cuivre.Code
             if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
             {
                 called = false;
+                nextDay = true;
             }
-            curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (called) curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             foreach (Day d in days) nextDay = nextDay || d.Update(gameTime, mouseState, prevMouseState);
 
@@ -154,6 +156,7 @@ namespace Cuivre.Code
 
         public void CallEvent()
         {
+            ongoingEvent = true;
             days[currentDay].CallEvent();
         }
     }

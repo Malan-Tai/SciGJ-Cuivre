@@ -25,7 +25,7 @@ namespace Cuivre.Code.Screens
 
             //Bouton de l'oracle
             new Button(25, 100, 150, 310, Game1.white, screen => {
-                if (((GameScreen)screen).SpendActionPoints(2))
+                if (((GameScreen)screen).SpendActionPoints(2, true))
                 {
                     ((GameScreen)screen).Timeline.CallOracle(); 
                 }}),
@@ -122,13 +122,13 @@ namespace Cuivre.Code.Screens
             }
         }
 
-        public bool SpendActionPoints(int amount)
+        public bool SpendActionPoints(int amount, bool freeze = false)
         {
-            int res = Timeline.SpendActionPoints(amount);
+            int res = Timeline.SpendActionPoints(amount, freeze);
 
             if (res < 0) return false;
 
-            if (res == 0)
+            if (res == 0 && !freeze)
             {
                 newDay = true;
             }
