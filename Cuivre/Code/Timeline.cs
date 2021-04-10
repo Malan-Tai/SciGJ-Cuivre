@@ -40,7 +40,17 @@ namespace Cuivre.Code
 
             if (amount > day.ActionPoints) return -1;
 
-            day.ActionPoints -= amount;
+            if(amount < 0)
+            {
+                Miracle.AddMiracleChance(day.ActionPoints * 10);
+                day.ActionPoints = 0;
+            }
+            else
+            {
+                day.ActionPoints -= amount;
+            }
+
+            
             if (day.ActionPoints <= 0)
             {
                 currentDay++;
