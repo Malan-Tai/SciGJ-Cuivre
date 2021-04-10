@@ -25,11 +25,10 @@ namespace Cuivre.Code.Screens
 
             //Bouton de l'oracle
             new Button(25, 100, 150, 310, Game1.white, screen => {
-
-            ((GameScreen)screen).SpendActionPoints(2);
-            ((GameScreen)screen).SpendActionPoints(2);
-            ((GameScreen)screen).Timeline.CallOracle();
-            }),
+                if (((GameScreen)screen).SpendActionPoints(2))
+                {
+                    ((GameScreen)screen).Timeline.CallOracle(); 
+                }}),
 
             new CollapseButton(185, 100, 150, 310, Game1.white, new List<Button>
             {
@@ -146,18 +145,15 @@ namespace Cuivre.Code.Screens
 
         public void NewDay()
         {
-            System.Diagnostics.Debug.WriteLine("new day");
             ResetButtons();
 
             eventDay = Timeline.TodayHasEvent();
             if (eventDay)
             {
-                System.Diagnostics.Debug.WriteLine("event day");
                 Timeline.CallEvent();
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("not event day");
                 Gauges.NaturalDecay();
                 Timeline.DecayMiracleDelay();
 
@@ -195,14 +191,12 @@ namespace Cuivre.Code.Screens
             bool endEvent = Timeline.Update(gameTime, mouseState);
             if (endEvent)
             {
-                System.Diagnostics.Debug.WriteLine("end event");
                 eventDay = false;
                 newDay = true;
             }
 
             if (newDay)
             {
-                System.Diagnostics.Debug.WriteLine("new day update");
                 newDay = false;
                 NewDay();
             }
