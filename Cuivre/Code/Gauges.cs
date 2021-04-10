@@ -13,11 +13,26 @@ namespace Cuivre.Code
 
         const int decay = 5;
 
+        private static Dictionary<string, bool> stuckStats = new Dictionary<string, bool>();
+        private static Dictionary<string, int> decayStats = new Dictionary<string, int>();
+
+        public static void ReinitDictionaries()
+        {
+            List<string> keys = new List<string>(gaugesItems.Keys);
+            foreach (string key in keys)
+            {
+                stuckStats[key] = false;
+                decayStats[key] = decay;
+            }
+        }
+
         public static void InitializeGauges(List<string> names)
         {
             foreach (string name in names)
             {
                 gaugesItems.Add(name, startValues);
+                stuckStats.Add(name, false);
+                decayStats.Add(name, decay);
             }
         }
 
@@ -38,7 +53,7 @@ namespace Cuivre.Code
 
         public static void IncrementGaugeValue(string index, int amount)
         {
-            if (gaugesItems.TryGetValue(index, out int tempAmount))
+            if (gaugesItems.TryGetValue(index, out int tempAmount) && !stuckStats[index])
             {
                 gaugesItems[index] = tempAmount + amount;
                 if(gaugesItems[index] > maxValue) { gaugesItems[index] = maxValue; }
@@ -68,7 +83,36 @@ namespace Cuivre.Code
             List<string> keys = new List<string>(gaugesItems.Keys);
             foreach (string key in keys)
             {
-                gaugesItems[key] -= decay;
+                if (!stuckStats[key]) gaugesItems[key] -= decayStats[key];
+            }
+        }
+
+        public static void HandleEvent(Event ev)
+        {
+            List<string> keys = new List<string>() { "Senateurs", "Philosophes", "Peuple", "Militaires", "Amants" };
+
+            for (int i = 0; i < 5; i++)
+            {
+                gaugesItems[keys[i]] += ev.RawStats[i];
+                stuckStats[keys[i]] = ev.StuckStats[i];
+                decayStats[keys[i]] = ev.DecayStats[i];
+            }
+
+            Dictionary<string, int> swapValues = new Dictionary<string, int>(); //stocks values the gauges will have after the swap
+            for (int i = 0; i < 5; i++)
+            {
+                if (!ev.SwapStats[i].Equals(""))
+                {
+                    swapValues.Add(keys[i], gaugesItems[ev.SwapStats[i]]);
+                }
+                else
+                {
+                    swapValues.Add(keys[i], gaugesItems[keys[i]]);
+                }
+            }
+            foreach (string k in keys)
+            {
+                gaugesItems[k] = swapValues[k];
             }
         }
     }

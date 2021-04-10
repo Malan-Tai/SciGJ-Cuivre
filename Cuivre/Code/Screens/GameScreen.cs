@@ -40,7 +40,7 @@ namespace Cuivre.Code.Screens
 
             new Button(350, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
-                Gauges.IncrementGaugeValue("Hippies", 15);
+                Gauges.IncrementGaugeValue("Amants", 15);
                 Gauges.IncrementGaugeValue("Peuple", -15);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                 Gauges.ShowGaugesValues(); }),
@@ -48,7 +48,7 @@ namespace Cuivre.Code.Screens
             new Button(400, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Militaires", 15);
-                Gauges.IncrementGaugeValue("Hippies", -15);
+                Gauges.IncrementGaugeValue("Amants", -15);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); }),
 
