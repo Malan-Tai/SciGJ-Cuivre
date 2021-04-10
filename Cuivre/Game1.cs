@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using Cuivre.Code;
 using Cuivre.Code.Screens;
+using System.Collections.Generic;
 
 namespace Cuivre
 {
@@ -15,6 +17,8 @@ namespace Cuivre
 
         public static Texture2D white;
         public static SpriteFont font;
+
+        public static Dictionary<string, SoundEffect> Sounds { get; set; } = new Dictionary<string, SoundEffect>();
 
         public Game1()
         {
@@ -36,6 +40,8 @@ namespace Cuivre
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             white = Content.Load<Texture2D>("white");
             font = Content.Load<SpriteFont>("defaultFont");
+
+            Sounds.Add("Miracles", Content.Load<SoundEffect>("Miracles"));
         }
 
         protected override void Update(GameTime gameTime)

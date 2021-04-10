@@ -20,6 +20,12 @@
 /processorParam:TextureFormat=Compressed
 /build:defaultFont.spritefont
 
+#begin Miracles.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Miracles.wav
+
 #begin white.png
 /importer:TextureImporter
 /processor:TextureProcessor
