@@ -1,0 +1,695 @@
+[
+  {
+    "Name": "Traversee des Alpes",
+    "Description": "216 av. JC : Cherche éléphant perdu pendant notre passage dans les Alpes. Si trouvé, contactez Hannibal Barca dans la ville de Capoue. Ou attendez qu’on roule sur Rome, comme vous voulez.",
+    "Hint": "L’armée verra ses yeux pleurer des larmes amères, et un nuage orageux passera sur le Sénat. Tous les autres romains souffriront avec eux.",
+    "RawStats": {
+      "Senateurs": "-10",
+      "Philosophes": "-5",
+      "Peuple": "-5",
+      "Militaires": "-15",
+      "Amants": "-5"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Assassinat de Tiberius Gracchus",
+    "Description": "133 av. JC : Tiberius Gracchus a été assassiné ce matin. Nous pleurons celui qui a essayé d’apporter plus d’égalité dans la répartition des terres et de la nourriture à Rome.",
+    "Hint": "Le bourdonnement de la révolte grondera dans les foyers.",
+    "RawStats": {
+      "Senateurs": "+10",
+      "Philosophes": "0",
+      "Peuple": "-20",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Proscriptions de Sylla",
+    "Description": "82 av. JC : Avis à la population : Sylla est désormais dictateur de Rome et met à disposition une liste d’adversaires politiques proscrits. Toute personne qui rapportera la tête d’un proscrit recevra une récompense. Il est interdit de leur prêter asile.",
+    "Hint": "Un événement terrible affectera le peuple et le Sénat, mais... qui s’en sortira ? Cela dépendra de vos choix.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "Peuple",
+      "Philosophes": "null",
+      "Peuple": "Senateurs",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Culte d’Isis",
+    "Description": "80 av. JC : A tous les débauchés qui honorent Isis sous ma fenêtre : la prochaine fois, vous vous prendrez un vase, pas un broc d’eau ! Marre de ces foutus dieux orientaux...",
+    "Hint": "Seul l’Amour se sortira de cet orage. Les autres Romains seront trempés par la pluie pendant longtemps.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "10",
+      "Philosophes": "10",
+      "Peuple": "10",
+      "Militaires": "10",
+      "Amants": "0"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Revolte de Spartacus",
+    "Description": "73 av. JC : Le vil et veule esclave Spartacus a osé lancer une révolte contre notre Mère Patrie ! Ne vous inquiétez pas, notre Grand Pompée prend la situation en main. Rien de grave, juste quelques crucifixions par-ci par-là...",
+    "Hint": "Les lames se briseront au combat.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "-25",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Pompee et les pirates",
+    "Description": "67 av. JC : Suite à de nombreuses plaintes des marins méditerranéens, un pouvoir exceptionnel a été donné à Pompée le Grand, afin qu’il élimine la piraterie qui sévit dans nos contrées. Qu’il ne fasse pas de quartiers et rentre triomphant à Rome et en grandes pompes !",
+    "Hint": "La rouille touchera les glaives et les amoureux trouveront porte close jusqu’au prochain chamboulement.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "-10",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "true"
+    }
+  },
+  {
+    "Name": "Conjuration de Catilina",
+    "Description": "63 av. JC : La tentative de coup d'État de Catilina a échoué grâce au consul Cicéron ! Il faut croire que ses longs discours soporifiques portent finalement leurs fruits…",
+    "Hint": "Les braves gens n’auront plus assez de toute leur bravoure.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "10",
+      "Peuple": "-20",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Triumvirat",
+    "Description": "60 av. JC : César, Crassus et Pompée s’allient désormais officiellement pour opposer un front politique fort au vieux Caton décrépi. Certains ont beau appeler cette alliance le « monstre à trois têtes », c’est enfin une victoire des progressistes contre les conservateurs !",
+    "Hint": "La politique sera sourde et muette. Un chamboulement terrible affectera le peuple et l’Armée, mais… qui s’en sortira ? Cela dépendra de vos choix.",
+    "RawStats": {
+      "Senateurs": "-10",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "Militaires",
+      "Militaires": "Peuple",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Bataille d’Alesia",
+    "Description": "52 av. JC : Le siège d’Alésia est désormais terminé et le chef arverne Vercingétorix a été capturé. À cause de cette victoire, la montée en puissance de César inquiète...",
+    "Hint": "Un nuage orageux passera sur le Sénat.",
+    "RawStats": {
+      "Senateurs": "-20",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "10",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Cesar franchit le Rubicon",
+    "Description": "49 av. JC : Le général Jules César ne se sent plus et franchit le Rubicon en armes, déclenchant ainsi une guerre civile contre Pompée, son rival et ancien ami.",
+    "Hint": "Le Sénat restera figé dans le marbre. Le travail, l’esprit et l’amour verront leur lumière faiblir.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "-10",
+      "Peuple": "-10",
+      "Militaires": "10",
+      "Amants": "-10"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "true",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Assassinat de Cesar",
+    "Description": "44 av. JC : Jules César entre à titre posthume au patrimoine des fromages romains, les sénateurs ayant considéré qu’il comportait au moins autant de trous qu’un gruyère. Ses assassins doivent tout de même être recherchés et arrêtés.",
+    "Hint": "Il ne fera pas beau dans le ciel des soldats.",
+    "RawStats": {
+      "Senateurs": "10",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "-25",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Bataille d’Actium",
+    "Description": "31 av. JC : La bataille navale d’Actium met fin à la guerre civile entre Octavien et Marc-Antoine. Après un magnifique coup en C4, le dernier bateau de Marc-Antoine a été touché et coulé. ",
+    "Hint": "Les fleurs de l’amour faneront soudainement.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "10",
+      "Amants": "-25"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Auguste empereur",
+    "Description": "27 av. JC : Octavien, notre formidable et extraordinaire sauveur à tous, a reçu aujourd’hui les titres d’Auguste, de premier des citoyens, d’empereur et de fils du divin César. ",
+    "Hint": "La rouille touchera les glaives.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "10",
+      "Peuple": "0",
+      "Militaires": "-25",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Lois Julia",
+    "Description": "18 av. JC : Information importante : les lois Julia sur l’adultère et la pudeur prennent effet aujourd’hui. À bon entendeur, salut !",
+    "Hint": "La lyre des amoureux fera une fausse note et jouera faux quelques temps.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "-10"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "10"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Incendie de Caelius",
+    "Description": "27 ap. JC : L’incendie de la colline Caelius vient enfin d’être maîtrisé. Beaucoup d’habitations ont été détruites. Les Sénateurs pensent en profiter pour permettre à ce quartier d’être mieux fréquenté en y construisant des jardins et des villas.",
+    "Hint": "Les travailleurs de la ruche se sentiront délaissés.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "10",
+      "Peuple": "-25",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Caligula",
+    "Description": "39 ap. JC : Les lubies de l’empereur Caligula suscitent de plus en plus l’incompréhension. On raconte qu’il livre aux lions les puissants qui ne lui plaisent pas, qu’il force de bonnes matrones romaines à se prostituer, et qu’il pense à nommer un cheval consul...",
+    "Hint": "Les marbres de l’assemblée céderont.",
+    "RawStats": {
+      "Senateurs": "-25",
+      "Philosophes": "0",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "10"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Assassinat de Claude",
+    "Description": "54 ap. JC : L’empereur Claude vient de mourir empoisonné dans des circonstances suspectes. Sa femme, Agrippine, privilégie l’hypothèse du suicide.",
+    "Hint": "Les dieux souffleront un épais brouillard sur les pensées des sages.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "-10",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "10",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Grand incendie de Rome",
+    "Description": "64 ap JC : C’est aujourd’hui le sixième jour que Rome brûle, et les vigiles font tout leur possible pour arrêter l’incendie. Notons que ce n’est assurément absolument pas Néron qui a ordonné cet incendie. Pas du tout. Jamais. Quelle honte de penser ça !",
+    "Hint": "Les sept soeurs qui nous tiennent entre leurs bras s’effondreront jusqu’à tous vous étouffer.",
+    "RawStats": {
+      "Senateurs": "-20",
+      "Philosophes": "-20",
+      "Peuple": "-20",
+      "Militaires": "-10",
+      "Amants": "-20"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Mort de Seneque",
+    "Description": "65 ap. JC : Nous pleurons aujourd’hui Sénèque, grand philosophe de la cité. D’après notre empereur Néron, il aurait décidé complètement de son plein gré de se suicider dans sa baignoire, après l’échec de son complot contre Néron.",
+    "Hint": "Les penseurs ne s’entendront plus penser.",
+    "RawStats": {
+      "Senateurs": "0",
+      "Philosophes": "-25",
+      "Peuple": "0",
+      "Militaires": "0",
+      "Amants": "0"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Annee des 4 empereurs",
+    "Description": "69 ap. JC : Après Galba, Othon et Vitellius, c’est maintenant Vespasien qui devient le quatrième empereur de cette année 69. Espérons qu’il fasse plus long feu que les précédents, l’administration de l’empire n’arrive pas à suivre...",
+    "Hint": "La louve pleurera sur tous ses enfants.",
+    "RawStats": {
+      "Senateurs": "-20",
+      "Philosophes": "-10",
+      "Peuple": "-10",
+      "Militaires": "-20",
+      "Amants": "-20"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  },
+  {
+    "Name": "Vesuve",
+    "Description": "79 ap. JC : Hier soir, un grand bruit a été entendu et une importante fumée nous arrive en direction de Pompéi. Des enquêteurs ont été envoyés. La piste terroriste n’est pas privilégiée.",
+    "Hint": "La louve pleurera sur tous ses enfants.",
+    "RawStats": {
+      "Senateurs": "-10",
+      "Philosophes": "-10",
+      "Peuple": "-20",
+      "Militaires": "-20",
+      "Amants": "-20"
+    },
+    "SwapStats": {
+      "Senateurs": "null",
+      "Philosophes": "null",
+      "Peuple": "null",
+      "Militaires": "null",
+      "Amants": "null"
+    },
+    "DecayStats": {
+      "Senateurs": "5",
+      "Philosophes": "5",
+      "Peuple": "5",
+      "Militaires": "5",
+      "Amants": "5"
+    },
+    "StuckStats": {
+      "Senateurs": "false",
+      "Philosophes": "false",
+      "Peuple": "false",
+      "Militaires": "false",
+      "Amants": "false"
+    }
+  }
+]
