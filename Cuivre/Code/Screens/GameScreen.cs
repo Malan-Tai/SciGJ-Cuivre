@@ -17,7 +17,7 @@ namespace Cuivre.Code.Screens
         private Dictionary<string, Poet> poets;
 
         private bool newDay = false;
-
+        private bool eventDay = false;
 
 
         private List<Button> buttons = new List<Button>
@@ -143,11 +143,21 @@ namespace Cuivre.Code.Screens
         public void NewDay()
         {
             ResetButtons();
-            Gauges.NaturalDecay();
-            Timeline.DecayMiracleDelay();
 
-            string lowest = Gauges.GetLowestGauge();
-            poets[lowest].Call();
+            eventDay = Timeline.TodayHasEvent();
+            if (eventDay)
+            {
+                Timeline.CallEvent();
+            }
+            else
+            {
+                Gauges.NaturalDecay();
+                Timeline.DecayMiracleDelay();
+
+                string lowest = Gauges.GetLowestGauge();
+                poets[lowest].Call();
+            }
+            
         }
 
         public void ResetButtons()
@@ -172,7 +182,12 @@ namespace Cuivre.Code.Screens
                 b.Update(gameTime, prevMouseState, mouseState, this);
             }
 
-            Timeline.Update(gameTime, mouseState);
+            double eventDelay = Timeline.Update(gameTime, mouseState);
+            if (eventDay && eventDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
+            {
+                eventDay = false;
+                newDay = true;
+            }
 
             if (newDay)
             {

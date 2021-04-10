@@ -29,8 +29,14 @@ namespace Cuivre.Code
         
         public void Draw(SpriteBatch spriteBatch, int x)
         {
-            if (!called) spriteBatch.Draw(Game1.white, new Rectangle(x - 5, 55, 10, 10), Color.Green);
-            else spriteBatch.Draw(Game1.white, new Rectangle(x - 20, 40, 40, 40), Color.Green); 
+            if (!called)
+            {
+                spriteBatch.Draw(Game1.white, new Rectangle(x - 5, 55, 10, 10), Color.Green);
+            }
+            else
+            {
+                spriteBatch.Draw(Game1.white, new Rectangle(x - 20, 40, 40, 40), Color.Green);
+            }
             
             if (y < maxY) spriteBatch.Draw(Game1.white, new Rectangle(x, 50, 100, 300), Color.White);
             if (y <= minY)
@@ -77,7 +83,7 @@ namespace Cuivre.Code
             {
                 //Miracle effect
                 //Play sound
-                foreach(string key in Gauges.gaugesItems.Keys)
+                foreach(string key in RawStats.Keys)
                 {
                     Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction);
                 }

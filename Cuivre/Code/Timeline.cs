@@ -121,18 +121,30 @@ namespace Cuivre.Code
             }
         }
 
-        public void Update(GameTime gameTime, MouseState mouseState)
+        public double Update(GameTime gameTime, MouseState mouseState)
         {
             if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed) called = false;
             curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             foreach (Day d in days) d.Update(gameTime, mouseState);
+
+            return curDelay;
         }
 
         public void CallOracle()
         {
             called = true;
             curDelay = oracleDelay;
+        }
+
+        public bool TodayHasEvent()
+        {
+            return days[currentDay].HasEvent();
+        }
+
+        public void CallEvent()
+        {
+            days[currentDay].CallEvent();
         }
     }
 }

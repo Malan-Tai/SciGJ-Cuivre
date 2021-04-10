@@ -25,6 +25,11 @@ namespace Cuivre.Code
             ActionPoints = 0;
         }
 
+        public bool HasEvent()
+        {
+            return dayEvent != null;
+        }
+
         public string GetHint()
         {
             if (dayEvent != null) return dayEvent.Hint;
@@ -48,12 +53,17 @@ namespace Cuivre.Code
                 x += apWidth;
             }
 
-            if (dayEvent != null) dayEvent.Draw(spriteBatch, x + dayWidth);
+            if (dayEvent != null) dayEvent.Draw(spriteBatch, x - dayWidth / 2);
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)
         {
             if (dayEvent != null) dayEvent.Update(gameTime, mouseState);
+        }
+
+        public void CallEvent()
+        {
+            if (dayEvent != null) dayEvent.TakePlace();
         }
     }
 }
