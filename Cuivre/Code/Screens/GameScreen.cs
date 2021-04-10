@@ -83,7 +83,7 @@ namespace Cuivre.Code.Screens
 
                 new Button(515, 170, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
-                ((GameScreen)screen).poets["Sénateurs"].Call();
+                ((GameScreen)screen).poets["Senateurs"].Call();
                 System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}),
 
                 new Button(515, 230, 130, 50, Game1.white, screen => {
