@@ -11,13 +11,11 @@ namespace Cuivre.Code
     {
         public string Name { get; set; }
 
-        private bool Hidden { get; set; }
-
         public string Hint { get; set; }
 
         public void Draw(SpriteBatch spriteBatch, int x)
         {
-
+            spriteBatch.Draw(Game1.white, new Rectangle(x - 5, 55, 10, 10), Color.Green);
         }
 
         public void TakePlace()

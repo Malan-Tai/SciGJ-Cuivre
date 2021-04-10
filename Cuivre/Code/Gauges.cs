@@ -11,6 +11,8 @@ namespace Cuivre.Code
         const int startValues = 60;
         const int maxValue = 100;
 
+        const int decay = 5;
+
         public static void InitializeGauges(List<string> names)
         {
             foreach (string name in names)
@@ -59,6 +61,15 @@ namespace Cuivre.Code
             }
 
             return res;
+        }
+
+        public static void NaturalDecay()
+        {
+            List<string> keys = new List<string>(gaugesItems.Keys);
+            foreach (string key in keys)
+            {
+                gaugesItems[key] -= decay;
+            }
         }
     }
 }
