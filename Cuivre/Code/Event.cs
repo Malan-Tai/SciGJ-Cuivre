@@ -33,7 +33,12 @@ namespace Cuivre.Code
 
             if (Miracle.MiracleRoll())
             {
-                //Do something cool
+                //Miracle effect
+                //Play sound
+                foreach(string key in Gauges.gaugesItems.Keys)
+                {
+                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction);
+                }
             }
             else
             {

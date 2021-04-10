@@ -16,53 +16,83 @@ namespace Cuivre.Code.Screens
 
         private List<Button> buttons = new List<Button>
         {
-            //Pas très utile, mais je peux peut-être rajouter une sécurité si on ne trouve pas la clé dans le dico
-            new Button(200, 100, 45, 45, Game1.white, screen => { 
+            new CollapseButton(25, 100, 150, 310, Game1.white, new List<Button>
+            {
+                new Button(35, 110, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Peuple", 15);
                 Gauges.IncrementGaugeValue("Senateurs", -5);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(250, 100, 45, 45, Game1.white, screen => { 
+                new Button(35, 170, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Senateurs", 15);
                 Gauges.IncrementGaugeValue("Philosophes", -5);
                 System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(300, 100, 45, 45, Game1.white, screen => { 
+                new Button(35, 230, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Philosophes", 15);
                 Gauges.IncrementGaugeValue("Militaires", -5);
                 System.Diagnostics.Debug.WriteLine("Théâtre");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(350, 100, 45, 45, Game1.white, screen => { 
+                new Button(35, 290, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Amants", 15);
                 Gauges.IncrementGaugeValue("Peuple", -5);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(400, 100, 45, 45, Game1.white, screen => { 
+                new Button(35, 350, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Militaires", 15);
                 Gauges.IncrementGaugeValue("Amants", -5);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
-                Gauges.ShowGaugesValues(); }),
+                Gauges.ShowGaugesValues(); })
+
+
+            }),
 
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
-            new Button(200, 175, 50, 50, Game1.white, screen => {
+            new Button(185, 100, 150, 310, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
 
             //Bouton de l'oracle
-            new Button(300, 175, 50, 50, Game1.white, screen => {
+            new Button(345, 100, 150, 310, Game1.white, screen => {
 
                 ((GameScreen)screen).SpendActionPoints(2);
                 //Display currentEventHint
-                System.Diagnostics.Debug.WriteLine("L'oracle vous révèle une prophétie cheloue"); })
+                System.Diagnostics.Debug.WriteLine("L'oracle vous révèle une prophétie cheloue"); }),
+
+            new CollapseButton(505, 100, 150, 310, Game1.white, new List<Button>
+            {
+                new Button(515, 110, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(1);
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète du Peuple");}),
+
+                new Button(515, 170, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(1);
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}),
+
+                new Button(515, 230, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(1);
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Philosophes");}),
+
+                new Button(515, 290, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(1);
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Amants");}),
+
+                new Button(515, 350, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(1);
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Militaires");}),
+
+
+            })
+
         };
 
         private Dictionary<string, Poet> poets;
