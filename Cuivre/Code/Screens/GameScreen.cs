@@ -10,7 +10,7 @@ namespace Cuivre.Code.Screens
 {
     class GameScreen : Screen
     {
-        public Timeline Timeline { get; set; }
+        public Timeline Timeline { get; set; } = new Timeline();
 
         private List<Button> buttons = new List<Button>
         {
@@ -43,10 +43,34 @@ namespace Cuivre.Code.Screens
             poet.Init(content);
         }
 
+        public bool SpendActionPoints(int amount)
+        {
+            int res = Timeline.SpendActionPoints(amount);
+
+            if (res < 0) return false;
+
+            if (res == 0)
+            {
+                ResetButtons();
+            }
+
+            return true;
+        }
+
+        public void ResetButtons()
+        {
+            foreach (Button b in buttons)
+            {
+                b.Reset();
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             MouseState mouseState = Mouse.GetState();
             if (mouseState.RightButton == ButtonState.Pressed) poet.Call();
+
+            if (mouseState.MiddleButton == ButtonState.Pressed && prevMouseState.MiddleButton == ButtonState.Released) SpendActionPoints(1);
 
             poet.Update(gameTime, mouseState);
 
@@ -66,6 +90,8 @@ namespace Cuivre.Code.Screens
             {
                 b.Draw(gameTime, spriteBatch);
             }
+
+            Timeline.Draw(spriteBatch);
         }
     }
 }

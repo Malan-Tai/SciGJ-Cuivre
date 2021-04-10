@@ -6,11 +6,13 @@ namespace Cuivre.Code
 {
     static class EventPool
     {
-        const int eventAmountInTimeLine = 7; //Sujet à changement
+        public const int eventAmountInTimeLine = 7; //Sujet à changement
 
-        const int eventAmountInPool = 4; //Aussi peut-être
+        public const int eventAmountInPool = 3; //Aussi peut-être
 
-        static List<Event> eventList; //Liste finale à retourner à la timeline
+        public const int dayPerEvent = 3;
+
+        private static List<Event> eventList; //Liste finale à retourner à la timeline
 
         //Liste des pools d'events dans lesquels on pourra piocher
         static List<List<Event>> eventPoolsList;
@@ -32,7 +34,7 @@ namespace Cuivre.Code
         {
             for(int i = 0; i < eventPoolsList.Count; i++)
             {
-                Event chosenEvent = eventPoolsList[i][Utils.Dice.GetRandint(0, eventPoolsList[i].Count)];
+                Event chosenEvent = eventPoolsList[i][Utils.Dice.GetRandint(0, eventPoolsList[i].Count - 1)];
                 eventList.Add(chosenEvent);
             }
             return eventList;

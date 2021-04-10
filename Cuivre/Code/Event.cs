@@ -11,9 +11,9 @@ namespace Cuivre.Code
     {
         public string Name { get; set; }
 
-        public bool Hidden { get; set; }
+        private bool Hidden { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int x)
         {
 
         }
