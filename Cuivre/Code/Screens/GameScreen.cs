@@ -20,10 +20,7 @@ namespace Cuivre.Code.Screens
                 new Button(10, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 2"); })
             }),
             new Button(70, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 3"); }),
-
-            //new Button(150, 100, 30, 30, Game1.white, screen => { Gauges.InitializeGauges(new List<string>(){"Philosophes","Millitaires", "Bidules"}); System.Diagnostics.Debug.WriteLine("Jauges initialisées"); }),
             
-            //Pas très utile, mais je peux peut-être rajouter une sécurité si on ne trouve pas la clé dans le dico
             new Button(200, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Peuple", 15);
                 Gauges.IncrementGaugeValue("Sénateurs", -15);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
@@ -47,7 +44,10 @@ namespace Cuivre.Code.Screens
             new Button(400, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Militaires", 15);
                 Gauges.IncrementGaugeValue("Hippies", -15);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
-                Gauges.ShowGaugesValues(); })
+                Gauges.ShowGaugesValues(); }),
+
+            new Button(200, 175, 50, 50, Game1.white, screen => { Miracle.AddMiracleChance(10);
+                System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); })
 
         };
 

@@ -13,9 +13,25 @@ namespace Cuivre.Code
 
         private bool Hidden { get; set; }
 
+        public string Hint { get; set; }
+
         public void Draw(SpriteBatch spriteBatch, int x)
         {
 
+        }
+
+        public void TakePlace()
+        {
+            if (Miracle.MiracleRoll())
+            {
+                //Do something cool
+            }
+            else
+            {
+                //Do something less cool
+            }
+
+            Miracle.ResetMiracleChance();
         }
     }
 }
