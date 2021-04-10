@@ -14,6 +14,12 @@ namespace Cuivre.Code.Screens
     {
         public Timeline Timeline { get; set; } = new Timeline();
 
+        private Dictionary<string, Poet> poets;
+
+        private bool newDay = false;
+
+
+
         private List<Button> buttons = new List<Button>
         {
             new CollapseButton(25, 100, 150, 310, Game1.white, new List<Button>
@@ -72,22 +78,27 @@ namespace Cuivre.Code.Screens
             {
                 new Button(515, 110, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).poets["Peuple"].Call();
                 System.Diagnostics.Debug.WriteLine("On demande son avis au poète du Peuple");}),
 
                 new Button(515, 170, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).poets["Sénateurs"].Call();
                 System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}),
 
                 new Button(515, 230, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).poets["Philosophes"].Call();
                 System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Philosophes");}),
 
                 new Button(515, 290, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).poets["Amants"].Call();
                 System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Amants");}),
 
                 new Button(515, 350, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).poets["Militaires"].Call();
                 System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Militaires");}),
 
 
@@ -95,9 +106,7 @@ namespace Cuivre.Code.Screens
 
         };
 
-        private Dictionary<string, Poet> poets;
-
-        private bool newDay = false;
+        
 
         public override void Init(ContentManager content)
         {
