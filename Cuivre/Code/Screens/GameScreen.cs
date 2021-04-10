@@ -103,6 +103,8 @@ namespace Cuivre.Code.Screens
         {
             base.Init(content);
 
+            //EventPool.AddEvents();
+
             poets = new Dictionary<string, Poet>();
             List<Poet> tempPoets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json"));
             foreach (Poet p in tempPoets)

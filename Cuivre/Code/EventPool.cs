@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Cuivre.Code
 {
@@ -12,26 +14,22 @@ namespace Cuivre.Code
 
         public const int dayPerEvent = 3;
 
-        private static List<Event> eventList; //Liste finale à retourner à la timeline
-
-        //Liste des pools d'events dans lesquels on pourra piocher
-        static List<List<Event>> eventPoolsList;
-
-        //On crée la liste des pools d'event
-        public static void AddEvents()
-        {
-            for(int i = 0; i < eventAmountInTimeLine; i++)
-            {
-                for(int j = 0; j < eventAmountInPool; j++)
-                {
-                    eventPoolsList[i].Add(new Event()); //J'ai un doute ici
-                }
-            }
-        }
-
         //On sélectionne un event au hasard par pool et on l'ajoute à notre liste pour la timeline
         public static List<Event> PickEventsFromLists()
         {
+            List<Event> temp = JsonConvert.DeserializeObject<List<Event>>(File.ReadAllText("Content\\Design\\events.json"));
+
+            List<List<Event>> eventPoolsList = new List<List<Event>>();
+            for (int i = 0; i < eventAmountInTimeLine; i++)
+            {
+                eventPoolsList.Add(new List<Event>());
+                for (int j = 0; j < eventAmountInPool; j++)
+                {
+                    eventPoolsList[i].Add(temp[j + i * eventAmountInPool]);
+                }
+            }
+
+            List<Event> eventList = new List<Event>();
             for(int i = 0; i < eventPoolsList.Count; i++)
             {
                 Event chosenEvent = eventPoolsList[i][Utils.Dice.GetRandint(0, eventPoolsList[i].Count - 1)];
