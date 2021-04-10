@@ -59,6 +59,8 @@ namespace Cuivre.Code.Screens
 
         private Dictionary<string, Poet> poets;
 
+        private bool newDay = false;
+
         public override void Init(ContentManager content)
         {
             base.Init(content);
@@ -85,7 +87,7 @@ namespace Cuivre.Code.Screens
 
             if (res == 0)
             {
-                NewDay();
+                newDay = true;
             }
 
             return true;
@@ -94,6 +96,7 @@ namespace Cuivre.Code.Screens
         public void NewDay()
         {
             ResetButtons();
+            Gauges.NaturalDecay();
 
             string lowest = Gauges.GetLowestGauge();
             poets[lowest].Call();
@@ -119,6 +122,12 @@ namespace Cuivre.Code.Screens
             foreach (Button b in buttons)
             {
                 b.Update(gameTime, prevMouseState, mouseState, this);
+            }
+
+            if (newDay)
+            {
+                newDay = false;
+                NewDay();
             }
 
             prevMouseState = mouseState;
