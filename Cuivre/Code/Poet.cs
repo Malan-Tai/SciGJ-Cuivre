@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Cuivre.Code
 {
@@ -35,6 +36,13 @@ namespace Cuivre.Code
         private bool called = false;
         private List<string> currentDialogues;
         private string nextLine;
+        private List<string> soundEffectsList = new List<string>
+        {
+            "Poete1",
+            "Poete2",
+            "Poete3",
+            "Poete4"
+        };
 
         public void Init(ContentManager content)
         {
@@ -58,20 +66,25 @@ namespace Cuivre.Code
             called = true;
             int gauge = Gauges.gaugesItems[GaugeName];
 
+            Game1.Sounds[soundEffectsList[Utils.Dice.GetRandint(0, soundEffectsList.Count)]].Play();
+
             if (gauge <= 25)
             {
                 currentDialogues = UnhappyDialogues;
                 currentTexture = unhappyTexture;
+                Game1.Sounds["Rite1"].Play();
             }
             else if (gauge > 75)
             {
                 currentDialogues = HappyDialogues;
                 currentTexture = happyTexture;
+                Game1.Sounds["Rite2"].Play();
             }
             else
             {
                 currentDialogues = NeutralDialogues;
                 currentTexture = neutralTexture;
+                Game1.Sounds["Rite3"].Play();
             }
 
             int n = currentDialogues.Count - 1; //number of real sentence, ignoring last said

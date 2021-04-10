@@ -20,7 +20,6 @@ namespace Cuivre
         public static SpriteFont font;
 
         public static Dictionary<string, SoundEffect> Sounds { get; set; } = new Dictionary<string, SoundEffect>();
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -44,6 +43,25 @@ namespace Cuivre
             font = Content.Load<SpriteFont>("defaultFont");
 
             Sounds.Add("Miracles", Content.Load<SoundEffect>("Miracles"));
+            Sounds.Add("Evenement", Content.Load<SoundEffect>("Evenement"));
+            Sounds.Add("MiracleRate", Content.Load<SoundEffect>("Miracle_rate"));
+            Sounds.Add("Oracle", Content.Load<SoundEffect>("Oracle"));
+            Sounds.Add("Poete1", Content.Load<SoundEffect>("Poete_1"));
+            Sounds.Add("Poete2", Content.Load<SoundEffect>("Poete_2"));
+            Sounds.Add("Poete3", Content.Load<SoundEffect>("Poete_3"));
+            Sounds.Add("Poete4", Content.Load<SoundEffect>("Poete_4"));
+            Sounds.Add("Rite1", Content.Load<SoundEffect>("Rite_1"));
+            Sounds.Add("Rite2", Content.Load<SoundEffect>("Rite_2"));
+            Sounds.Add("Rite3", Content.Load<SoundEffect>("Rite_3"));
+            Sounds.Add("M_Egypte", Content.Load<SoundEffect>("M_Egypte"));
+            Sounds.Add("M_Final", Content.Load<SoundEffect>("M_Final"));
+            Sounds.Add("M_Romain1", Content.Load<SoundEffect>("M_Romain 1"));
+            Sounds.Add("M_Romain2", Content.Load<SoundEffect>("M_Romain 2"));
+            Sounds.Add("M_Romain3", Content.Load<SoundEffect>("M_Romain 3"));
+            Sounds.Add("M_Romain4", Content.Load<SoundEffect>("M_Romain 4"));
+            Sounds.Add("M_Transition", Content.Load<SoundEffect>("M_Transition 2 eg"));
+
+
         }
 
         protected override void Update(GameTime gameTime)
