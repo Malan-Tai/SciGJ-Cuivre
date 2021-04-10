@@ -122,7 +122,7 @@ namespace Cuivre.Code
             }
         }
 
-        public bool Update(GameTime gameTime, MouseState mouseState)
+        public bool Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
         {
             bool nextDay = false;
             if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
@@ -131,7 +131,7 @@ namespace Cuivre.Code
             }
             curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            foreach (Day d in days) nextDay = nextDay || d.Update(gameTime, mouseState);
+            foreach (Day d in days) nextDay = nextDay || d.Update(gameTime, mouseState, prevMouseState);
 
             if (nextDay)
             {

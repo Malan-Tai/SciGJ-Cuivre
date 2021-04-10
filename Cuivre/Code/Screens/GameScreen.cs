@@ -186,7 +186,7 @@ namespace Cuivre.Code.Screens
                 poet.Update(gameTime, mouseState);
             }
 
-            bool endEvent = Timeline.Update(gameTime, mouseState);
+            bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState);
             if (endEvent)
             {
                 eventDay = false;
