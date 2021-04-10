@@ -21,11 +21,11 @@ namespace Cuivre.Code.Screens
             }),
             new Button(70, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 3"); }),
 
-            new Button(150, 100, 30, 30, Game1.white, screen => { Gauges.InitializeGauges(new List<string>(){"Philosophes","Millitaires", "Bidules"}); System.Diagnostics.Debug.WriteLine("Jauges initialisées"); }),
+            //new Button(150, 100, 30, 30, Game1.white, screen => { Gauges.InitializeGauges(new List<string>(){"Philosophes","Millitaires", "Bidules"}); System.Diagnostics.Debug.WriteLine("Jauges initialisées"); }),
             
             //Pas très utile, mais je peux peut-être rajouter une sécurité si on ne trouve pas la clé dans le dico
             new Button(200, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Philosophes", 5);
-                    System.Diagnostics.Debug.WriteLine("Les philosophes sont maintenant à :", Gauges.gaugesItems["Philosophes"]); }), //J'arrive pas à afficher la valeur en même temps , mais c'est pas grave
+                    System.Diagnostics.Debug.WriteLine("Les philosophes sont maintenant à : " + Gauges.gaugesItems["Philosophes"]); }), //J'arrive pas à afficher la valeur en même temps , mais c'est pas grave
             new Button(250, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Millitaires", -10);
                     System.Diagnostics.Debug.WriteLine(Gauges.gaugesItems["Millitaires"]); }),
             new Button(300, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Bidules", 5);
@@ -39,6 +39,7 @@ namespace Cuivre.Code.Screens
         public override void Init(ContentManager content)
         {
             base.Init(content);
+            Gauges.InitializeGauges(new List<string>() { "Philosophes", "Millitaires", "Bidules" });
             poet.Init(content);
         }
 
