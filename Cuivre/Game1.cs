@@ -3,9 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 using Newtonsoft.Json;
-using Cuivre.Code;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Cuivre.Code;
+using Cuivre.Code.Screens;
 
 namespace Cuivre
 {
@@ -15,6 +16,8 @@ namespace Cuivre
         private SpriteBatch _spriteBatch;
 
         private Screen currentScreen;
+
+        public static Texture2D white;
 
         public Game1()
         {
@@ -26,13 +29,14 @@ namespace Cuivre
         protected override void Initialize()
         {
             base.Initialize();
+
+            currentScreen = new GameScreen();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            white = Content.Load<Texture2D>("white");
         }
 
         protected override void Update(GameTime gameTime)
@@ -51,12 +55,14 @@ namespace Cuivre
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            _spriteBatch.Begin();
 
             if (currentScreen != null)
             {
                 currentScreen.Draw(gameTime, _spriteBatch);
             }
 
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }
