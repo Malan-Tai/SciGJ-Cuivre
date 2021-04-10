@@ -83,20 +83,6 @@ namespace Cuivre.Code
             called = true;
             Gauges.ReinitDictionaries();
 
-            if (Miracle.MiracleRoll())
-            {
-                //Miracle effect
-                //Play sound
-                foreach(string key in RawStats.Keys)
-                {
-                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction);
-                }
-            }
-            else
-            {
-                //Do something less cool
-            }
-
             Gauges.HandleEvent(this);
             Miracle.ResetMiracleChance();
         }

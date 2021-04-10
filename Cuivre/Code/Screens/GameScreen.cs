@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;
 using System.IO;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Cuivre.Code.Screens
 {
@@ -27,7 +28,8 @@ namespace Cuivre.Code.Screens
             new Button(25, 100, 150, 310, Game1.white, screen => {
                 if (((GameScreen)screen).SpendActionPoints(2))
                 {
-                    ((GameScreen)screen).Timeline.CallOracle(); 
+                    ((GameScreen)screen).Timeline.CallOracle();
+                    Game1.Sounds["Oracle"].Play();
                 }}),
 
             new CollapseButton(185, 100, 150, 310, Game1.white, new List<Button>
@@ -73,7 +75,18 @@ namespace Cuivre.Code.Screens
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(345, 100, 150, 310, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
-                System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
+                if (Miracle.MiracleRoll())
+                {
+                Game1.Sounds["Miracles"].Play();
+                foreach(string key in Gauges.gaugesItems.Keys)
+                {
+                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction);
+                }
+                }
+                else
+                {
+                    Game1.Sounds["Miracle_rate"].Play();
+                }}),
 
             new CollapseButton(505, 100, 150, 310, Game1.white, new List<Button>
             {
@@ -151,6 +164,7 @@ namespace Cuivre.Code.Screens
             if (eventDay)
             {
                 Timeline.CallEvent();
+                Game1.Sounds["Evenement"].Play();
             }
             else
             {
