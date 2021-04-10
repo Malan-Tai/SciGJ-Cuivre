@@ -1,38 +1,38 @@
 [
   {
-    "Name": "Juvénal",
+    "Name": "Juvenal",
     "GaugeName": "Senateurs",
     "TextureString": "juvenal",
     "HappyDialogues": [
-      "Je vois que Rome commence enfin à retrouver sa grandeur d'antan.",
-      "Cybèle est très appréciée parmi les Sénateurs. Ils apprécient la protection qu'elle apporte aux chastes jeunes filles."
+      "Je vois que Rome commence enfin a retrouver sa grandeur d'antan.",
+      "Cybele est tres appreciee parmi les Senateurs. Ils apprecient la protection qu'elle apporte aux chastes jeunes filles."
     ],
     "NeutralDialogues": [
-      "Cybèle ? Je regarde de loin ce qu'elle devient, mais ça ne m'intéresse pas trop.",
-      "J'ai des thématiques beaucoup plus intéressantes à traiter que ces machins orientaux..."
+      "Cybele ? Je regarde de loin ce qu'elle devient, mais ca ne m'interesse pas trop.",
+      "J'ai des thematiques beaucoup plus interessantes a traiter que ces machins orientaux..."
     ],
     "UnhappyDialogues": [
-      "Les cultes orientaux corrompent notre belle cité ! Qu'ils rentrent chez eux !",
-      "Rome est décadente ! Des réformes ne feraient pas de mal...",
-      "Cette Cybèle phrygienne dévoie la jeunesse !"
+      "Les cultes orientaux corrompent notre belle cite ! Qu'ils rentrent chez eux !",
+      "Rome est decadente ! Des reformes ne feraient pas de mal...",
+      "Cette Cybele phrygienne devoie la jeunesse !"
     ]
   },
   {
-    "Name": "Lucrèce",
+    "Name": "Lucrece",
     "GaugeName": "Philosophes",
     "TextureString": "lucrece",
     "HappyDialogues": [
-      "Cybèle est un apport bienvenu à la pensée philosophique. J'ai hâte d'écrire encore sur elle.",
-      "Cette déesse est incroyable ! C'est une vraie inspiration poétique et philosophique !"
+      "Cybele est un apport bienvenu a la pensee philosophique. J'ai hate d'ecrire encore sur elle.",
+      "Cette deesse est incroyable ! C'est une vraie inspiration poetique et philosophique !"
     ],
     "NeutralDialogues": [
-      "Cybèle, c'est qui ?",
-      "Je ne m'intéresse pas à la mythologie."
+      "Cybele, c'est qui ?",
+      "Je ne m'interesse pas a la mythologie."
     ],
     "UnhappyDialogues": [
-      "Cybèle est un frein au développement de la pensée philosophique !",
-      "La philosophie orientale est mauvaise pour Rome. Nous militons pour le rejet de Cybèle. ",
-      "Toute mention de Cybèle dans un recueil philosophique le fait immédiatement baisser en qualité... "
+      "Cybele est un frein au developpement de la pensee philosophique !",
+      "La philosophie orientale est mauvaise pour Rome. Nous militons pour le rejet de Cybele. ",
+      "Toute mention de Cybele dans un recueil philosophique le fait immediatement baisser en qualite... "
     ]
   },
   {
@@ -40,17 +40,17 @@
     "GaugeName": "Peuple",
     "TextureString": "martial",
     "HappyDialogues": [
-      "J'adore Cybèle ! On peut faire tellement de blagues sur son culte !",
-      "Le peuple aime vraiment cette déesse ! Elle ne leur apporte que des bonnes choses. Héhé..."
+      "J'adore Cybele ! On peut faire tellement de blagues sur son culte !",
+      "Le peuple aime vraiment cette deesse ! Elle ne leur apporte que des bonnes choses. Hehe..."
     ],
     "NeutralDialogues": [
-      "Je suis occupé… Revenez quand vous avez quelque chose d'intéressant à demander.",
-      "Les dieux orientaux n'ont pas grand intérêt à mes yeux."
+      "Je suis occupe... Revenez quand vous avez quelque chose d'interessant a demander.",
+      "Les dieux orientaux n'ont pas grand interet a mes yeux."
     ],
     "UnhappyDialogues": [
-      "Tout l'argent de l'Etat passe dans le culte de Cybèle et il n'y a plus rien pour nous !",
-      "Parmi mes amis, honnêtement, personne n'aime Cybèle.",
-      "Dès que je mentionne Cybèle dans ma poésie, le peuple crache sur ce que j'ai écrit."
+      "Tout l'argent de l'Etat passe dans le culte de Cybele et il n'y a plus rien pour nous !",
+      "Parmi mes amis, honnetement, personne n'aime Cybele.",
+      "Des que je mentionne Cybele dans ma poesie, le peuple crache sur ce que j'ai ecrit."
     ]
   },
   {
@@ -58,17 +58,17 @@
     "GaugeName": "Militaires",
     "TextureString": "virgile",
     "HappyDialogues": [
-      "Cybèle est une vraie déesse romaine ! Elle nous motive à défendre Rome !",
-      "Les militaires apprécient vraiment Cybèle. Elle est honorée dans les campements."
+      "Cybele est une vraie deesse romaine ! Elle nous motive a defendre Rome !",
+      "Les militaires apprecient vraiment Cybele. Elle est honoree dans les campements."
     ],
     "NeutralDialogues": [
-      "Je n'ai pas vraiment d'avis sur Cybèle.",
-      "On ne m'a pas demandé de parler de Cybèle dans ma poésie épique, alors je ne vois pas pourquoi je le ferais."
+      "Je n'ai pas vraiment d'avis sur Cybele.",
+      "On ne m'a pas demande de parler de Cybele dans ma poesie epique, alors je ne vois pas pourquoi je le ferais."
     ],
     "UnhappyDialogues": [
-      "Cybèle est une déesse étrangère. Parler d'elle dans ma poésie serait faire honte à Rome !",
-      "Nous ne voulons plus de Cybèle, elle peut repartir en Phrygie.",
-      "Jamais je n'écrirai son nom dans mes vers !"
+      "Cybele est une deesse etrangere. Parler d'elle dans ma poesie serait faire honte a Rome !",
+      "Nous ne voulons plus de Cybele, elle peut repartir en Phrygie.",
+      "Jamais je n'ecrirai son nom dans mes vers !"
     ]
   },
   {
@@ -76,17 +76,17 @@
     "GaugeName": "Amants",
     "TextureString": "ovide",
     "HappyDialogues": [
-      "Cybèle est porteuse d'un grand message de libération des moeurs, nous l'adorons !",
-      "Cybèle m'inspire énormément dans ma poésie amoureuse, elle est géniale !"
+      "Cybele est porteuse d'un grand message de liberation des moeurs, nous l'adorons !",
+      "Cybele m'inspire enormement dans ma poesie amoureuse, elle est geniale !"
     ],
     "NeutralDialogues": [
-      "Je ne vois pas trop l'intérêt de Cybèle pour nous...",
-      "Je parlerai de Cybèle dans ma poésie quand je lui aurai trouvé un intérêt."
+      "Je ne vois pas trop l'interet de Cybele pour nous...",
+      "Je parlerai de Cybele dans ma poesie quand je lui aurai trouve un interet."
     ],
     "UnhappyDialogues": [
-      "Cybèle est une déesse beaucoup trop stricte ! Elle ne nous apporte que des problèmes.",
-      "Les valeurs de chasteté que transmet Cybèle sont désastreuses pour nous !",
-      "J'aurais préféré que Cybèle n'arrive jamais à Rome !"
+      "Cybele est une deesse beaucoup trop stricte ! Elle ne nous apporte que des problemes.",
+      "Les valeurs de chastete que transmet Cybele sont desastreuses pour nous !",
+      "J'aurais prefere que Cybele n'arrive jamais a Rome !"
     ]
   }
 
