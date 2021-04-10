@@ -22,7 +22,7 @@ namespace Cuivre.Code
         public Timeline()
         {
             days = new List<Day>();
-            //List<Event> eventList = EventPool.PickEventsFromLists();
+            List<Event> eventList = EventPool.PickEventsFromLists();
 
             for (int i = 0; i < EventPool.eventAmountInTimeLine; i++)
             {
@@ -30,8 +30,7 @@ namespace Cuivre.Code
                 {
                     days.Add(new Day());
                 }
-                //Days.Add(new Day(eventList[i]));
-                days.Add(new Day()); //temp
+                days.Add(new Day(eventList[i]));
             }
 
             totalDays = EventPool.eventAmountInTimeLine * EventPool.dayPerEvent;
