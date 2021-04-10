@@ -12,6 +12,8 @@ namespace Cuivre.Code
     {
         public string Name { get; set; }
 
+        public string GaugeName { get; set; }
+
         public string TextureString { get; set; }
 
         public List<string> HappyDialogues { get; set; }
