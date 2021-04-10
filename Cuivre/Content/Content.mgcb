@@ -26,48 +26,6 @@
 /processorParam:Quality=Best
 /build:Evenement.wav
 
-#begin M_Egypte.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Egypte.wav
-
-#begin M_Final.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Final.wav
-
-#begin M_Romain 1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Romain 1.wav
-
-#begin M_Romain 2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Romain 2.wav
-
-#begin M_Romain 3.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Romain 3.wav
-
-#begin M_Romain 4.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Romain 4.wav
-
-#begin M_Transition 2 eg.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:M_Transition 2 eg.wav
-
 #begin Miracle_rate.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -79,12 +37,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Miracles.wav
-
-#begin Oracle.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Oracle.wav
 
 #begin Poete_1.wav
 /importer:WavImporter
@@ -103,12 +55,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Poete_3.wav
-
-#begin Poete_4.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Poete_4.wav
 
 #begin Rite_1.wav
 /importer:WavImporter
