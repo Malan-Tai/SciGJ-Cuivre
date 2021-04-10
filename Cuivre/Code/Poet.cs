@@ -34,6 +34,7 @@ namespace Cuivre.Code
 
         private bool called = false;
         private List<string> currentDialogues;
+        private string nextLine;
 
         public void Init(ContentManager content)
         {
@@ -45,6 +46,11 @@ namespace Cuivre.Code
             unhappyTexture = Game1.white;
             currentTexture = neutralTexture;
             currentDialogues = NeutralDialogues;
+
+            //add another item for last said sentence in each dialogue category
+            NeutralDialogues.Add("");
+            UnhappyDialogues.Add("");
+            HappyDialogues.Add("");
         }
 
         public void Call()
@@ -67,6 +73,16 @@ namespace Cuivre.Code
                 currentDialogues = NeutralDialogues;
                 currentTexture = neutralTexture;
             }
+
+            int n = currentDialogues.Count - 1; //number of real sentence, ignoring last said
+            int i = n;
+            while (currentDialogues[i].Equals(currentDialogues[n]))
+            {
+                i = Utils.Dice.GetRandint(0, n - 1);
+            }
+            nextLine = currentDialogues[i];
+            currentDialogues[n] = nextLine;
+
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -81,7 +97,7 @@ namespace Cuivre.Code
         public void DrawDialogue(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
-            spriteBatch.DrawString(Game1.font, "Pouet pouet", new Vector2(60, 310), Color.Black);
+            spriteBatch.DrawString(Game1.font, nextLine + "(" + Gauges.gaugesItems[GaugeName] + ")", new Vector2(60, 310), Color.Black);
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)

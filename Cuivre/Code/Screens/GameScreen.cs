@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Cuivre.Code.Screens
 {
@@ -14,34 +16,38 @@ namespace Cuivre.Code.Screens
 
         private List<Button> buttons = new List<Button>
         {
-            new CollapseButton(5, 5, 70, 150, Game1.white, new List<Button>
-            {
-                new Button(10, 10, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet"); } ),
-                new Button(10, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 2"); })
-            }),
-            new Button(70, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 3"); }),
-            
-            new Button(200, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Peuple", 15);
-                Gauges.IncrementGaugeValue("Sénateurs", -15);
+            //Pas très utile, mais je peux peut-être rajouter une sécurité si on ne trouve pas la clé dans le dico
+            new Button(200, 100, 45, 45, Game1.white, screen => { 
+                ((GameScreen)screen).SpendActionPoints(1);
+                Gauges.IncrementGaugeValue("Peuple", 15);
+                Gauges.IncrementGaugeValue("Senateurs", -15);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(250, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Sénateurs", 15);
+            new Button(250, 100, 45, 45, Game1.white, screen => { 
+                ((GameScreen)screen).SpendActionPoints(1);
+                Gauges.IncrementGaugeValue("Senateurs", 15);
                 Gauges.IncrementGaugeValue("Philosophes", -15);
                 System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(300, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Philosophes", 15);
+            new Button(300, 100, 45, 45, Game1.white, screen => { 
+                ((GameScreen)screen).SpendActionPoints(1);
+                Gauges.IncrementGaugeValue("Philosophes", 15);
                 Gauges.IncrementGaugeValue("Militaires", -15);
                 System.Diagnostics.Debug.WriteLine("Théâtre");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(350, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Hippies", 15);
+            new Button(350, 100, 45, 45, Game1.white, screen => { 
+                ((GameScreen)screen).SpendActionPoints(1);
+                Gauges.IncrementGaugeValue("Hippies", 15);
                 Gauges.IncrementGaugeValue("Peuple", -15);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(400, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Militaires", 15);
+            new Button(400, 100, 45, 45, Game1.white, screen => { 
+                ((GameScreen)screen).SpendActionPoints(1);
+                Gauges.IncrementGaugeValue("Militaires", 15);
                 Gauges.IncrementGaugeValue("Hippies", -15);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); }),
@@ -51,13 +57,24 @@ namespace Cuivre.Code.Screens
 
         };
 
-        Poet poet = new Poet();
+        private Dictionary<string, Poet> poets;
 
         public override void Init(ContentManager content)
         {
             base.Init(content);
-            Gauges.InitializeGauges(new List<string>() { "Peuple", "Militaires", "Philosophes", "Hippies", "Sénateurs" });
-            poet.Init(content);
+
+            poets = new Dictionary<string, Poet>();
+            List<Poet> tempPoets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json"));
+            foreach (Poet p in tempPoets)
+            {
+                poets.Add(p.GaugeName, p);
+            }
+
+            Gauges.InitializeGauges(new List<string>(poets.Keys));
+            foreach (Poet poet in poets.Values)
+            {
+                poet.Init(content);
+            }
         }
 
         public bool SpendActionPoints(int amount)
@@ -68,10 +85,18 @@ namespace Cuivre.Code.Screens
 
             if (res == 0)
             {
-                ResetButtons();
+                NewDay();
             }
 
             return true;
+        }
+
+        public void NewDay()
+        {
+            ResetButtons();
+
+            string lowest = Gauges.GetLowestGauge();
+            poets[lowest].Call();
         }
 
         public void ResetButtons()
@@ -85,11 +110,11 @@ namespace Cuivre.Code.Screens
         public override void Update(GameTime gameTime)
         {
             MouseState mouseState = Mouse.GetState();
-            if (mouseState.RightButton == ButtonState.Pressed) poet.Call();
 
-            if (mouseState.MiddleButton == ButtonState.Pressed && prevMouseState.MiddleButton == ButtonState.Released) SpendActionPoints(1);
-
-            poet.Update(gameTime, mouseState);
+            foreach (Poet poet in poets.Values)
+            {
+                poet.Update(gameTime, mouseState);
+            }
 
             foreach (Button b in buttons)
             {
@@ -101,7 +126,10 @@ namespace Cuivre.Code.Screens
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            poet.Draw(gameTime, spriteBatch);
+            foreach (Poet poet in poets.Values)
+            {
+                poet.Draw(gameTime, spriteBatch);
+            }
 
             foreach (Button b in buttons)
             {

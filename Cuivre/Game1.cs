@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.IO;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Cuivre.Code;
 using Cuivre.Code.Screens;
 

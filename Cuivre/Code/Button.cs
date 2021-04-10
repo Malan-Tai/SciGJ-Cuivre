@@ -56,8 +56,8 @@ namespace Cuivre.Code
                 hovered = true;
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                 {
-                    Click(screen);
                     clickedToday = true;
+                    Click(screen);
                 }
             }
             else

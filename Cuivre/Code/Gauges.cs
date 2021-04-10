@@ -44,5 +44,21 @@ namespace Cuivre.Code
             }
         }
 
+        public static string GetLowestGauge()
+        {
+            string res = "";
+            int min = 101;
+            foreach (string key in gaugesItems.Keys)
+            {
+                int val = gaugesItems[key];
+                if (val < min)
+                {
+                    min = val;
+                    res = key;
+                }
+            }
+
+            return res;
+        }
     }
 }
