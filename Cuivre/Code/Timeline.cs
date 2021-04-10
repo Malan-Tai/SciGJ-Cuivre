@@ -14,6 +14,9 @@ namespace Cuivre.Code
         private int totalDays = 0;
 
         private int timelineWidth = 780;
+        
+        private const int miracleDelay = 5;
+        private int miracleCurrentDelay = 0;
 
         public Timeline()
         {
@@ -33,6 +36,15 @@ namespace Cuivre.Code
             totalDays = EventPool.eventAmountInTimeLine * EventPool.dayPerEvent;
         }
 
+        public void DecayMiracleDelay()
+        {
+            if(miracleCurrentDelay > 0)
+            {
+                miracleCurrentDelay -= 1;
+            }
+        }
+
+
         //renvoie -1 si on ne peut pas depenser ce nombre de points, le nombre de points restant sinon (0 si on change de jour)
         public int SpendActionPoints(int amount)
         {
@@ -40,10 +52,15 @@ namespace Cuivre.Code
 
             if (amount > day.ActionPoints) return -1;
 
-            if(amount < 0)
+            if(amount < 0 && miracleCurrentDelay > 0)
             {
-                Miracle.AddMiracleChance(day.ActionPoints * 10);
+                System.Diagnostics.Debug.WriteLine("Impossible de faire une offrande pour l'instant !");
+            }
+            else if(amount < 0 && miracleCurrentDelay == 0)
+            {
+                Miracle.AddMiracleChance(day.ActionPoints * Miracle.gainedMiracleChanceWithLowSatisfaction);
                 day.ActionPoints = 0;
+                miracleCurrentDelay = miracleDelay;
             }
             else
             {

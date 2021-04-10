@@ -20,35 +20,35 @@ namespace Cuivre.Code.Screens
             new Button(200, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Peuple", 15);
-                Gauges.IncrementGaugeValue("Senateurs", -15);
+                Gauges.IncrementGaugeValue("Senateurs", -5);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
                 Gauges.ShowGaugesValues(); }),
 
             new Button(250, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Senateurs", 15);
-                Gauges.IncrementGaugeValue("Philosophes", -15);
+                Gauges.IncrementGaugeValue("Philosophes", -5);
                 System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
                 Gauges.ShowGaugesValues(); }),
 
             new Button(300, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Philosophes", 15);
-                Gauges.IncrementGaugeValue("Militaires", -15);
+                Gauges.IncrementGaugeValue("Militaires", -5);
                 System.Diagnostics.Debug.WriteLine("Théâtre");
                 Gauges.ShowGaugesValues(); }),
 
             new Button(350, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Amants", 15);
-                Gauges.IncrementGaugeValue("Peuple", -15);
+                Gauges.IncrementGaugeValue("Peuple", -5);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                 Gauges.ShowGaugesValues(); }),
 
             new Button(400, 100, 45, 45, Game1.white, screen => { 
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Militaires", 15);
-                Gauges.IncrementGaugeValue("Amants", -15);
+                Gauges.IncrementGaugeValue("Amants", -5);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); }),
 
@@ -59,6 +59,7 @@ namespace Cuivre.Code.Screens
 
             //Bouton de l'oracle
             new Button(300, 175, 50, 50, Game1.white, screen => {
+
                 ((GameScreen)screen).SpendActionPoints(2);
                 //Display currentEventHint
                 System.Diagnostics.Debug.WriteLine("L'oracle vous révèle une prophétie cheloue"); })
@@ -104,6 +105,7 @@ namespace Cuivre.Code.Screens
         {
             ResetButtons();
             Gauges.NaturalDecay();
+            Timeline.DecayMiracleDelay();
 
             string lowest = Gauges.GetLowestGauge();
             poets[lowest].Call();
