@@ -91,23 +91,23 @@ namespace Cuivre.Code
         {
             List<string> keys = new List<string>() { "Senateurs", "Philosophes", "Peuple", "Militaires", "Amants" };
 
-            for (int i = 0; i < 5; i++)
+            foreach (string key in keys)
             {
-                gaugesItems[keys[i]] += ev.RawStats[i];
-                stuckStats[keys[i]] = ev.StuckStats[i];
-                decayStats[keys[i]] = ev.DecayStats[i];
+                gaugesItems[key] += ev.RawStats[key];
+                stuckStats[key] = ev.StuckStats[key];
+                decayStats[key] = ev.DecayStats[key];
             }
 
             Dictionary<string, int> swapValues = new Dictionary<string, int>(); //stocks values the gauges will have after the swap
-            for (int i = 0; i < 5; i++)
+            foreach (string key in keys)
             {
-                if (!ev.SwapStats[i].Equals(""))
+                if (!ev.SwapStats[key].Equals("null"))
                 {
-                    swapValues.Add(keys[i], gaugesItems[ev.SwapStats[i]]);
+                    swapValues.Add(key, gaugesItems[ev.SwapStats[key]]);
                 }
                 else
                 {
-                    swapValues.Add(keys[i], gaugesItems[keys[i]]);
+                    swapValues.Add(key, gaugesItems[key]);
                 }
             }
             foreach (string k in keys)

@@ -16,11 +16,10 @@ namespace Cuivre.Code
         public string Hint { get; set; }
 
         //Event effects : Decay Stats and StuckStats remain until next event
-        //The lists are ordered this way : [Senateurs, Philosophes, Peuple, Militaires, Amants]
-        public List<int> RawStats { get; set; } // -x to some gauges, +y to others, etc
-        public List<string> SwapStats { get; set; } // a gauge with a real string receives the value of the gauge represented by said string
-        public List<int> DecayStats { get; set; } // changes how much a gauge decays each day
-        public List<bool> StuckStats { get; set; } // determines if a stat is stuck, ie. cannot increase or decrease
+        public Dictionary<string, int> RawStats { get; set; } // -x to some gauges, +y to others, etc
+        public Dictionary<string, string> SwapStats { get; set; } // a gauge with a real string receives the value of the gauge represented by said string
+        public Dictionary<string, int> DecayStats { get; set; } // changes how much a gauge decays each day
+        public Dictionary<string, bool> StuckStats { get; set; } // determines if a stat is stuck, ie. cannot increase or decrease
 
         private bool called = false;
         private int y = 400;
