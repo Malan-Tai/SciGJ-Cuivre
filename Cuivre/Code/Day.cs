@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Cuivre.Code
@@ -42,6 +43,11 @@ namespace Cuivre.Code
             }
 
             if (dayEvent != null) dayEvent.Draw(spriteBatch, x + dayWidth);
+        }
+
+        public void Update(GameTime gameTime, MouseState mouseState)
+        {
+            if (dayEvent != null) dayEvent.Update(gameTime, mouseState);
         }
     }
 }

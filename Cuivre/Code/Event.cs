@@ -43,7 +43,13 @@ namespace Cuivre.Code
         public void DrawDialogue(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
-            spriteBatch.DrawString(Game1.font, Description, new Vector2(60, 310), Color.Black);
+
+            int y = 310;
+            foreach (string line in Utils.TextWrap.Wrap(Description, 480, Game1.font))
+            {
+                spriteBatch.DrawString(Game1.font, line, new Vector2(60, y), Color.Black);
+                y += (int)Game1.font.MeasureString("l").Y + 5;
+            }
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)
@@ -65,6 +71,7 @@ namespace Cuivre.Code
 
         public void TakePlace()
         {
+            called = true;
             Gauges.ReinitDictionaries();
 
             if (Miracle.MiracleRoll())
