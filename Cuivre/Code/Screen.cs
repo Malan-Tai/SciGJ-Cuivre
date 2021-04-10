@@ -12,6 +12,11 @@ namespace Cuivre.Code
     {
         protected MouseState prevMouseState;
 
+        public virtual void Init()
+        {
+            prevMouseState = Mouse.GetState();
+        }
+
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);

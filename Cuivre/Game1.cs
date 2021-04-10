@@ -31,6 +31,7 @@ namespace Cuivre
             base.Initialize();
 
             currentScreen = new GameScreen();
+            currentScreen.Init();
         }
 
         protected override void LoadContent()

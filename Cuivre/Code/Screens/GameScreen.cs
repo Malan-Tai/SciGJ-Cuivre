@@ -19,7 +19,8 @@ namespace Cuivre.Code.Screens
             {
                 new Button(10, 10, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet"); } ),
                 new Button(10, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 2"); })
-            })
+            }),
+            new Button(70, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 3"); })
         };
 
         public override void Update(GameTime gameTime)
@@ -30,6 +31,8 @@ namespace Cuivre.Code.Screens
             {
                 b.Update(gameTime, prevMouseState, mouseState, this);
             }
+
+            prevMouseState = mouseState;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
