@@ -12,7 +12,12 @@ namespace Cuivre.Code
 
         public Event Event { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int index)
+        {
+
+        }
+
+        public void DrawCurrent(SpriteBatch spriteBatch, int index)
         {
 
         }
