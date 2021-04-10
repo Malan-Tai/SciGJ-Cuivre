@@ -56,9 +56,10 @@ namespace Cuivre.Code
             if (dayEvent != null) dayEvent.Draw(spriteBatch, x - dayWidth / 2);
         }
 
-        public void Update(GameTime gameTime, MouseState mouseState)
+        public bool Update(GameTime gameTime, MouseState mouseState)
         {
-            if (dayEvent != null) dayEvent.Update(gameTime, mouseState);
+            if (dayEvent != null) return dayEvent.Update(gameTime, mouseState);
+            return false;
         }
 
         public void CallEvent()

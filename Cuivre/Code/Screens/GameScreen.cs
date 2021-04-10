@@ -146,15 +146,18 @@ namespace Cuivre.Code.Screens
 
         public void NewDay()
         {
+            System.Diagnostics.Debug.WriteLine("new day");
             ResetButtons();
 
             eventDay = Timeline.TodayHasEvent();
             if (eventDay)
             {
+                System.Diagnostics.Debug.WriteLine("event day");
                 Timeline.CallEvent();
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("not event day");
                 Gauges.NaturalDecay();
                 Timeline.DecayMiracleDelay();
 
@@ -176,25 +179,30 @@ namespace Cuivre.Code.Screens
         {
             MouseState mouseState = Mouse.GetState();
 
+            if (!eventDay)
+            {
+                foreach (Button b in buttons)
+                {
+                    b.Update(gameTime, prevMouseState, mouseState, this);
+                }
+            }
+
             foreach (Poet poet in poets.Values)
             {
                 poet.Update(gameTime, mouseState);
             }
 
-            foreach (Button b in buttons)
+            bool endEvent = Timeline.Update(gameTime, mouseState);
+            if (endEvent)
             {
-                b.Update(gameTime, prevMouseState, mouseState, this);
-            }
-
-            double eventDelay = Timeline.Update(gameTime, mouseState);
-            if (eventDay && eventDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
-            {
+                System.Diagnostics.Debug.WriteLine("end event");
                 eventDay = false;
                 newDay = true;
             }
 
             if (newDay)
             {
+                System.Diagnostics.Debug.WriteLine("new day update");
                 newDay = false;
                 NewDay();
             }

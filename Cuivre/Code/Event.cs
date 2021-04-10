@@ -57,11 +57,13 @@ namespace Cuivre.Code
             }
         }
 
-        public void Update(GameTime gameTime, MouseState mouseState)
+        public bool Update(GameTime gameTime, MouseState mouseState)
         {
+            bool nextDay = false;
             if (called && y <= minY && mouseState.LeftButton == ButtonState.Pressed)
             {
                 called = false;
+                nextDay = true;
             }
 
             if (called)
@@ -72,6 +74,8 @@ namespace Cuivre.Code
             {
                 y = Math.Min(maxY, y + (int)(speed * gameTime.ElapsedGameTime.TotalMilliseconds));
             }
+
+            return nextDay;
         }
 
         public void TakePlace()
