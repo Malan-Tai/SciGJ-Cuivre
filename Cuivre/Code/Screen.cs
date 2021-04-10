@@ -12,7 +12,7 @@ namespace Cuivre.Code
     {
         protected MouseState prevMouseState;
 
-        public virtual void Init()
+        public virtual void Init(ContentManager content)
         {
             prevMouseState = Mouse.GetState();
         }
