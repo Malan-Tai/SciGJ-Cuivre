@@ -52,7 +52,9 @@ namespace Cuivre.Code.Screens
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); }),
 
-            new Button(200, 175, 50, 50, Game1.white, screen => { Miracle.AddMiracleChance(10);
+            //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
+            new Button(200, 175, 50, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(-1);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); })
 
         };
