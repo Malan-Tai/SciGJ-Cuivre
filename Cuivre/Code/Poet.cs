@@ -41,6 +41,8 @@ namespace Cuivre.Code
             //happyTexture = content.Load<Texture2D>(TextureString + "_happy");
             //unhappyTexture = content.Load<Texture2D>(TextureString + "_unhappy");
             neutralTexture = Game1.white;
+            happyTexture = Game1.white;
+            unhappyTexture = Game1.white;
             currentTexture = neutralTexture;
             currentDialogues = NeutralDialogues;
         }
@@ -48,6 +50,23 @@ namespace Cuivre.Code
         public void Call()
         {
             called = true;
+            int gauge = Gauges.gaugesItems[GaugeName];
+
+            if (gauge <= 25)
+            {
+                currentDialogues = UnhappyDialogues;
+                currentTexture = unhappyTexture;
+            }
+            else if (gauge > 75)
+            {
+                currentDialogues = HappyDialogues;
+                currentTexture = happyTexture;
+            }
+            else
+            {
+                currentDialogues = NeutralDialogues;
+                currentTexture = neutralTexture;
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
