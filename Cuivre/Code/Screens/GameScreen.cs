@@ -27,9 +27,9 @@ namespace Cuivre.Code.Screens
             new Button(25, 100, 150, 310, Game1.white, screen => {
 
             ((GameScreen)screen).SpendActionPoints(2);
-            //Display currentEventHint
-            System.Diagnostics.Debug.WriteLine("L'oracle vous révèle une prophétie cheloue"); }),
-
+            ((GameScreen)screen).SpendActionPoints(2);
+            ((GameScreen)screen).Timeline.CallOracle();
+            }),
 
             new CollapseButton(185, 100, 150, 310, Game1.white, new List<Button>
             {
@@ -75,11 +75,6 @@ namespace Cuivre.Code.Screens
             new Button(345, 100, 150, 310, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
-
-            //Bouton de l'oracle
-            new Button(345, 100, 150, 310, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(2);
-                ((GameScreen)screen).Timeline.CallOracle(); }),
 
             new CollapseButton(505, 100, 150, 310, Game1.white, new List<Button>
             {
