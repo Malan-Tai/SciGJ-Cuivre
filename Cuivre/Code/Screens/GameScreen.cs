@@ -30,7 +30,8 @@ namespace Cuivre.Code.Screens
                     ((GameScreen)screen).Timeline.CallOracle(); 
                 }}),
 
-            new CollapseButton(185, 100, 150, 310, Game1.white, new List<Button>
+            //bienfaits
+            new CollapseButton(185, 100, 150, 310, Game1.white, false, new List<Button>
             {
                 new Button(195, 110, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
@@ -66,48 +67,40 @@ namespace Cuivre.Code.Screens
                 Gauges.IncrementGaugeValue("Amants", -5);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); })
-
-
-            }),
+            }, screen => { }),
 
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(345, 100, 150, 310, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
 
-            new CollapseButton(505, 100, 150, 310, Game1.white, new List<Button>
+            //poetes
+            new CollapseButton(505, 100, 150, 310, Game1.white, true, new List<Button>
             {
                 new Button(515, 110, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
                 ((GameScreen)screen).poets["Peuple"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète du Peuple");}),
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète du Peuple");}, true),
 
                 new Button(515, 170, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
                 ((GameScreen)screen).poets["Senateurs"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}),
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}, true),
 
                 new Button(515, 230, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
                 ((GameScreen)screen).poets["Philosophes"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Philosophes");}),
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Philosophes");}, true),
 
                 new Button(515, 290, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
                 ((GameScreen)screen).poets["Amants"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Amants");}),
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Amants");}, true),
 
                 new Button(515, 350, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
                 ((GameScreen)screen).poets["Militaires"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Militaires");}),
-
-
-            })
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Militaires");}, true)
+            }, screen => { ((GameScreen)screen).SpendActionPoints(1); }),
 
         };
 
-        
+        public CollapseButton Focused { get; set; } = null;
 
         public override void Init(ContentManager content)
         {
@@ -146,6 +139,7 @@ namespace Cuivre.Code.Screens
         public void NewDay()
         {
             ResetButtons();
+            Focused = null;
 
             eventDay = Timeline.TodayHasEvent();
             if (eventDay)
@@ -175,12 +169,16 @@ namespace Cuivre.Code.Screens
         {
             MouseState mouseState = Mouse.GetState();
 
-            if (!eventDay)
+            if (!eventDay && Focused == null)
             {
                 foreach (Button b in buttons)
                 {
                     b.Update(gameTime, prevMouseState, mouseState, this);
                 }
+            }
+            else if (Focused != null)
+            {
+                Focused.Update(gameTime, prevMouseState, mouseState, this);
             }
 
             foreach (Poet poet in poets.Values)
@@ -195,7 +193,7 @@ namespace Cuivre.Code.Screens
                 newDay = true;
             }
 
-            if (newDay)
+            if (newDay && (Focused == null || !Focused.FreezesTime))
             {
                 newDay = false;
                 NewDay();
@@ -211,12 +209,18 @@ namespace Cuivre.Code.Screens
                 b.Draw(gameTime, spriteBatch);
             }
 
+            Timeline.Draw(spriteBatch);
+
+            if (Focused != null)
+            {
+                spriteBatch.Draw(Game1.semiTransp, new Rectangle(0, 0, 800, 500), Color.Black);
+                Focused.Draw(gameTime, spriteBatch);
+            }
+
             foreach (Poet poet in poets.Values)
             {
                 poet.Draw(gameTime, spriteBatch);
             }
-
-            Timeline.Draw(spriteBatch);
         }
     }
 }

@@ -14,12 +14,13 @@ namespace Cuivre.Code
         private int w;
         private int h;
 
+        protected bool reclickable = false;
         protected bool clickedToday = false;
         protected bool hovered = false;
 
         private Texture2D texture;
 
-        private Action<Screen> clickAction;
+        protected Action<Screen> clickAction;
 
         protected Rectangle Rectangle
         {
@@ -30,7 +31,7 @@ namespace Cuivre.Code
             }
         }
 
-        public Button(int x, int y, int w, int h, Texture2D texture, Action<Screen> action)
+        public Button(int x, int y, int w, int h, Texture2D texture, Action<Screen> action, bool reclickable = false)
         {
             this.x = x;
             this.y = y;
@@ -38,20 +39,21 @@ namespace Cuivre.Code
             this.h = h;
             this.texture = texture;
             clickAction = action;
+            this.reclickable = reclickable;
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Color color = Color.White;
             if (hovered) color = Color.Red;
-            if (clickedToday) color = Color.Gray;
+            if (clickedToday && !reclickable) color = Color.Gray;
 
             spriteBatch.Draw(texture, Rectangle, color);
         }
 
         public virtual void Update(GameTime gameTime, MouseState prevMouseState, MouseState mouseState, Screen screen)
         {
-            if (!clickedToday && Rectangle.Contains(mouseState.X, mouseState.Y))
+            if ((!clickedToday || reclickable) && Rectangle.Contains(mouseState.X, mouseState.Y))
             {
                 hovered = true;
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
@@ -66,7 +68,7 @@ namespace Cuivre.Code
             }
         }
 
-        public void Click(Screen screen)
+        public virtual void Click(Screen screen)
         {
             if (clickAction != null) clickAction(screen);
         }

@@ -16,6 +16,7 @@ namespace Cuivre
         private Screen currentScreen;
 
         public static Texture2D white;
+        public static Texture2D semiTransp;
         public static SpriteFont font;
 
         public static Dictionary<string, SoundEffect> Sounds { get; set; } = new Dictionary<string, SoundEffect>();
@@ -39,6 +40,7 @@ namespace Cuivre
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             white = Content.Load<Texture2D>("white");
+            semiTransp = Content.Load<Texture2D>("semiTransp");
             font = Content.Load<SpriteFont>("defaultFont");
 
             Sounds.Add("Miracles", Content.Load<SoundEffect>("Miracles"));
