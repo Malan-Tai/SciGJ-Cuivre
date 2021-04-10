@@ -55,8 +55,13 @@ namespace Cuivre.Code.Screens
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(200, 175, 50, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
-                System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); })
+                System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
 
+            //Bouton de l'oracle
+            new Button(300, 175, 50, 50, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(2);
+                //Display currentEventHint
+                System.Diagnostics.Debug.WriteLine("L'oracle vous révèle une prophétie cheloue"); })
         };
 
         private Dictionary<string, Poet> poets;
