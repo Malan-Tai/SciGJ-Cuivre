@@ -40,6 +40,7 @@ namespace Cuivre.Code
                 //Do something less cool
             }
 
+            Gauges.HandleEvent(this);
             Miracle.ResetMiracleChance();
         }
     }

@@ -8,6 +8,8 @@ namespace Cuivre.Code
     {
         const int baseMiracleChance = 0;
 
+        public const int gainedMiracleChanceWithLowSatisfaction = 10;
+
         static int currentMiracleChance = baseMiracleChance;
 
         const int maxMiracleChance = 100;
