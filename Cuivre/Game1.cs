@@ -14,6 +14,8 @@ namespace Cuivre
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Screen currentScreen;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -38,7 +40,10 @@ namespace Cuivre
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            if (currentScreen != null)
+            {
+                currentScreen.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -47,7 +52,10 @@ namespace Cuivre
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            if (currentScreen != null)
+            {
+                currentScreen.Draw(gameTime, _spriteBatch);
+            }
 
             base.Draw(gameTime);
         }
