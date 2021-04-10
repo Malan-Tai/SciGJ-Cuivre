@@ -24,13 +24,30 @@ namespace Cuivre.Code.Screens
             //new Button(150, 100, 30, 30, Game1.white, screen => { Gauges.InitializeGauges(new List<string>(){"Philosophes","Millitaires", "Bidules"}); System.Diagnostics.Debug.WriteLine("Jauges initialisées"); }),
             
             //Pas très utile, mais je peux peut-être rajouter une sécurité si on ne trouve pas la clé dans le dico
-            new Button(200, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Philosophes", 5);
-                    System.Diagnostics.Debug.WriteLine("Les philosophes sont maintenant à : " + Gauges.gaugesItems["Philosophes"]); }), //J'arrive pas à afficher la valeur en même temps , mais c'est pas grave
-            new Button(250, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Millitaires", -10);
-                    System.Diagnostics.Debug.WriteLine(Gauges.gaugesItems["Millitaires"]); }),
-            new Button(300, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Bidules", 5);
-                    System.Diagnostics.Debug.WriteLine(Gauges.gaugesItems["Bidules"]); })
+            new Button(200, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Peuple", 15);
+                Gauges.IncrementGaugeValue("Sénateurs", -15);
+                System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
+                Gauges.ShowGaugesValues(); }),
 
+            new Button(250, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Sénateurs", 15);
+                Gauges.IncrementGaugeValue("Philosophes", -15);
+                System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
+                Gauges.ShowGaugesValues(); }),
+
+            new Button(300, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Philosophes", 15);
+                Gauges.IncrementGaugeValue("Militaires", -15);
+                System.Diagnostics.Debug.WriteLine("Théâtre");
+                Gauges.ShowGaugesValues(); }),
+
+            new Button(350, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Hippies", 15);
+                Gauges.IncrementGaugeValue("Peuple", -15);
+                System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
+                Gauges.ShowGaugesValues(); }),
+
+            new Button(400, 100, 45, 45, Game1.white, screen => { Gauges.IncrementGaugeValue("Militaires", 15);
+                Gauges.IncrementGaugeValue("Hippies", -15);
+                System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
+                Gauges.ShowGaugesValues(); })
 
         };
 
@@ -39,7 +56,7 @@ namespace Cuivre.Code.Screens
         public override void Init(ContentManager content)
         {
             base.Init(content);
-            Gauges.InitializeGauges(new List<string>() { "Philosophes", "Millitaires", "Bidules" });
+            Gauges.InitializeGauges(new List<string>() { "Peuple", "Militaires", "Philosophes", "Hippies", "Sénateurs" });
             poet.Init(content);
         }
 

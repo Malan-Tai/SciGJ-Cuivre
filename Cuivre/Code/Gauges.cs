@@ -19,6 +19,21 @@ namespace Cuivre.Code
             }
         }
 
+        public static void ShowGaugesValues()
+        {
+            foreach(string name in gaugesItems.Keys)
+            {
+                if(name != "Peuple")
+                {
+                    System.Diagnostics.Debug.WriteLine("Les " + name.ToLower() + " ont maintenant une satisfaction de " + gaugesItems[name]);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Le " + name.ToLower() + " a maintenant une satisfaction de " + gaugesItems[name]);
+                }
+            }
+        }
+
         public static void IncrementGaugeValue(string index, int amount)
         {
             if (gaugesItems.TryGetValue(index, out int tempAmount))
