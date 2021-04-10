@@ -74,9 +74,13 @@ namespace Cuivre.Code.Screens
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(345, 100, 150, 310, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
-            }),
+                System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
 
-            
+            //Bouton de l'oracle
+            new Button(345, 100, 150, 310, Game1.white, screen => {
+                ((GameScreen)screen).SpendActionPoints(2);
+                ((GameScreen)screen).Timeline.CallOracle(); }),
+
             new CollapseButton(505, 100, 150, 310, Game1.white, new List<Button>
             {
                 new Button(515, 110, 130, 50, Game1.white, screen => {

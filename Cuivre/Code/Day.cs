@@ -25,6 +25,12 @@ namespace Cuivre.Code
             ActionPoints = 0;
         }
 
+        public string GetHint()
+        {
+            if (dayEvent != null) return dayEvent.Hint;
+            return null;
+        }
+
         public void Draw(SpriteBatch spriteBatch, int x, int w, Color color)
         {
             spriteBatch.Draw(Game1.white, new Rectangle(x, 50, w, 20), color);

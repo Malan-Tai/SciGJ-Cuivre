@@ -19,6 +19,10 @@ namespace Cuivre.Code
         private const int miracleDelay = 5;
         private int miracleCurrentDelay = 0;
 
+        private bool called = false;
+        private const double oracleDelay = 500;
+        private double curDelay = 0;
+
         public Timeline()
         {
             days = new List<Day>();
@@ -97,11 +101,39 @@ namespace Cuivre.Code
                     x += w;
                 }
             }
+
+            if (called)
+            {
+                spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
+
+                string hint = "";
+                for (int i = currentDay; i < totalDays; i++)
+                {
+                    string temp = days[i].GetHint();
+                    if (temp != null) hint = temp;
+                }
+
+                int y = 310;
+                foreach (string line in Utils.TextWrap.Wrap(hint, 480, Game1.font))
+                {
+                    spriteBatch.DrawString(Game1.font, line, new Vector2(60, y), Color.Black);
+                    y += (int)Game1.font.MeasureString("l").Y + 5;
+                }
+            }
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)
         {
+            if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed) called = false;
+            curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
             foreach (Day d in days) d.Update(gameTime, mouseState);
+        }
+
+        public void CallOracle()
+        {
+            called = true;
+            curDelay = oracleDelay;
         }
     }
 }
