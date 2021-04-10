@@ -11,8 +11,6 @@ namespace Cuivre.Code.Screens
     {
         public Timeline Timeline { get; set; }
 
-        public Dictionary<string, int> Gauges { get; set; }
-
         private List<Button> buttons = new List<Button>
         {
             new CollapseButton(5, 5, 70, 150, Game1.white, new List<Button>
@@ -20,7 +18,19 @@ namespace Cuivre.Code.Screens
                 new Button(10, 10, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet"); } ),
                 new Button(10, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 2"); })
             }),
-            new Button(70, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 3"); })
+            new Button(70, 70, 50, 50, Game1.white, screen => { System.Diagnostics.Debug.WriteLine("pouet 3"); }),
+
+            new Button(150, 100, 30, 30, Game1.white, screen => { Gauges.InitializeGauges(new List<string>(){"Philosophes","Millitaires", "Bidules"}); System.Diagnostics.Debug.WriteLine("Jauges initialisées"); }),
+            
+            //Pas très utile, mais je peux peut-être rajouter une sécurité si on ne trouve pas la clé dans le dico
+            new Button(200, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Philosophes", 5);
+                    System.Diagnostics.Debug.WriteLine("Les philosophes sont maintenant à :", Gauges.gaugesItems["Philosophes"]); }), //J'arrive pas à afficher la valeur en même temps , mais c'est pas grave
+            new Button(250, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Millitaires", -10);
+                    System.Diagnostics.Debug.WriteLine(Gauges.gaugesItems["Millitaires"]); }),
+            new Button(300, 100, 30, 30, Game1.white, screen => { Gauges.IncrementGaugeValue("Bidules", 5);
+                    System.Diagnostics.Debug.WriteLine(Gauges.gaugesItems["Bidules"]); })
+
+
         };
 
         public override void Update(GameTime gameTime)
