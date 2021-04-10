@@ -163,6 +163,8 @@ namespace Cuivre.Code.Screens
                 b.Update(gameTime, prevMouseState, mouseState, this);
             }
 
+            Timeline.Update(gameTime, mouseState);
+
             if (newDay)
             {
                 newDay = false;
