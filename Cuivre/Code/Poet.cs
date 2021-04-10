@@ -81,7 +81,7 @@ namespace Cuivre.Code
         public void DrawDialogue(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
-            spriteBatch.DrawString(Game1.font, "Pouet pouet", new Vector2(60, 310), Color.Black);
+            spriteBatch.DrawString(Game1.font, "Ma faction, les " + GaugeName + " sont a " + Gauges.gaugesItems[GaugeName] + " de satisfaction", new Vector2(60, 310), Color.Black);
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)
