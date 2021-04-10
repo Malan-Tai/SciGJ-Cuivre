@@ -22,37 +22,46 @@ namespace Cuivre.Code.Screens
 
         private List<Button> buttons = new List<Button>
         {
-            new CollapseButton(25, 100, 150, 310, Game1.white, new List<Button>
+
+            //Bouton de l'oracle
+            new Button(25, 100, 150, 310, Game1.white, screen => {
+
+            ((GameScreen)screen).SpendActionPoints(2);
+            ((GameScreen)screen).SpendActionPoints(2);
+            ((GameScreen)screen).Timeline.CallOracle();
+            }),
+
+            new CollapseButton(185, 100, 150, 310, Game1.white, new List<Button>
             {
-                new Button(35, 110, 130, 50, Game1.white, screen => {
+                new Button(195, 110, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Peuple", 15);
                 Gauges.IncrementGaugeValue("Senateurs", -5);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
                 Gauges.ShowGaugesValues(); }),
 
-                new Button(35, 170, 130, 50, Game1.white, screen => {
+                new Button(195, 170, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Senateurs", 15);
                 Gauges.IncrementGaugeValue("Philosophes", -5);
                 System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
                 Gauges.ShowGaugesValues(); }),
 
-                new Button(35, 230, 130, 50, Game1.white, screen => {
+                new Button(195, 230, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Philosophes", 15);
                 Gauges.IncrementGaugeValue("Militaires", -5);
                 System.Diagnostics.Debug.WriteLine("Théâtre");
                 Gauges.ShowGaugesValues(); }),
 
-                new Button(35, 290, 130, 50, Game1.white, screen => {
+                new Button(195, 290, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Amants", 15);
                 Gauges.IncrementGaugeValue("Peuple", -5);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                 Gauges.ShowGaugesValues(); }),
 
-                new Button(35, 350, 130, 50, Game1.white, screen => {
+                new Button(195, 350, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
                 Gauges.IncrementGaugeValue("Militaires", 15);
                 Gauges.IncrementGaugeValue("Amants", -5);
@@ -63,14 +72,9 @@ namespace Cuivre.Code.Screens
             }),
 
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
-            new Button(185, 100, 150, 310, Game1.white, screen => {
+            new Button(345, 100, 150, 310, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%"); }),
-
-            //Bouton de l'oracle
-            new Button(345, 100, 150, 310, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(2);
-                ((GameScreen)screen).Timeline.CallOracle(); }),
 
             new CollapseButton(505, 100, 150, 310, Game1.white, new List<Button>
             {
