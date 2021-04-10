@@ -18,6 +18,7 @@ namespace Cuivre
         private Screen currentScreen;
 
         public static Texture2D white;
+        public static SpriteFont font;
 
         public Game1()
         {
@@ -38,6 +39,7 @@ namespace Cuivre
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             white = Content.Load<Texture2D>("white");
+            font = Content.Load<SpriteFont>("defaultFont");
         }
 
         protected override void Update(GameTime gameTime)

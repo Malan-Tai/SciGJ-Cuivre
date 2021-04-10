@@ -33,6 +33,7 @@ namespace Cuivre.Code
         private int maxX = 800;
 
         private bool called = false;
+        private List<string> currentDialogues;
 
         public void Init(ContentManager content)
         {
@@ -41,6 +42,7 @@ namespace Cuivre.Code
             //unhappyTexture = content.Load<Texture2D>(TextureString + "_unhappy");
             neutralTexture = Game1.white;
             currentTexture = neutralTexture;
+            currentDialogues = NeutralDialogues;
         }
 
         public void Call()
@@ -51,6 +53,16 @@ namespace Cuivre.Code
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (x < maxX) spriteBatch.Draw(currentTexture, new Rectangle(x, 50, 100, 300), Color.White);
+            if (x <= minX)
+            {
+                DrawDialogue(spriteBatch);
+            }
+        }
+
+        public void DrawDialogue(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
+            spriteBatch.DrawString(Game1.font, "Pouet pouet", new Vector2(60, 310), Color.Black);
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)
