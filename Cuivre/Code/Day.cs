@@ -26,7 +26,7 @@ namespace Cuivre.Code
         public void Draw(SpriteBatch spriteBatch, int x, int w, Color color)
         {
             spriteBatch.Draw(Game1.white, new Rectangle(x, 50, w, 20), color);
-            if (dayEvent != null) dayEvent.Draw(spriteBatch, x + w);
+            if (dayEvent != null) dayEvent.Draw(spriteBatch, x + w / 2);
         }
 
         public void DrawCurrent(SpriteBatch spriteBatch, int x, int dayWidth, int apWidth)
