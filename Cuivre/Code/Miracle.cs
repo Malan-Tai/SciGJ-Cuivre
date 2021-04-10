@@ -14,6 +14,8 @@ namespace Cuivre.Code
 
         const int maxMiracleChance = 100;
 
+        public const int gainedSatisfaction = 20;
+
         public static int GetCurrentMiracleChance() { return currentMiracleChance; }
 
         public static void AddMiracleChance(int additionnalChance)
