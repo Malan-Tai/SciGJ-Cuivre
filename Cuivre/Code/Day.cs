@@ -21,6 +21,7 @@ namespace Cuivre.Code
         public Day(Event e)
         {
             dayEvent = e;
+            ActionPoints = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch, int x, int w, Color color)
