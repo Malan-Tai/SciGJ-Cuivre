@@ -1,22 +1,93 @@
 [
   {
-    "Name": "Mr X",
+    "Name": "Juvénal",
     "GaugeName": "Senateurs",
-    "TextureString": "mrx",
+    "TextureString": "juvenal",
     "HappyDialogues": [
-      "Trobien",
-      "Trql frr",
-      "Youpi"
+      "Je vois que Rome commence enfin à retrouver sa grandeur d’antan.",
+      "Cybèle est très appréciée parmi les Sénateurs. Ils apprécient la protection qu’elle apporte aux chastes jeunes filles."
     ],
     "NeutralDialogues": [
-      "Osef",
-      "Blc",
-      "Tkt"
+      "Cybèle ? Je regarde de loin ce qu’elle devient, mais ça ne m’intéresse pas trop.",
+      "J’ai des thématiques beaucoup plus intéressantes à traiter que ces machins orientaux..."
     ],
     "UnhappyDialogues": [
-      "C la deche",
-      "On est pas ienb",
-      "O O F"
+      "Les cultes orientaux corrompent notre belle cité ! Qu’ils rentrent chez eux !",
+      "Rome est décadente ! Des réformes ne feraient pas de mal...",
+      "Cette Cybèle phrygienne dévoie la jeunesse !"
+    ]
+  },
+  {
+    "Name": "Lucrèce",
+    "GaugeName": "Philosophes",
+    "TextureString": "lucrece",
+    "HappyDialogues": [
+      "Cybèle est un apport bienvenu à la pensée philosophique. J’ai hâte d’écrire encore sur elle.",
+      "Cette déesse est incroyable ! C’est une vraie inspiration poétique et philosophique !"
+    ],
+    "NeutralDialogues": [
+      "Cybèle, c’est qui ?",
+      "Je ne m’intéresse pas à la mythologie."
+    ],
+    "UnhappyDialogues": [
+      "Cybèle est un frein au développement de la pensée philosophique !",
+      "La philosophie orientale est mauvaise pour Rome. Nous militons pour le rejet de Cybèle. ",
+      "Toute mention de Cybèle dans un recueil philosophique le fait immédiatement baisser en qualité... "
+    ]
+  },
+  {
+    "Name": "Martial",
+    "GaugeName": "Peuple",
+    "TextureString": "martial",
+    "HappyDialogues": [
+      "J’adore Cybèle ! On peut faire tellement de blagues sur son culte !",
+      "Le peuple aime vraiment cette déesse ! Elle ne leur apporte que des bonnes choses. Héhé..."
+    ],
+    "NeutralDialogues": [
+      "Je suis occupé… Revenez quand vous avez quelque chose d’intéressant à demander.",
+      "Les dieux orientaux n’ont pas grand intérêt à mes yeux."
+    ],
+    "UnhappyDialogues": [
+      "Tout l’argent de l’Etat passe dans le culte de Cybèle et il n’y a plus rien pour nous !",
+      "Parmi mes amis, honnêtement, personne n’aime Cybèle.",
+      "Dès que je mentionne Cybèle dans ma poésie, le peuple crache sur ce que j’ai écrit."
+    ]
+  },
+  {
+    "Name": "Virgile",
+    "GaugeName": "Militaires",
+    "TextureString": "virgile",
+    "HappyDialogues": [
+      "Cybèle est une vraie déesse romaine ! Elle nous motive à défendre Rome !",
+      "Les militaires apprécient vraiment Cybèle. Elle est honorée dans les campements."
+    ],
+    "NeutralDialogues": [
+      "Je n’ai pas vraiment d’avis sur Cybèle.",
+      "On ne m’a pas demandé de parler de Cybèle dans ma poésie épique, alors je ne vois pas pourquoi je le ferais."
+    ],
+    "UnhappyDialogues": [
+      "Cybèle est une déesse étrangère. Parler d’elle dans ma poésie serait faire honte à Rome !",
+      "Nous ne voulons plus de Cybèle, elle peut repartir en Phrygie.",
+      "Jamais je n’écrirai son nom dans mes vers !"
+    ]
+  },
+  {
+    "Name": "Ovide",
+    "GaugeName": "Amants",
+    "TextureString": "ovide",
+    "HappyDialogues": [
+      "Cybèle est porteuse d’un grand message de libération des moeurs, nous l’adorons !",
+      "Cybèle m’inspire énormément dans ma poésie amoureuse, elle est géniale !"
+    ],
+    "NeutralDialogues": [
+      "Je ne vois pas trop l’intérêt de Cybèle pour nous...",
+      "Je parlerai de Cybèle dans ma poésie quand je lui aurai trouvé un intérêt."
+    ],
+    "UnhappyDialogues": [
+      "Cybèle est une déesse beaucoup trop stricte ! Elle ne nous apporte que des problèmes.",
+      "Les valeurs de chasteté que transmet Cybèle sont désastreuses pour nous !",
+      "J’aurais préféré que Cybèle n’arrive jamais à Rome !"
     ]
   }
+
 ]
