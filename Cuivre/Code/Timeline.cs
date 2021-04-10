@@ -59,6 +59,7 @@ namespace Cuivre.Code
             else if(amount < 0 && miracleCurrentDelay == 0)
             {
                 Miracle.AddMiracleChance(day.ActionPoints * Miracle.gainedMiracleChanceWithLowSatisfaction);
+                System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%");
                 day.ActionPoints = 0;
                 miracleCurrentDelay = miracleDelay;
             }
