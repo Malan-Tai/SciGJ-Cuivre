@@ -178,14 +178,14 @@ namespace Cuivre.Code.Screens
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (Poet poet in poets.Values)
-            {
-                poet.Draw(gameTime, spriteBatch);
-            }
-
             foreach (Button b in buttons)
             {
                 b.Draw(gameTime, spriteBatch);
+            }
+
+            foreach (Poet poet in poets.Values)
+            {
+                poet.Draw(gameTime, spriteBatch);
             }
 
             Timeline.Draw(spriteBatch);
