@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Diagnostics;
 
 namespace Cuivre.Code
 {
-    class Poet
+    class Day
     {
-        public string Name { get; set; }
+        public int ActionPoints { get; set; }
+
+        public Event Event { get; set; }
     }
 }

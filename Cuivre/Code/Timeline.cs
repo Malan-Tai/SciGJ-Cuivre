@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Diagnostics;
 
 namespace Cuivre.Code
 {
-    class Poet
+    class Timeline
     {
-        public string Name { get; set; }
+        public List<Day> Days { get; set; }
     }
 }

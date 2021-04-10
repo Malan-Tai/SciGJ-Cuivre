@@ -24,13 +24,6 @@ namespace Cuivre
         protected override void Initialize()
         {
             base.Initialize();
-
-            List<Poet> poets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json"));
-            
-            foreach (Poet poet in poets)
-            {
-                Debug.WriteLine(poet.Name);
-            }
         }
 
         protected override void LoadContent()
