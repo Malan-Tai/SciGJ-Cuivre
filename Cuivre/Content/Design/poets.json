@@ -1,8 +1,22 @@
 [
   {
-    "Name": "Mr X"
-  },
-  {
-    "Name":  "Pouet"
+    "Name": "Mr X",
+    "GaugeName": "Senateurs",
+    "TextureString": "mrx",
+    "HappyDialogues": [
+      "Trobien",
+      "Trql frr",
+      "Youpi"
+    ],
+    "NeutralDialogues": [
+      "Osef",
+      "Blc",
+      "Tkt"
+    ],
+    "UnappyDialogues": [
+      "C la deche",
+      "On est pas ienb",
+      "O O F"
+    ]
   }
 ]
