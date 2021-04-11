@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace Cuivre.Code.Screens
 {
@@ -21,6 +23,13 @@ namespace Cuivre.Code.Screens
         {
             this.victory = victory;
             this.lostGauge = lostGauge;
+        }
+        public override void Init(ContentManager content, Game1 game)
+        {
+            base.Init(content, game);
+
+            MediaPlayer.Play(Game1.Musics["M_Final"]);
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

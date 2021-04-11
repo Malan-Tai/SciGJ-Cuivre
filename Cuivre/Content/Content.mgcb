@@ -26,6 +26,48 @@
 /processorParam:Quality=Best
 /build:Evenement.wav
 
+#begin M_Egypte.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Egypte.mp3
+
+#begin M_Final.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Final.mp3
+
+#begin M_Romain1.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Romain1.mp3
+
+#begin M_Romain2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Romain2.mp3
+
+#begin M_Romain3.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Romain3.mp3
+
+#begin M_Romain4.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Romain4.mp3
+
+#begin M_Transition.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:M_Transition.mp3
+
 #begin Miracle_rate.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
