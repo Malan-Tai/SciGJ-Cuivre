@@ -76,6 +76,7 @@ namespace Cuivre.Code
             {
                 currentDialogues = HappyDialogues;
                 currentTexture = happyTexture;
+                //System.Diagnostics.Debug.WriteLine("happy " + TextureString);
                 //Game1.Sounds["Rite2"].Play();
             }
             else
