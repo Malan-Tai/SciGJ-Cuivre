@@ -95,7 +95,9 @@ namespace Cuivre.Code.Screens
                 else
                 {
                     Game1.Sounds["MiracleRate"].Play();
-                }}),
+                }
+                Miracle.ResetMiracleChance(); }
+            ),
 
             //poetes
             new CollapseButton(505, 100, 150, 310, Game1.white, true, new List<Button>
@@ -231,11 +233,22 @@ namespace Cuivre.Code.Screens
                 MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
                 Game1.Sounds["Evenement"].Play();
 
+                if (Timeline.miracleCurrentDelay > 0)
+                {
+                    buttons[2].LockButton();
+                }
+
             }
             else
             {
                 Gauges.NaturalDecay();
                 Timeline.DecayMiracleDelay();
+
+                //verrouillage du bouton de miracle si le délai n'est pas écoulé
+                if(Timeline.miracleCurrentDelay > 0)
+                {
+                    buttons[2].LockButton();
+                }
 
                 string lowest = Gauges.GetLowestGauge();
                 poets[lowest].Call();

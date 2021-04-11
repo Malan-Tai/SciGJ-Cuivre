@@ -77,5 +77,10 @@ namespace Cuivre.Code
         {
             clickedToday = false;
         }
+
+        public void LockButton()
+        {
+            clickedToday = true;
+        }
     }
 }
