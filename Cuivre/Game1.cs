@@ -46,7 +46,7 @@ namespace Cuivre
         {
             base.Initialize();
 
-            currentScreen = new MenuScreen();
+            currentScreen = new EndScreen(false, "Senateurs");
             currentScreen.Init(this);
         }
 
