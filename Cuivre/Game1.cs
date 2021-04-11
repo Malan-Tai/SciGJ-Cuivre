@@ -31,8 +31,8 @@ namespace Cuivre
         {
             base.Initialize();
 
-            currentScreen = new GameScreen();
-            currentScreen.Init(Content);
+            currentScreen = new MenuScreen();
+            currentScreen.Init(Content, this);
         }
 
         protected override void LoadContent()
@@ -89,6 +89,11 @@ namespace Cuivre
 
             _spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void ChangeScreen(Screen screen)
+        {
+            currentScreen = screen;
         }
     }
 }

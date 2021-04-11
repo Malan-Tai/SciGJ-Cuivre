@@ -100,12 +100,12 @@ namespace Cuivre.Code
             return nextDay;
         }
 
-        public void TakePlace()
+        public void TakePlace(Screen screen)
         {
             called = true;
             Gauges.ReinitDictionaries();
 
-            Gauges.HandleEvent(this);
+            Gauges.HandleEvent(this, screen);
             Miracle.ResetMiracleChance();
         }
     }

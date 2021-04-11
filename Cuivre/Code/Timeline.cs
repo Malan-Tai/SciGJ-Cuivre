@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Cuivre.Code.Screens;
 
 namespace Cuivre.Code
 {
@@ -51,7 +52,7 @@ namespace Cuivre.Code
 
 
         //renvoie -1 si on ne peut pas depenser ce nombre de points, le nombre de points restant sinon (0 si on change de jour)
-        public int SpendActionPoints(int amount, bool freeze)
+        public int SpendActionPoints(int amount, bool freeze, GameScreen screen)
         {
             Day day = days[currentDay];
 
@@ -77,6 +78,10 @@ namespace Cuivre.Code
             if (day.ActionPoints <= 0 && !freeze)
             {
                 currentDay++;
+                if (currentDay == totalDays)
+                {
+                    screen.ChangeScreen(true);
+                }
             }
 
             return day.ActionPoints;
@@ -123,7 +128,7 @@ namespace Cuivre.Code
             }
         }
 
-        public bool Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState)
+        public bool Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState, GameScreen screen)
         {
             bool nextDay = false;
             if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
@@ -138,6 +143,10 @@ namespace Cuivre.Code
             if (nextDay)
             {
                 currentDay++;
+                if (currentDay == totalDays)
+                {
+                    screen.ChangeScreen(true);
+                }
             }
 
             return nextDay;
@@ -154,10 +163,10 @@ namespace Cuivre.Code
             return days[currentDay].HasEvent();
         }
 
-        public void CallEvent()
+        public void CallEvent(Screen screen)
         {
             ongoingEvent = true;
-            days[currentDay].CallEvent();
+            days[currentDay].CallEvent(screen);
         }
     }
 }

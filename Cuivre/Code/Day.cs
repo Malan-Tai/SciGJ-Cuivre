@@ -62,9 +62,9 @@ namespace Cuivre.Code
             return false;
         }
 
-        public void CallEvent()
+        public void CallEvent(Screen screen)
         {
-            if (dayEvent != null) dayEvent.TakePlace();
+            if (dayEvent != null) dayEvent.TakePlace(screen);
         }
     }
 }

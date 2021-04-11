@@ -37,36 +37,36 @@ namespace Cuivre.Code.Screens
             {
                 new Button(195, 110, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
-                Gauges.IncrementGaugeValue("Peuple", 15);
-                Gauges.IncrementGaugeValue("Senateurs", -5);
+                Gauges.IncrementGaugeValue("Peuple", 15, screen);
+                Gauges.IncrementGaugeValue("Senateurs", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
                 Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 170, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
-                Gauges.IncrementGaugeValue("Senateurs", 15);
-                Gauges.IncrementGaugeValue("Philosophes", -5);
+                Gauges.IncrementGaugeValue("Senateurs", 15, screen);
+                Gauges.IncrementGaugeValue("Philosophes", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
                 Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 230, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
-                Gauges.IncrementGaugeValue("Philosophes", 15);
-                Gauges.IncrementGaugeValue("Militaires", -5);
+                Gauges.IncrementGaugeValue("Philosophes", 15, screen);
+                Gauges.IncrementGaugeValue("Militaires", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Théâtre");
                 Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 290, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
-                Gauges.IncrementGaugeValue("Amants", 15);
-                Gauges.IncrementGaugeValue("Peuple", -5);
+                Gauges.IncrementGaugeValue("Amants", 15, screen);
+                Gauges.IncrementGaugeValue("Peuple", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                 Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 350, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
-                Gauges.IncrementGaugeValue("Militaires", 15);
-                Gauges.IncrementGaugeValue("Amants", -5);
+                Gauges.IncrementGaugeValue("Militaires", 15, screen);
+                Gauges.IncrementGaugeValue("Amants", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); })
             }, screen => { }),
@@ -79,7 +79,7 @@ namespace Cuivre.Code.Screens
                 Game1.Sounds["Miracles"].Play();
                 foreach(string key in Gauges.gaugesItems.Keys)
                 {
-                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction);
+                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
                 }
                 }
                 else
@@ -115,9 +115,9 @@ namespace Cuivre.Code.Screens
 
         public CollapseButton Focused { get; set; } = null;
 
-        public override void Init(ContentManager content)
+        public override void Init(ContentManager content, Game1 game)
         {
-            base.Init(content);
+            base.Init(content, game);
 
             //EventPool.AddEvents();
 
@@ -137,7 +137,7 @@ namespace Cuivre.Code.Screens
 
         public bool SpendActionPoints(int amount, bool freeze = false)
         {
-            int res = Timeline.SpendActionPoints(amount, freeze);
+            int res = Timeline.SpendActionPoints(amount, freeze, this);
 
             if (res < 0) return false;
 
@@ -157,7 +157,7 @@ namespace Cuivre.Code.Screens
             eventDay = Timeline.TodayHasEvent();
             if (eventDay)
             {
-                Timeline.CallEvent();
+                Timeline.CallEvent(this);
                 Game1.Sounds["Evenement"].Play();
             }
             else
@@ -200,7 +200,7 @@ namespace Cuivre.Code.Screens
                 poet.Update(gameTime, mouseState);
             }
 
-            bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState);
+            bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState, this);
             if (endEvent)
             {
                 eventDay = false;
@@ -235,6 +235,14 @@ namespace Cuivre.Code.Screens
             {
                 poet.Draw(gameTime, spriteBatch);
             }
+        }
+
+        public void ChangeScreen(bool victory, string lostGauge = "")
+        {
+            EndScreen screen = new EndScreen(victory, lostGauge);
+            screen.Init(content, gameInstance);
+
+            gameInstance.ChangeScreen(screen);
         }
     }
 }

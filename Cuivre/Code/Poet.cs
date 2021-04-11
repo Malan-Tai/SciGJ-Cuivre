@@ -41,7 +41,7 @@ namespace Cuivre.Code
             "Poete1",
             "Poete2",
             "Poete3",
-            "Poete4"
+            //"Poete4"
         };
 
         public void Init(ContentManager content)
@@ -66,7 +66,7 @@ namespace Cuivre.Code
             called = true;
             int gauge = Gauges.gaugesItems[GaugeName];
 
-            Game1.Sounds[soundEffectsList[Utils.Dice.GetRandint(0, soundEffectsList.Count)]].Play();
+            Game1.Sounds[soundEffectsList[Utils.Dice.GetRandint(0, soundEffectsList.Count - 1)]].Play();
 
             if (gauge <= 25)
             {

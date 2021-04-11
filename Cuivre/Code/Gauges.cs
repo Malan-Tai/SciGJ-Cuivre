@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Cuivre.Code.Screens;
 
 namespace Cuivre.Code
 {
@@ -16,6 +17,8 @@ namespace Cuivre.Code
         private static Dictionary<string, bool> stuckStats = new Dictionary<string, bool>();
         private static Dictionary<string, int> decayStats = new Dictionary<string, int>();
 
+        private static bool initialized = false;
+
         public static void ReinitDictionaries()
         {
             List<string> keys = new List<string>(gaugesItems.Keys);
@@ -28,11 +31,15 @@ namespace Cuivre.Code
 
         public static void InitializeGauges(List<string> names)
         {
-            foreach (string name in names)
+            if (!initialized)
             {
-                gaugesItems.Add(name, startValues);
-                stuckStats.Add(name, false);
-                decayStats.Add(name, decay);
+                initialized = true;
+                foreach (string name in names)
+                {
+                    gaugesItems.Add(name, startValues);
+                    stuckStats.Add(name, false);
+                    decayStats.Add(name, decay);
+                }
             }
         }
 
@@ -51,13 +58,21 @@ namespace Cuivre.Code
             }
         }
 
-        public static void IncrementGaugeValue(string index, int amount)
+        public static void IncrementGaugeValue(string index, int amount, Screen screen)
         {
             if (gaugesItems.TryGetValue(index, out int tempAmount) && !stuckStats[index])
             {
                 gaugesItems[index] = tempAmount + amount;
                 if(gaugesItems[index] > maxValue) { gaugesItems[index] = maxValue; }
                 if (gaugesItems[index] < 0) { gaugesItems[index] = 0; }
+            }
+
+            foreach (string key in gaugesItems.Keys)
+            {
+                if (gaugesItems[key] <= 0)
+                {
+                    ((GameScreen)screen).ChangeScreen(false, key);
+                }
             }
         }
 
@@ -87,13 +102,14 @@ namespace Cuivre.Code
             }
         }
 
-        public static void HandleEvent(Event ev)
+        public static void HandleEvent(Event ev, Screen screen)
         {
             List<string> keys = new List<string>() { "Senateurs", "Philosophes", "Peuple", "Militaires", "Amants" };
 
             foreach (string key in keys)
             {
-                gaugesItems[key] += ev.RawStats[key];
+                //gaugesItems[key] += ev.RawStats[key];
+                IncrementGaugeValue(key, ev.RawStats[key], screen);
                 stuckStats[key] = ev.StuckStats[key];
                 decayStats[key] = ev.DecayStats[key];
             }
