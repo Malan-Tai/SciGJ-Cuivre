@@ -40,7 +40,7 @@ namespace Cuivre.Code.Screens
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
                     GameScreen screen = new GameScreen();
-                    screen.Init(content, gameInstance);
+                    screen.Init(gameInstance);
 
                     gameInstance.ChangeScreen(screen);
                 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Cuivre.Code.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,7 +27,8 @@ namespace Cuivre.Code
         {
             get
             {
-                if (hovered) return new Rectangle(x - 5, y - 5, w + 10, h + 10);
+                int off = 2 * GameScreen.betweenOffset;
+                if (hovered) return new Rectangle(x - off, y - off, w + 2 * off, h + 2 * off);
                 return new Rectangle(x, y, w, h);
             }
         }
@@ -45,7 +47,7 @@ namespace Cuivre.Code
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Color color = Color.White;
-            if (hovered) color = Color.Red;
+            //if (hovered) color = Color.Red;
             if (clickedToday && !reclickable) color = Color.Gray;
 
             spriteBatch.Draw(texture, Rectangle, color);

@@ -24,9 +24,9 @@ namespace Cuivre.Code.Screens
             this.victory = victory;
             this.lostGauge = lostGauge;
         }
-        public override void Init(ContentManager content, Game1 game)
+        public override void Init(Game1 game)
         {
-            base.Init(content, game);
+            base.Init(game);
 
             MediaPlayer.Play(Game1.Musics["M_Final"]);
 
@@ -70,7 +70,7 @@ namespace Cuivre.Code.Screens
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
                     GameScreen screen = new GameScreen();
-                    screen.Init(content, gameInstance);
+                    screen.Init(gameInstance);
 
                     gameInstance.ChangeScreen(screen);
                 }

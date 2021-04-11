@@ -15,7 +15,7 @@ namespace Cuivre.Code
         private int currentDay = 0;
         private int totalDays = 0;
 
-        private int timelineWidth = 780;
+        private int timelineWidth = Game1.WIDTH - 2 * GameScreen.leftOffset;
         
         private const int miracleDelay = 5;
         private int miracleCurrentDelay = 0;
@@ -88,9 +88,9 @@ namespace Cuivre.Code
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int x = 10;
+            int x = GameScreen.leftOffset;
             int w = timelineWidth / (totalDays + Day.dailyActionpoints);
-            Color color = Color.Gray;
+            Color color = new Color(120, 176, 222);
 
             for (int i = 0; i < totalDays; i++)
             {
@@ -98,7 +98,7 @@ namespace Cuivre.Code
                 {
                     days[i].DrawCurrent(spriteBatch, x, Day.dailyActionpoints * w, w);
                     x += Day.dailyActionpoints * w;
-                    color = Color.White;
+                    color = new Color(229, 199, 80);
                 }
                 else
                 {
@@ -107,9 +107,18 @@ namespace Cuivre.Code
                 }
             }
 
+            spriteBatch.Draw(Game1.Textures["frise_ornements_cotes"], new Rectangle(GameScreen.leftOffset - w / 3, GameScreen.leftOffset - w / 5, 2 * w / 3, 2 * w / 3), Color.White);
+            spriteBatch.Draw(Game1.Textures["frise_ornements_cotes"], new Rectangle(x - w / 4, GameScreen.leftOffset - w / 5, 2 * w / 3, 2 * w / 3), null, Color.White, 0,
+                             new Vector2(), SpriteEffects.FlipHorizontally, 0);
+
             if (called)
             {
-                spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
+                Texture2D bubble = Game1.Textures["bulle_poete"];
+                float ratio = bubble.Height / (float)bubble.Width;
+
+                int textW = Game1.WIDTH - 2 * GameScreen.leftOffset - GameScreen.cardWidth;
+                int textH = (int)(ratio * textW);
+                int y = Game1.HEIGHT - textH - GameScreen.leftOffset;
 
                 string hint = "";
                 for (int i = currentDay; i < totalDays; i++)
@@ -122,10 +131,14 @@ namespace Cuivre.Code
                     }
                 }
 
-                int y = 310;
-                foreach (string line in Utils.TextWrap.Wrap(hint, 480, Game1.font))
+                spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
+
+                List<string> lines = Utils.TextWrap.Wrap(hint, textW - 2 * GameScreen.betweenOffset, Game1.font);
+
+                y += textH / 5;
+                foreach (string line in lines)
                 {
-                    spriteBatch.DrawString(Game1.font, line, new Vector2(60, y), Color.Black);
+                    spriteBatch.DrawString(Game1.font, line, new Vector2(textW / 10 + GameScreen.leftOffset, y), Color.Black);
                     y += (int)Game1.font.MeasureString("l").Y + 5;
                 }
             }

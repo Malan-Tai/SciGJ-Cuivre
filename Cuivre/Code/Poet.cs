@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using Cuivre.Code.Screens;
 
 namespace Cuivre.Code
 {
@@ -28,10 +29,10 @@ namespace Cuivre.Code
         private Texture2D unhappyTexture;
         private Texture2D currentTexture;
 
-        private int x = 800;
+        private int x = Game1.WIDTH;
         private int speed = 1;
-        private int minX = 600;
-        private int maxX = 800;
+        private int minX = Game1.WIDTH - GameScreen.cardWidth - GameScreen.leftOffset;
+        private int maxX = Game1.WIDTH;
 
         private bool called = false;
         private List<string> currentDialogues;
@@ -44,14 +45,11 @@ namespace Cuivre.Code
             //"Poete4"
         };
 
-        public void Init(ContentManager content)
+        public void Init()
         {
-            //neutralTexture = content.Load<Texture2D>(TextureString);
-            //happyTexture = content.Load<Texture2D>(TextureString + "_happy");
-            //unhappyTexture = content.Load<Texture2D>(TextureString + "_unhappy");
-            neutralTexture = Game1.white;
-            happyTexture = Game1.white;
-            unhappyTexture = Game1.white;
+            neutralTexture = Game1.Textures[TextureString];
+            happyTexture = Game1.Textures[TextureString + "_happy"];
+            unhappyTexture = Game1.Textures[TextureString + "_unappy"];
             currentTexture = neutralTexture;
             currentDialogues = NeutralDialogues;
 
@@ -100,7 +98,12 @@ namespace Cuivre.Code
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (x < maxX) spriteBatch.Draw(currentTexture, new Rectangle(x, 50, 100, 300), Color.White);
+            if (x < maxX)
+            {
+                float ratio = currentTexture.Height / (float)currentTexture.Width;
+                int h = (int)(ratio * GameScreen.cardWidth);
+                spriteBatch.Draw(currentTexture, new Rectangle(x, Game1.HEIGHT / 5, GameScreen.cardWidth, h), Color.White);
+            }
             if (x <= minX)
             {
                 DrawDialogue(spriteBatch);
@@ -109,12 +112,21 @@ namespace Cuivre.Code
 
         public void DrawDialogue(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 50), Color.Wheat);
+            Texture2D bubble = Game1.Textures["bulle_poete"];
+            float ratio = bubble.Height / (float)bubble.Width;
 
-            int y = 310;
-            foreach (string line in Utils.TextWrap.Wrap(nextLine, 480, Game1.font))
+            int textW = Game1.WIDTH - 2 * GameScreen.leftOffset - GameScreen.cardWidth;
+            int textH = (int)(ratio * textW);
+            int y = Game1.HEIGHT - textH - GameScreen.leftOffset;
+
+            spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
+
+            List<string> lines = Utils.TextWrap.Wrap(nextLine, textW - 2 * GameScreen.betweenOffset, Game1.font);
+
+            y += textH / 5;
+            foreach (string line in lines)
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(60, y), Color.Black);
+                spriteBatch.DrawString(Game1.font, line, new Vector2(textW / 10 + GameScreen.leftOffset, y), Color.Black);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
             }
         }
