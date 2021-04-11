@@ -15,7 +15,7 @@ namespace Cuivre.Code
 
         public string Hint { get; set; }
 
-        public string Explanation { get; set; } = "Je suis une explication";
+        public string Explanation { get; set; }
 
         //Event effects : Decay Stats and StuckStats remain until next event
         public Dictionary<string, int> RawStats { get; set; } // -x to some gauges, +y to others, etc
