@@ -36,7 +36,7 @@ namespace Cuivre.Code
                 spriteBatch.Draw(focusTexture, new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
                 foreach (Button b in collapsedButtons)
                 {
-                    b.Draw(gameTime, spriteBatch);
+                    if (b.Hovered()) b.Draw(gameTime, spriteBatch);
                 }
                 //spriteBatch.Draw(Game1.white, quitRectangle, Color.Red);
             }
