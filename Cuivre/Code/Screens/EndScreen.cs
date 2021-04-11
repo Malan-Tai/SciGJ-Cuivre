@@ -29,6 +29,7 @@ namespace Cuivre.Code.Screens
             base.Init(game);
 
             MediaPlayer.Play(Game1.Musics["M_Final"]);
+            MediaPlayer.IsRepeating = false;
 
         }
 

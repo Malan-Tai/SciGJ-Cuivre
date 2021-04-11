@@ -153,7 +153,8 @@ namespace Cuivre.Code.Screens
             }
 
             MediaPlayer.Play(Game1.Musics["M_Egypte"]);
-            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+            MediaPlayer.IsRepeating = true;
+            //MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
 
         }
 
@@ -161,26 +162,27 @@ namespace Cuivre.Code.Screens
         {
             if (!Gauges.gameEnd)
             {
-                if (currentEvent == 0)
-                {
-                    MediaPlayer.Play(Game1.Musics["M_Egypte"]);
-                }
-                else if (currentEvent == 1)
+                //if (currentEvent == 0)
+                //{
+                //    MediaPlayer.Play(Game1.Musics["M_Egypte"]);
+                //}
+                if (currentEvent == 1)
                 {
                     MediaPlayer.Play(Game1.Musics["M_Romain1"]);
+                    MediaPlayer.IsRepeating = true;
                 }
-                else if (currentEvent == 4)
-                {
-                    MediaPlayer.Play(Game1.Musics["M_Romain2"]);
-                }
-                else if (currentEvent == 5)
-                {
-                    MediaPlayer.Play(Game1.Musics["M_Romain3"]);
-                }
-                else if (currentEvent == 6)
-                {
-                    MediaPlayer.Play(Game1.Musics["M_Romain4"]);
-                }
+                //else if (currentEvent == 4)
+                //{
+                //    MediaPlayer.Play(Game1.Musics["M_Romain2"]);
+                //}
+                //else if (currentEvent == 5)
+                //{
+                //    MediaPlayer.Play(Game1.Musics["M_Romain3"]);
+                //}
+                //else if (currentEvent == 6)
+                //{
+                //    MediaPlayer.Play(Game1.Musics["M_Romain4"]);
+                //}
             }
         }
 
@@ -211,6 +213,8 @@ namespace Cuivre.Code.Screens
             ResetButtons();
             Focused = null;
 
+            Miracle.ActualizeMiracleChances();
+
             eventDay = Timeline.TodayHasEvent();
             if (eventDay)
             {
@@ -220,18 +224,22 @@ namespace Cuivre.Code.Screens
                 if (currentEvent == 1)
                 {
                     MediaPlayer.Play(Game1.Musics["M_Transition"]);
+                    MediaPlayer.IsRepeating = false;
                 }
                 else if (currentEvent == 4)
                 {
                     MediaPlayer.Play(Game1.Musics["M_Romain2"]);
+                    MediaPlayer.IsRepeating = true;
                 }
                 else if (currentEvent == 5)
                 {
                     MediaPlayer.Play(Game1.Musics["M_Romain3"]);
+                    MediaPlayer.IsRepeating = true;
                 }
                 else if (currentEvent == 6)
                 {
                     MediaPlayer.Play(Game1.Musics["M_Romain4"]);
+                    MediaPlayer.IsRepeating = true;
                 }
 
                 MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
