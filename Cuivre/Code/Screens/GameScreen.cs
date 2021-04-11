@@ -29,7 +29,7 @@ namespace Cuivre.Code.Screens
                 if (((GameScreen)screen).SpendActionPoints(2, true))
                 {
                     ((GameScreen)screen).Timeline.CallOracle();
-                    Game1.Sounds["Oracle"].Play();
+                    //Game1.Sounds["Oracle"].Play();
                 }}),
 
             //bienfaits
@@ -37,6 +37,7 @@ namespace Cuivre.Code.Screens
             {
                 new Button(195, 110, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).PlayRiteSound();
                 Gauges.IncrementGaugeValue("Peuple", 15, screen);
                 Gauges.IncrementGaugeValue("Senateurs", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
@@ -44,6 +45,7 @@ namespace Cuivre.Code.Screens
 
                 new Button(195, 170, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).PlayRiteSound();
                 Gauges.IncrementGaugeValue("Senateurs", 15, screen);
                 Gauges.IncrementGaugeValue("Philosophes", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
@@ -51,6 +53,7 @@ namespace Cuivre.Code.Screens
 
                 new Button(195, 230, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).PlayRiteSound();
                 Gauges.IncrementGaugeValue("Philosophes", 15, screen);
                 Gauges.IncrementGaugeValue("Militaires", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Théâtre");
@@ -58,6 +61,7 @@ namespace Cuivre.Code.Screens
 
                 new Button(195, 290, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).PlayRiteSound();
                 Gauges.IncrementGaugeValue("Amants", 15, screen);
                 Gauges.IncrementGaugeValue("Peuple", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
@@ -65,6 +69,7 @@ namespace Cuivre.Code.Screens
 
                 new Button(195, 350, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).PlayRiteSound();
                 Gauges.IncrementGaugeValue("Militaires", 15, screen);
                 Gauges.IncrementGaugeValue("Amants", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
@@ -84,7 +89,7 @@ namespace Cuivre.Code.Screens
                 }
                 else
                 {
-                    Game1.Sounds["Miracle_rate"].Play();
+                    Game1.Sounds["MiracleRate"].Play();
                 }}),
 
             //poetes
@@ -133,6 +138,13 @@ namespace Cuivre.Code.Screens
             {
                 poet.Init(content);
             }
+        }
+
+        public void PlayRiteSound()
+        {
+            List<string> keys = new List<string>() { "Rite1", "Rite2", "Rite3" };
+            Game1.Sounds[keys[Utils.Dice.GetRandint(0, 2)]].Play();
+
         }
 
         public bool SpendActionPoints(int amount, bool freeze = false)

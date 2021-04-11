@@ -72,19 +72,19 @@ namespace Cuivre.Code
             {
                 currentDialogues = UnhappyDialogues;
                 currentTexture = unhappyTexture;
-                Game1.Sounds["Rite1"].Play();
+                //Game1.Sounds["Rite1"].Play();
             }
             else if (gauge > 75)
             {
                 currentDialogues = HappyDialogues;
                 currentTexture = happyTexture;
-                Game1.Sounds["Rite2"].Play();
+                //Game1.Sounds["Rite2"].Play();
             }
             else
             {
                 currentDialogues = NeutralDialogues;
                 currentTexture = neutralTexture;
-                Game1.Sounds["Rite3"].Play();
+                //Game1.Sounds["Rite3"].Play();
             }
 
             int n = currentDialogues.Count - 1; //number of real sentence, ignoring last said
