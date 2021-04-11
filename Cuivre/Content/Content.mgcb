@@ -37,6 +37,54 @@
 /processorParam:TextureFormat=Color
 /build:bouton_help.png
 
+#begin bouton_jouer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bouton_jouer.png
+
+#begin bouton_menu.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bouton_menu.png
+
+#begin bouton_quitter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bouton_quitter.png
+
+#begin bouton_rejouer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bouton_rejouer.png
+
 #begin bulle_poete.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -134,6 +182,18 @@
 /processorParam:Quality=Best
 /build:Evenement.wav
 
+#begin fabriquer_icones.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fabriquer_icones.png
+
 #begin fond.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -169,6 +229,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:frise_ornements_cotes.png
+
+#begin gladiateurs.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gladiateurs.png
 
 #begin icone_evenement.png
 /importer:TextureImporter
@@ -218,6 +290,18 @@
 /processorParam:TextureFormat=Color
 /build:juvenal_unappy.png
 
+#begin juvenal_vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:juvenal_vignette.png
+
 #begin lucrece.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -254,6 +338,18 @@
 /processorParam:TextureFormat=Color
 /build:lucrece_unappy.png
 
+#begin lucrece_vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:lucrece_vignette.png
+
 #begin M_Egypte.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -266,11 +362,11 @@
 /processorParam:Quality=Best
 /build:M_Final.mp3
 
-#begin M_Romain1.ogg
-/importer:OggImporter
+#begin M_Romain1.mp3
+/importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:M_Romain1.ogg
+/build:M_Romain1.mp3
 
 #begin M_Romain2.mp3
 /importer:Mp3Importer
@@ -332,6 +428,54 @@
 /processorParam:TextureFormat=Color
 /build:martial_unappy.png
 
+#begin martial_vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:martial_vignette.png
+
+#begin menu_debut.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:menu_debut.png
+
+#begin menu_DEFAITE.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:menu_DEFAITE.png
+
+#begin menu_victoire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:menu_victoire.png
+
 #begin Miracle_rate.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -343,6 +487,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Miracles.wav
+
+#begin nourriture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:nourriture.png
 
 #begin ovide.png
 /importer:TextureImporter
@@ -380,6 +536,18 @@
 /processorParam:TextureFormat=Color
 /build:ovide_unappy.png
 
+#begin ovide_vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ovide_vignette.png
+
 #begin Poete_1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -397,6 +565,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Poete_3.wav
+
+#begin processions religieuses.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:processions religieuses.png
 
 #begin Rite_1.wav
 /importer:WavImporter
@@ -440,6 +620,30 @@
 /processorParam:TextureFormat=Color
 /build:stele_evenements.png
 
+#begin theatre.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:theatre.png
+
+#begin tutorial_layout.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tutorial_layout.png
+
 #begin virgile.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -475,6 +679,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:virgile_unappy.png
+
+#begin virgile_vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:virgile_vignette.png
 
 #begin white.png
 /importer:TextureImporter
