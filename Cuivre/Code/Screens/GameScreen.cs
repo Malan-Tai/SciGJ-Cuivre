@@ -247,7 +247,7 @@ namespace Cuivre.Code.Screens
 
                 if (Timeline.miracleCurrentDelay > 0)
                 {
-                    buttons[0].LockButton();
+                    buttons[1].LockButton();
                 }
 
             }
@@ -259,7 +259,7 @@ namespace Cuivre.Code.Screens
                 //verrouillage du bouton de miracle si le délai n'est pas écoulé
                 if(Timeline.miracleCurrentDelay > 0)
                 {
-                    buttons[0].LockButton();
+                    buttons[1].LockButton();
                 }
 
                 string lowest = Gauges.GetLowestGauge();
