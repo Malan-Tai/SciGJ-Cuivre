@@ -28,17 +28,22 @@ namespace Cuivre.Code
 
         public static bool MiracleRoll()
         {
-            foreach(int gaugeValue in Gauges.gaugesItems.Values)
-            {
-                if(gaugeValue <= 30)
-                {
-                    AddMiracleChance(10);
-                }
-            }
-
             int roll = Utils.Dice.GetRandint(1, 100);
 
             return (roll <= currentMiracleChance);
+        }
+
+        public static void ActualizeMiracleChances()
+        {
+            int numberOfLowGauges = 0;
+            foreach (int gaugeValue in Gauges.gaugesItems.Values)
+            {
+                if (gaugeValue <= 30)
+                { 
+                    numberOfLowGauges++;
+                }
+            }
+            currentMiracleChance = numberOfLowGauges * gainedMiracleChanceWithLowSatisfaction;
         }
 
     }

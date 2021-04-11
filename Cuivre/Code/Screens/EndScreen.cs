@@ -71,7 +71,8 @@ namespace Cuivre.Code.Screens
                 {
                     GameScreen screen = new GameScreen();
                     screen.Init(content, gameInstance);
-
+                    Gauges.gameEnd = false;
+                    Miracle.ResetMiracleChance();
                     gameInstance.ChangeScreen(screen);
                 }
             }
