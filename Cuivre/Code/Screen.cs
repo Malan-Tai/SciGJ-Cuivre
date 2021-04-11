@@ -12,12 +12,10 @@ namespace Cuivre.Code
     {
         protected MouseState prevMouseState;
         protected Game1 gameInstance;
-        protected ContentManager content;
 
-        public virtual void Init(ContentManager content, Game1 game)
+        public virtual void Init(Game1 game)
         {
             prevMouseState = Mouse.GetState();
-            this.content = content;
             gameInstance = game;
         }
 

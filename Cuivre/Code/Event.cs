@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Cuivre.Code.Screens;
 
 namespace Cuivre.Code
 {
@@ -32,18 +33,17 @@ namespace Cuivre.Code
         private int minY = 300;
         private int maxY = 400;
         
-        public void Draw(SpriteBatch spriteBatch, int x)
+        public void Draw(SpriteBatch spriteBatch, int x, int h)
         {
             if (!called && !explain)
             {
-                spriteBatch.Draw(Game1.white, new Rectangle(x - 5, 55, 10, 10), Color.Green);
+                spriteBatch.Draw(Game1.Textures["icone_evenement"], new Rectangle(x - h, GameScreen.leftOffset - h / 2, 2 * h, 2 * h), Color.Green);
             }
             else
             {
-                spriteBatch.Draw(Game1.white, new Rectangle(x - 20, 40, 40, 40), Color.Green);
+                spriteBatch.Draw(Game1.Textures["icone_evenement"], new Rectangle(x - h, GameScreen.betweenOffset - h / 2, 2 * h, 2 * h), Color.Green);
             }
             
-            if (y < maxY) spriteBatch.Draw(Game1.white, new Rectangle(x, 50, 100, 300), Color.White);
             if (called || explain)
             {
                 DrawDialogue(spriteBatch);
@@ -52,7 +52,14 @@ namespace Cuivre.Code
 
         public void DrawDialogue(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.white, new Rectangle(50, 300, 500, 150), Color.Wheat);
+            Texture2D bubble = Game1.Textures["stele_evenements"];
+            float ratio = bubble.Height / (float)bubble.Width;
+
+            int textW = Game1.WIDTH - 2 * GameScreen.leftOffset - GameScreen.cardWidth;
+            int textH = (int)(ratio * textW);
+            int y = Game1.HEIGHT - textH - GameScreen.leftOffset;
+
+            spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
 
             string text = "";
             if (called)
@@ -63,11 +70,11 @@ namespace Cuivre.Code
             {
                 text = Explanation;
             }
-            
-            int y = 310;
-            foreach (string line in Utils.TextWrap.Wrap(text, 480, Game1.font))
+
+            y += textH / 3;
+            foreach (string line in Utils.TextWrap.Wrap(text, textW, Game1.font))
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(60, y), Color.Black);
+                spriteBatch.DrawString(Game1.font, line, new Vector2(GameScreen.leftOffset + textW / 20, y), Color.Black);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
             }
         }

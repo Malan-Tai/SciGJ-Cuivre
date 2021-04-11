@@ -26,6 +26,7 @@ namespace Cuivre
 
         public static Dictionary<string, SoundEffect> Sounds { get; set; } = new Dictionary<string, SoundEffect>();
         public static Dictionary<string, Song> Musics { get; set; } = new Dictionary<string, Song>();
+        public static Dictionary<string, Texture2D> Textures { get; set; } = new Dictionary<string, Texture2D>();
 
         public Game1()
         {
@@ -46,7 +47,7 @@ namespace Cuivre
             base.Initialize();
 
             currentScreen = new MenuScreen();
-            currentScreen.Init(Content, this);
+            currentScreen.Init(this);
         }
 
         protected override void LoadContent()
@@ -75,6 +76,22 @@ namespace Cuivre
             Musics.Add("M_Romain3", Content.Load<Song>("M_Romain3"));
             Musics.Add("M_Romain4", Content.Load<Song>("M_Romain4"));
             Musics.Add("M_Transition", Content.Load<Song>("M_Transition"));
+
+            List<string> textureNames = new List<string>() { "bouton_help", "bulle_poete", "card_bienfaits", "card_miracle_verso", "card_miracle", "card_oracle",
+                                                             "card_poetes_verso", "card_poetes", "fond", "stele_evenements", "baton_frise", "frise_cartouche", "frise_ornements_cotes",
+                                                             "icone_evenement" };
+            List<string> temp = new List<string>() { "juvenal", "lucrece", "martial", "ovide", "virgile" };
+            foreach (string name in temp)
+            {
+                textureNames.Add(name);
+                textureNames.Add(name + "_happy");
+                textureNames.Add(name + "_unappy");
+            }
+
+            foreach (string key in textureNames)
+            {
+                Textures.Add(key, Content.Load<Texture2D>(key));
+            }
 
         }
 

@@ -23,19 +23,67 @@ namespace Cuivre.Code.Screens
 
         public int currentEvent = 0;
 
+        public const int leftOffset = 50;
+        public const int cardNumbers = 5;
+        public const int betweenOffset = 10;
+        public static int cardWidth = (Game1.WIDTH - 2 * leftOffset - (cardNumbers - 1) * betweenOffset) / cardNumbers;
+
+        private static float ratio = Game1.Textures["card_poetes"].Height / (float)Game1.Textures["card_poetes"].Width;
+
         private List<Button> buttons = new List<Button>
         {
 
             //Bouton de l'oracle
-            new Button(25, 100, 150, 310, Game1.white, screen => {
+            new Button(leftOffset + 3 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_oracle"], screen => {
                 if (((GameScreen)screen).SpendActionPoints(2, true))
                 {
                     ((GameScreen)screen).Timeline.CallOracle();
                     //Game1.Sounds["Oracle"].Play();
                 }}),
 
+            //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
+            new Button(leftOffset + 2 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_miracle"], screen => {
+                ((GameScreen)screen).SpendActionPoints(-1);
+                if (Miracle.MiracleRoll())
+                {
+                    Game1.Sounds["Miracles"].Play();
+                    foreach(string key in Gauges.gaugesItems.Keys)
+                    {
+                        Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
+                    }
+                    }
+                    else
+                    {
+                        Game1.Sounds["MiracleRate"].Play();
+                    }
+                }),
+
+            //poetes
+            new CollapseButton(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_poetes"], Game1.Textures["card_poetes_verso"], true, new List<Button>
+            {
+                new Button(515, 110, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).poets["Peuple"].Call();
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète du Peuple");}, true),
+
+                new Button(515, 170, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).poets["Senateurs"].Call();
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}, true),
+
+                new Button(515, 230, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).poets["Philosophes"].Call();
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Philosophes");}, true),
+
+                new Button(515, 290, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).poets["Amants"].Call();
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Amants");}, true),
+
+                new Button(515, 350, 130, 50, Game1.white, screen => {
+                ((GameScreen)screen).poets["Militaires"].Call();
+                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Militaires");}, true)
+            }, screen => { ((GameScreen)screen).SpendActionPoints(1); }),
+
             //bienfaits
-            new CollapseButton(185, 100, 150, 310, Game1.white, false, new List<Button>
+            new CollapseButton(leftOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_bienfaits"], Game1.Textures["card_miracle_verso"], false, new List<Button>
             {
                 new Button(195, 110, 130, 50, Game1.white, screen => {
                     ((GameScreen)screen).SpendActionPoints(1);
@@ -74,68 +122,20 @@ namespace Cuivre.Code.Screens
                     Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 350, 130, 50, Game1.white, screen => {
-                    ((GameScreen)screen).SpendActionPoints(1);
-                    ((GameScreen)screen).PlayRiteSound();
-                    Gauges.IncrementGaugeValue("Militaires", 15, screen);
-                    Gauges.IncrementGaugeValue("Amants", -5, screen);
-                    Miracle.ActualizeMiracleChances();
-                    System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
-                    Gauges.ShowGaugesValues(); })
-
-            }, screen => { }, true),
-
-            //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
-            new Button(345, 100, 150, 310, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(-1);
-                if (Miracle.MiracleRoll())
-                {
-                    Game1.Sounds["Miracles"].Play();
-
-                    List<string> gaugesNames = new List<string>(Gauges.gaugesItems.Keys);
-
-                    foreach(string key in gaugesNames)
-                    {
-                        Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
-                    }
-                }
-                else
-                {
-                    Game1.Sounds["MiracleRate"].Play();
-                }
-                Miracle.ResetMiracleChance(); }
-            ),
-
-            //poetes
-            new CollapseButton(505, 100, 150, 310, Game1.white, true, new List<Button>
-            {
-                new Button(515, 110, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).poets["Peuple"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète du Peuple");}, true),
-
-                new Button(515, 170, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).poets["Senateurs"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Sénateurs");}, true),
-
-                new Button(515, 230, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).poets["Philosophes"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Philosophes");}, true),
-
-                new Button(515, 290, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).poets["Amants"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Amants");}, true),
-
-                new Button(515, 350, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).poets["Militaires"].Call();
-                System.Diagnostics.Debug.WriteLine("On demande son avis au poète des Militaires");}, true)
-            }, screen => { ((GameScreen)screen).SpendActionPoints(1); }),
-
+                ((GameScreen)screen).SpendActionPoints(1);
+                ((GameScreen)screen).PlayRiteSound();
+                Gauges.IncrementGaugeValue("Militaires", 15, screen);
+                Gauges.IncrementGaugeValue("Amants", -5, screen);
+                System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
+                Gauges.ShowGaugesValues(); })
+            }, screen => { }, true)
         };
 
         public CollapseButton Focused { get; set; } = null;
 
-        public override void Init(ContentManager content, Game1 game)
+        public override void Init(Game1 game)
         {
-            base.Init(content, game);
+            base.Init(game);
 
             //EventPool.AddEvents();
 
@@ -149,7 +149,7 @@ namespace Cuivre.Code.Screens
             Gauges.InitializeGauges(new List<string>(poets.Keys));
             foreach (Poet poet in poets.Values)
             {
-                poet.Init(content);
+                poet.Init();
             }
 
             MediaPlayer.Play(Game1.Musics["M_Egypte"]);
@@ -247,7 +247,7 @@ namespace Cuivre.Code.Screens
 
                 if (Timeline.miracleCurrentDelay > 0)
                 {
-                    buttons[2].LockButton();
+                    buttons[0].LockButton();
                 }
 
             }
@@ -259,7 +259,7 @@ namespace Cuivre.Code.Screens
                 //verrouillage du bouton de miracle si le délai n'est pas écoulé
                 if(Timeline.miracleCurrentDelay > 0)
                 {
-                    buttons[2].LockButton();
+                    buttons[0].LockButton();
                 }
 
                 string lowest = Gauges.GetLowestGauge();
@@ -315,24 +315,35 @@ namespace Cuivre.Code.Screens
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            Texture2D bg = Game1.Textures["fond"];
+            spriteBatch.Draw(bg, new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
+
             foreach (Button b in buttons)
             {
-                b.Draw(gameTime, spriteBatch);
+                if (b != Focused) b.Draw(gameTime, spriteBatch);
             }
 
             Timeline.Draw(spriteBatch);
 
             //Affichage de la chance de miracle
-            int y = 110;
-            foreach (string line in Utils.TextWrap.Wrap("Bonus de chance de miracle : " + Miracle.GetCurrentMiracleChance() + "%", 140, Game1.font))
+            int chance = Miracle.GetCurrentMiracleChance() + Timeline.GetLeftActionPoints() * Miracle.gainedMiracleChanceWithLowSatisfaction;
+            string text = "Chance de miracle : " + chance + "%";
+            List<string> lines = Utils.TextWrap.Wrap(text, cardWidth, Game1.font);
+
+            int y = Game1.HEIGHT / 2;
+            int x = leftOffset + 2 * (betweenOffset + cardWidth);
+
+            if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
+
+            foreach (string line in lines)
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(355, y), Color.Black);
+                spriteBatch.DrawString(Game1.font, line, new Vector2(x, y), Color.White);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
             }
 
             if (Focused != null)
             {
-                spriteBatch.Draw(Game1.semiTransp, new Rectangle(0, 0, 800, 500), Color.Black);
+                //spriteBatch.Draw(Game1.semiTransp, new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.Black);
                 Focused.Draw(gameTime, spriteBatch);
             }
 
@@ -348,7 +359,7 @@ namespace Cuivre.Code.Screens
         public void ChangeScreen(bool victory, string lostGauge = "")
         {
             EndScreen screen = new EndScreen(victory, lostGauge);
-            screen.Init(content, gameInstance);
+            screen.Init(gameInstance);
 
             gameInstance.ChangeScreen(screen);
         }
