@@ -83,11 +83,14 @@ namespace Cuivre.Code.Screens
                 ((GameScreen)screen).SpendActionPoints(-1);
                 if (Miracle.MiracleRoll())
                 {
-                Game1.Sounds["Miracles"].Play();
-                foreach(string key in Gauges.gaugesItems.Keys)
-                {
-                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
-                }
+                    Game1.Sounds["Miracles"].Play();
+
+                    List<string> gaugesNames = new List<string>(Gauges.gaugesItems.Keys);
+
+                    foreach(string key in gaugesNames)
+                    {
+                        Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
+                    }
                 }
                 else
                 {
