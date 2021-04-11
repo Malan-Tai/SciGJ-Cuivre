@@ -66,13 +66,13 @@ namespace Cuivre.Code
 
             Game1.Sounds[soundEffectsList[Utils.Dice.GetRandint(0, soundEffectsList.Count - 1)]].Play();
 
-            if (gauge <= 25)
+            if (gauge < 40)
             {
                 currentDialogues = UnhappyDialogues;
                 currentTexture = unhappyTexture;
                 //Game1.Sounds["Rite1"].Play();
             }
-            else if (gauge > 75)
+            else if (gauge >= 60)
             {
                 currentDialogues = HappyDialogues;
                 currentTexture = happyTexture;
