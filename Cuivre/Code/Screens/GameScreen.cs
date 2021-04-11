@@ -30,6 +30,9 @@ namespace Cuivre.Code.Screens
 
         private static float ratio = Game1.Textures["card_poetes"].Height / (float)Game1.Textures["card_poetes"].Width;
 
+        private bool miracle = false;
+        private bool miracleSuccess = false;
+
         private List<Button> buttons = new List<Button>
         {
 
@@ -44,19 +47,21 @@ namespace Cuivre.Code.Screens
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(leftOffset + 2 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_miracle"], screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
+                ((GameScreen)screen).miracle = true;
                 if (Miracle.MiracleRoll())
                 {
+                    ((GameScreen)screen).miracleSuccess = true;
                     Game1.Sounds["Miracles"].Play();
-                    foreach(string key in Gauges.gaugesItems.Keys)
+                    List<string> keys = new List<string>(Gauges.gaugesItems.Keys);
+                    foreach(string key in keys)
                     {
                         Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
                     }
-                    }
-                    else
-                    {
-                        Game1.Sounds["MiracleRate"].Play();
-                    }
-                }),
+                }
+                else
+                {
+                    Game1.Sounds["MiracleRate"].Play();
+                }}),
 
             //poetes
             new CollapseButton(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_poetes"], Game1.Textures["card_poetes_verso"], true, new List<Button>
@@ -200,7 +205,7 @@ namespace Cuivre.Code.Screens
 
             if (res < 0) return false;
 
-            if (res == 0 && !freeze)
+            if (res == 0 && !freeze && amount >= 0)
             {
                 newDay = true;
             }
@@ -280,6 +285,13 @@ namespace Cuivre.Code.Screens
         {
             MouseState mouseState = Mouse.GetState();
 
+            if (miracle && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+            {
+                miracle = false;
+                miracleSuccess = false;
+                newDay = true;
+            }
+
             if (!eventDay && Focused == null)
             {
                 foreach (Button b in buttons)
@@ -352,8 +364,39 @@ namespace Cuivre.Code.Screens
                 poet.Draw(gameTime, spriteBatch);
             }
 
-            
+            if (miracle)
+            {
+                DrawMiracleDialogue(spriteBatch);
+            }
+        }
 
+        public void DrawMiracleDialogue(SpriteBatch spriteBatch)
+        {
+            Texture2D bubble = Game1.Textures["stele_evenements"];
+            float ratio = bubble.Height / (float)bubble.Width;
+
+            int textW = Game1.WIDTH - 2 * leftOffset - cardWidth;
+            int textH = (int)(ratio * textW);
+            int y = Game1.HEIGHT - textH - leftOffset;
+
+            spriteBatch.Draw(bubble, new Rectangle(leftOffset, y, textW, textH), Color.White);
+
+            string text;
+            if (miracleSuccess)
+            {
+                text = "Les dieux ont repondu a votre priere.";
+            }
+            else
+            {
+                text = "Les dieux sont restes silencieux.";
+            }
+
+            y += textH / 3;
+            foreach (string line in Utils.TextWrap.Wrap(text, textW, Game1.font))
+            {
+                spriteBatch.DrawString(Game1.font, line, new Vector2(leftOffset + textW / 20, y), Color.Black);
+                y += (int)Game1.font.MeasureString("l").Y + 5;
+            }
         }
 
         public void ChangeScreen(bool victory, string lostGauge = "")
