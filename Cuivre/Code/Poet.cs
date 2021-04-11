@@ -31,7 +31,7 @@ namespace Cuivre.Code
 
         private int x = Game1.WIDTH;
         private int speed = 1;
-        private int minX = Game1.WIDTH - GameScreen.cardWidth - GameScreen.leftOffset;
+        private int minX = Game1.WIDTH - GameScreen.cardWidth - 3 * GameScreen.leftOffset;
         private int maxX = Game1.WIDTH;
 
         private bool called = false;
@@ -102,8 +102,8 @@ namespace Cuivre.Code
             if (x < maxX)
             {
                 float ratio = currentTexture.Height / (float)currentTexture.Width;
-                int h = (int)(ratio * GameScreen.cardWidth);
-                spriteBatch.Draw(currentTexture, new Rectangle(x, Game1.HEIGHT / 5, GameScreen.cardWidth, h), Color.White);
+                int h = (int)(ratio * 3 * GameScreen.cardWidth / 2);
+                spriteBatch.Draw(currentTexture, new Rectangle(x, Game1.HEIGHT / 10, 3 * GameScreen.cardWidth / 2, h), Color.White);
             }
             if (x <= minX)
             {
