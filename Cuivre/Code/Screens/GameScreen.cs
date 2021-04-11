@@ -23,6 +23,8 @@ namespace Cuivre.Code.Screens
 
         public int currentEvent = 0;
 
+        private bool readIntro;
+
         public const int leftOffset = 50;
         public const int cardNumbers = 5;
         public const int betweenOffset = 10;
@@ -36,6 +38,11 @@ namespace Cuivre.Code.Screens
         private bool help = false;
         private Rectangle helpRectangle = new Rectangle(Game1.WIDTH - 3 * leftOffset / 2 - betweenOffset, Game1.HEIGHT / 12, 3 * leftOffset / 2, 3 * leftOffset / 2);
 
+        private const int introWidthOffset = 400;
+        private const int introHeightOffset = 200;
+        private const int introCardWidth = 800;
+
+
         private List<Button> buttons = new List<Button>
         {
 
@@ -47,7 +54,7 @@ namespace Cuivre.Code.Screens
                     //Game1.Sounds["Oracle"].Play();
                 }}),
 
-            //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
+            //Methode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(leftOffset + 2 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_miracle"], screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 ((GameScreen)screen).miracle = true;
@@ -145,7 +152,9 @@ namespace Cuivre.Code.Screens
         {
             base.Init(game);
 
-            //EventPool.AddEvents();
+            readIntro = false;
+
+            //Afficher l'intro
 
             poets = new Dictionary<string, Poet>();
             List<Poet> tempPoets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json"));
@@ -288,49 +297,56 @@ namespace Cuivre.Code.Screens
         {
             MouseState mouseState = Mouse.GetState();
 
-            if (miracle && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+            if (readIntro)
             {
-                miracle = false;
-                miracleSuccess = false;
-                newDay = true;
-            }
-
-            if (helpRectangle.Contains(mouseState.X, mouseState.Y) && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
-            {
-                help = !help;
-            }
-
-            if (!help)
-            {
-                if (!eventDay && Focused == null)
+                if (miracle && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                 {
-                    foreach (Button b in buttons)
-                    {
-                        b.Update(gameTime, prevMouseState, mouseState, this);
-                    }
-                }
-                else if (Focused != null)
-                {
-                    Focused.Update(gameTime, prevMouseState, mouseState, this);
-                }
-
-                foreach (Poet poet in poets.Values)
-                {
-                    poet.Update(gameTime, mouseState);
-                }
-
-                bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState, this);
-                if (endEvent)
-                {
-                    eventDay = false;
+                    miracle = false;
+                    miracleSuccess = false;
                     newDay = true;
                 }
 
-                if (newDay && (Focused == null || !Focused.FreezesTime))
+                if (helpRectangle.Contains(mouseState.X, mouseState.Y) && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                 {
-                    newDay = false;
-                    NewDay();
+                    help = !help;
                 }
+
+                if (!help)
+                {
+                    if (!eventDay && Focused == null)
+                    {
+                        foreach (Button b in buttons)
+                        {
+                            b.Update(gameTime, prevMouseState, mouseState, this);
+                        }
+                    }
+                    else if (Focused != null)
+                    {
+                        Focused.Update(gameTime, prevMouseState, mouseState, this);
+                    }
+
+                    foreach (Poet poet in poets.Values)
+                    {
+                        poet.Update(gameTime, mouseState);
+                    }
+
+                    bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState, this);
+                    if (endEvent)
+                    {
+                        eventDay = false;
+                        newDay = true;
+                    }
+
+                    if (newDay && (Focused == null || !Focused.FreezesTime))
+                    {
+                        newDay = false;
+                        NewDay();
+                    }
+                }
+            }
+            else if(mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+            {
+                readIntro = true;
             }
 
             prevMouseState = mouseState;
@@ -385,6 +401,26 @@ namespace Cuivre.Code.Screens
                 spriteBatch.Draw(Game1.Textures["tutorial_layout"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
             }
             spriteBatch.Draw(Game1.Textures["bouton_help"], helpRectangle, Color.White);
+
+            if (!readIntro)
+            {
+                spriteBatch.Draw(Game1.Textures["pannel_texte_debut"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
+                string introText = "Ovide raconte qu'en 204 av. JC, alors que les Romains etaient en train de perdre la guerre contre Carthage, les oracles demanderent l'arrivee d'une nouvelle deesse dans le pantheon romain : Cybele. Une flotte fut envoyee pour aller chercher la divinite en Phrygie. Comme le roi phrygien ne voulait pas laisser partir Cybele, celle-ci lui apparut et lui ordonna de la laisser partir. Un roi effraye plus tard, les navires romains voguaient à nouveau vers Rome, la deesse à leur bord. Mais le bateau qui la transportait resta bloque dans le Tibre, et il fallut encore un autre miracle pour que Cybele parvienne enfin à Rome. Une jeune vierge voulant prouver sa chastete tira à elle seule les cordages et debloqua le navire. La deesse entra enfin dans Rome et un temple lui fut installe sur le Palatin. Mais les rites et valeurs associes à Cybele suscitent des reactions tres variees chez les romains, allant de l'horreur à la fascination, en passant par l'indifference. C'est à vous maintenant de faire en sorte que Cybele puisse être acceptee comme tous les autres dieux du pantheon romain! Influencez judicieusement l'opinion publique de differentes parties de la societe romaine en sa faveur, et survivez aux evenements marquants qui viendront chambouler vos efforts.Si une partie de la population deteste trop Cybele, celle - ci risque bien de finir jetee aux lions.";
+                
+                List<string> introLines = Utils.TextWrap.Wrap(introText, introCardWidth, Game1.font);
+
+                int yIntro = Game1.HEIGHT / 2 - introHeightOffset;
+                int xIntro = Game1.WIDTH / 2 - introWidthOffset;
+
+                //if (lines.Count <= 1) xIntro += (int)Game1.font.MeasureString(introText).X / 2;
+
+                foreach (string line in introLines)
+                {
+                    spriteBatch.DrawString(Game1.font, line, new Vector2(xIntro, yIntro), Color.Black);
+                    yIntro += (int)Game1.font.MeasureString("l").Y + 5;
+                }
+            }
+
         }
 
         public void DrawMiracleDialogue(SpriteBatch spriteBatch)
