@@ -55,7 +55,7 @@ namespace Cuivre.Code
             Texture2D bubble = Game1.Textures["stele_evenements"];
             float ratio = bubble.Height / (float)bubble.Width;
 
-            int textW = Game1.WIDTH - 2 * GameScreen.leftOffset - GameScreen.cardWidth;
+            int textW = 4 * GameScreen.cardWidth + 3 * GameScreen.betweenOffset;
             int textH = (int)(ratio * textW);
             int y = Game1.HEIGHT - textH - GameScreen.leftOffset;
 
@@ -72,7 +72,7 @@ namespace Cuivre.Code
             }
 
             y += textH / 3;
-            foreach (string line in Utils.TextWrap.Wrap(text, textW, Game1.font))
+            foreach (string line in Utils.TextWrap.Wrap(text, 9 * textW / 10, Game1.font))
             {
                 spriteBatch.DrawString(Game1.font, line, new Vector2(GameScreen.leftOffset + textW / 20, y), Color.Black);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
