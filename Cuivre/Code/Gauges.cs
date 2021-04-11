@@ -43,6 +43,15 @@ namespace Cuivre.Code
                     decayStats.Add(name, decay);
                 }
             }
+            else
+            {
+                foreach(string name in names)
+                {
+                    gaugesItems[name] = startValues;
+                }
+                ReinitDictionaries();
+            }
+            
         }
 
         public static void ShowGaugesValues()
