@@ -33,6 +33,9 @@ namespace Cuivre.Code.Screens
         private bool miracle = false;
         private bool miracleSuccess = false;
 
+        private bool help = false;
+        private Rectangle helpRectangle = new Rectangle(Game1.WIDTH - 3 * leftOffset / 2 - betweenOffset, Game1.HEIGHT / 12, 3 * leftOffset / 2, 3 * leftOffset / 2);
+
         private List<Button> buttons = new List<Button>
         {
 
@@ -292,34 +295,42 @@ namespace Cuivre.Code.Screens
                 newDay = true;
             }
 
-            if (!eventDay && Focused == null)
+            if (helpRectangle.Contains(mouseState.X, mouseState.Y) && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
             {
-                foreach (Button b in buttons)
+                help = !help;
+            }
+
+            if (!help)
+            {
+                if (!eventDay && Focused == null)
                 {
-                    b.Update(gameTime, prevMouseState, mouseState, this);
+                    foreach (Button b in buttons)
+                    {
+                        b.Update(gameTime, prevMouseState, mouseState, this);
+                    }
                 }
-            }
-            else if (Focused != null)
-            {
-                Focused.Update(gameTime, prevMouseState, mouseState, this);
-            }
+                else if (Focused != null)
+                {
+                    Focused.Update(gameTime, prevMouseState, mouseState, this);
+                }
 
-            foreach (Poet poet in poets.Values)
-            {
-                poet.Update(gameTime, mouseState);
-            }
+                foreach (Poet poet in poets.Values)
+                {
+                    poet.Update(gameTime, mouseState);
+                }
 
-            bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState, this);
-            if (endEvent)
-            {
-                eventDay = false;
-                newDay = true;
-            }
+                bool endEvent = Timeline.Update(gameTime, mouseState, prevMouseState, this);
+                if (endEvent)
+                {
+                    eventDay = false;
+                    newDay = true;
+                }
 
-            if (newDay && (Focused == null || !Focused.FreezesTime))
-            {
-                newDay = false;
-                NewDay();
+                if (newDay && (Focused == null || !Focused.FreezesTime))
+                {
+                    newDay = false;
+                    NewDay();
+                }
             }
 
             prevMouseState = mouseState;
@@ -368,6 +379,12 @@ namespace Cuivre.Code.Screens
             {
                 DrawMiracleDialogue(spriteBatch);
             }
+
+            if (help)
+            {
+                spriteBatch.Draw(Game1.Textures["tutorial_layout"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
+            }
+            spriteBatch.Draw(Game1.Textures["bouton_help"], helpRectangle, Color.White);
         }
 
         public void DrawMiracleDialogue(SpriteBatch spriteBatch)
