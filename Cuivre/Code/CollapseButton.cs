@@ -18,7 +18,7 @@ namespace Cuivre.Code
 
         public bool FreezesTime { get; set; }
 
-        public CollapseButton(int x, int y, int w, int h, Texture2D texture, bool freeze, List<Button> buttons, Action<Screen> action) : base(x, y, w, h, texture, action)
+        public CollapseButton(int x, int y, int w, int h, Texture2D texture, bool freeze, List<Button> buttons, Action<Screen> action, bool reclickable = false) : base(x, y, w, h, texture, action, reclickable)
         {
             FreezesTime = freeze;
             collapsedButtons = buttons;

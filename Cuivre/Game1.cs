@@ -15,6 +15,10 @@ namespace Cuivre
         private SpriteBatch _spriteBatch;
 
         private Screen currentScreen;
+        public static System.Drawing.Rectangle res = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+
+        public static int WIDTH = (int)(res.Width * 0.92);
+        public static int HEIGHT = (int)(res.Height * 0.92);
 
         public static Texture2D white;
         public static Texture2D semiTransp;
@@ -26,6 +30,13 @@ namespace Cuivre
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = WIDTH;
+            _graphics.PreferredBackBufferHeight = HEIGHT;
+            _graphics.ApplyChanges();
+            _graphics.PreferredBackBufferWidth = WIDTH;
+            _graphics.PreferredBackBufferHeight = HEIGHT;
+            _graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
