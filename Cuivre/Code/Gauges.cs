@@ -73,7 +73,7 @@ namespace Cuivre.Code
             {
                 if (gaugesItems[key] <= 0)
                 {
-                    ((GameScreen)screen).ChangeScreen(false, key);
+                    ((GameScreen)screen).ChangeScreen(false);
                     gameEnd = true;
                 }
             }
@@ -89,6 +89,23 @@ namespace Cuivre.Code
                 if (val < min)
                 {
                     min = val;
+                    res = key;
+                }
+            }
+
+            return res;
+        }
+
+        public static string GetHighestGauge()
+        {
+            string res = "";
+            int max = -1;
+            foreach (string key in gaugesItems.Keys)
+            {
+                int val = gaugesItems[key];
+                if (val > max)
+                {
+                    max = val;
                     res = key;
                 }
             }

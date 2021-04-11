@@ -22,7 +22,13 @@ namespace Cuivre.Code.Utils
             foreach (string word in words)
             {
                 curWidth += (int)font.MeasureString(word + " ").X;
-                if (curWidth > width)
+                if (word.Equals("\n"))
+                {
+                    list.Add(curText);
+                    curText = "";
+                    curWidth = 0;
+                }
+                else if (curWidth > width)
                 {
                     list.Add(curText);
                     curText = word + " ";

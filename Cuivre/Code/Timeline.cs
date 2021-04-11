@@ -75,7 +75,7 @@ namespace Cuivre.Code
                 currentDay++;
                 if (currentDay == totalDays)
                 {
-                    screen.ChangeScreen(true);
+                    screen.ChangeScreen(true, Gauges.GetHighestGauge());
                 }
             }
 
@@ -157,7 +157,7 @@ namespace Cuivre.Code
                 currentDay++;
                 if (currentDay == totalDays)
                 {
-                    screen.ChangeScreen(true);
+                    screen.ChangeScreen(true, Gauges.GetHighestGauge());
                 }
             }
 
