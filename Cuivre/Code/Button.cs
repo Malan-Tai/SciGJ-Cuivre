@@ -44,6 +44,8 @@ namespace Cuivre.Code
             this.reclickable = reclickable;
         }
 
+        public bool Hovered() { return hovered; }
+
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Color color = Color.White;
@@ -56,6 +58,23 @@ namespace Cuivre.Code
         public virtual void Update(GameTime gameTime, MouseState prevMouseState, MouseState mouseState, Screen screen)
         {
             if ((!clickedToday || reclickable) && Rectangle.Contains(mouseState.X, mouseState.Y))
+            {
+                hovered = true;
+                if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+                {
+                    clickedToday = true;
+                    Click(screen);
+                }
+            }
+            else
+            {
+                hovered = false;
+            }
+        }
+
+        public virtual void Update(GameTime gameTime, MouseState prevMouseState, MouseState mouseState, Screen screen, Quad quad)
+        {
+            if ((!clickedToday || reclickable) && quad.Contains(mouseState.X, mouseState.Y))
             {
                 hovered = true;
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
