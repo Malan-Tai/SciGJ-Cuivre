@@ -117,7 +117,7 @@ namespace Cuivre.Code
 
             int textW = Game1.WIDTH - 2 * GameScreen.leftOffset - GameScreen.cardWidth;
             int textH = (int)(ratio * textW);
-            int y = Game1.HEIGHT - textH - GameScreen.leftOffset;
+            int y = Game1.HEIGHT - textH - GameScreen.betweenOffset;
 
             spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
 

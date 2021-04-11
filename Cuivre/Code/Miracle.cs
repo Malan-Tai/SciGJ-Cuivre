@@ -21,7 +21,7 @@ namespace Cuivre.Code
         public static void AddMiracleChance(int additionnalChance)
         {
             currentMiracleChance += additionnalChance;
-            if(currentMiracleChance > maxMiracleChance) { currentMiracleChance = maxMiracleChance; }
+            if (currentMiracleChance > maxMiracleChance) { currentMiracleChance = maxMiracleChance; }
         }
 
         public static void ResetMiracleChance() { currentMiracleChance = baseMiracleChance; }

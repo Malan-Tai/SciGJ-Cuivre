@@ -57,7 +57,7 @@ namespace Cuivre.Code
 
             if (amount > day.ActionPoints) return -1;
 
-            if(amount < 0)
+            if (amount < 0)
             {
                 Miracle.AddMiracleChance(day.ActionPoints * Miracle.gainedMiracleChanceWithLowSatisfaction);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%");
@@ -114,7 +114,7 @@ namespace Cuivre.Code
 
                 int textW = Game1.WIDTH - 2 * GameScreen.leftOffset - GameScreen.cardWidth;
                 int textH = (int)(ratio * textW);
-                int y = Game1.HEIGHT - textH - GameScreen.leftOffset;
+                int y = Game1.HEIGHT - textH - GameScreen.betweenOffset;
 
                 string hint = "";
                 for (int i = currentDay; i < totalDays; i++)
@@ -178,6 +178,11 @@ namespace Cuivre.Code
         public void CallEvent(Screen screen)
         {
             days[currentDay].CallEvent(screen);
+        }
+
+        public int GetLeftActionPoints()
+        {
+            return days[currentDay].ActionPoints;
         }
     }
 }

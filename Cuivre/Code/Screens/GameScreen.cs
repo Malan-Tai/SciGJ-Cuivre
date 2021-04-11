@@ -46,16 +46,17 @@ namespace Cuivre.Code.Screens
                 ((GameScreen)screen).SpendActionPoints(-1);
                 if (Miracle.MiracleRoll())
                 {
-                Game1.Sounds["Miracles"].Play();
-                foreach(string key in Gauges.gaugesItems.Keys)
-                {
-                    Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
-                }
-                }
-                else
-                {
-                    Game1.Sounds["MiracleRate"].Play();
-                }}),
+                    Game1.Sounds["Miracles"].Play();
+                    foreach(string key in Gauges.gaugesItems.Keys)
+                    {
+                        Gauges.IncrementGaugeValue(key, Miracle.gainedSatisfaction, screen);
+                    }
+                    }
+                    else
+                    {
+                        Game1.Sounds["MiracleRate"].Play();
+                    }
+                }),
 
             //poetes
             new CollapseButton(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_poetes"], Game1.Textures["card_poetes_verso"], true, new List<Button>
@@ -238,7 +239,7 @@ namespace Cuivre.Code.Screens
 
                 if (Timeline.miracleCurrentDelay > 0)
                 {
-                    buttons[2].LockButton();
+                    buttons[0].LockButton();
                 }
 
             }
@@ -250,7 +251,7 @@ namespace Cuivre.Code.Screens
                 //verrouillage du bouton de miracle si le délai n'est pas écoulé
                 if(Timeline.miracleCurrentDelay > 0)
                 {
-                    buttons[2].LockButton();
+                    buttons[0].LockButton();
                 }
 
                 string lowest = Gauges.GetLowestGauge();
@@ -317,10 +318,18 @@ namespace Cuivre.Code.Screens
             Timeline.Draw(spriteBatch);
 
             //Affichage de la chance de miracle
-            int y = 110;
-            foreach (string line in Utils.TextWrap.Wrap("Bonus de chance de miracle : " + Miracle.GetCurrentMiracleChance() + "%", 140, Game1.font))
+            int chance = Miracle.GetCurrentMiracleChance() + Timeline.GetLeftActionPoints() * Miracle.gainedMiracleChanceWithLowSatisfaction;
+            string text = "Chance de miracle : " + chance + "%";
+            List<string> lines = Utils.TextWrap.Wrap(text, cardWidth, Game1.font);
+
+            int y = Game1.HEIGHT / 2;
+            int x = leftOffset + 2 * (betweenOffset + cardWidth);
+
+            if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
+
+            foreach (string line in lines)
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(355, y), Color.Black);
+                spriteBatch.DrawString(Game1.font, line, new Vector2(x, y), Color.White);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
             }
 
