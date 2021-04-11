@@ -134,7 +134,7 @@ namespace Cuivre.Code
             if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
             {
                 called = false;
-                nextDay = true;
+                nextDay = days[currentDay].ActionPoints <= 0;
             }
             if (called) curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
