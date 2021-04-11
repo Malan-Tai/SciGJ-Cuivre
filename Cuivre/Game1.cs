@@ -80,7 +80,7 @@ namespace Cuivre
             List<string> textureNames = new List<string>() { "bouton_help", "bulle_poete", "card_bienfaits", "card_miracle_verso", "card_miracle", "card_oracle",
                                                              "card_poetes_verso", "card_poetes", "fond", "stele_evenements", "baton_frise", "frise_cartouche", "frise_ornements_cotes",
                                                              "icone_evenement", "bouton_jouer", "bouton_menu", "bouton_quitter", "bouton_rejouer", "fabriquer_icones",
-                                                             "gladiateurs", "nourriture", "processions religieuses", "theatre" };
+                                                             "gladiateurs", "nourriture", "processions religieuses", "theatre", "menu_debut", "menu_victoire", "tutorial_layout" };
             List<string> temp = new List<string>() { "juvenal", "lucrece", "martial", "ovide", "virgile" };
             foreach (string name in temp)
             {
