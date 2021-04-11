@@ -76,7 +76,7 @@ namespace Cuivre.Code.Screens
                 Gauges.IncrementGaugeValue("Amants", -5, screen);
                 System.Diagnostics.Debug.WriteLine("Combats de gladiateurs");
                 Gauges.ShowGaugesValues(); })
-            }, screen => { }),
+            }, screen => { }, true),
 
             //Méthode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
             new Button(345, 100, 150, 310, Game1.white, screen => {

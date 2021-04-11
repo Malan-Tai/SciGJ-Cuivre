@@ -23,7 +23,6 @@ namespace Cuivre.Code
         private bool called = false;
         private const double oracleDelay = 500;
         private double curDelay = 0;
-        private bool ongoingEvent = false;
 
         public Timeline()
         {
@@ -116,7 +115,11 @@ namespace Cuivre.Code
                 for (int i = currentDay; i < totalDays; i++)
                 {
                     string temp = days[i].GetHint();
-                    if (temp != null) hint = temp;
+                    if (temp != null)
+                    {
+                        hint = temp;
+                        break;
+                    }
                 }
 
                 int y = 310;
@@ -165,7 +168,6 @@ namespace Cuivre.Code
 
         public void CallEvent(Screen screen)
         {
-            ongoingEvent = true;
             days[currentDay].CallEvent(screen);
         }
     }
