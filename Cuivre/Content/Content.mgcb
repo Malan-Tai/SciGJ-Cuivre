@@ -38,11 +38,11 @@
 /processorParam:Quality=Best
 /build:M_Final.mp3
 
-#begin M_Romain1.mp3
-/importer:Mp3Importer
+#begin M_Romain1.ogg
+/importer:OggImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:M_Romain1.mp3
+/build:M_Romain1.ogg
 
 #begin M_Romain2.mp3
 /importer:Mp3Importer
