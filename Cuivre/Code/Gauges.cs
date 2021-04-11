@@ -12,6 +12,8 @@ namespace Cuivre.Code
         const int startValues = 60;
         const int maxValue = 100;
 
+        static public bool gameEnd = false;
+
         const int decay = 5;
 
         private static Dictionary<string, bool> stuckStats = new Dictionary<string, bool>();
@@ -72,6 +74,7 @@ namespace Cuivre.Code
                 if (gaugesItems[key] <= 0)
                 {
                     ((GameScreen)screen).ChangeScreen(false, key);
+                    gameEnd = true;
                 }
             }
         }

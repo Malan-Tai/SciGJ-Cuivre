@@ -85,36 +85,40 @@ namespace Cuivre.Code.Screens
             new CollapseButton(leftOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_bienfaits"], Game1.Textures["card_miracle_verso"], false, new List<Button>
             {
                 new Button(195, 110, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
-                ((GameScreen)screen).PlayRiteSound();
-                Gauges.IncrementGaugeValue("Peuple", 15, screen);
-                Gauges.IncrementGaugeValue("Senateurs", -5, screen);
-                System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
-                Gauges.ShowGaugesValues(); }),
+                    ((GameScreen)screen).SpendActionPoints(1);
+                    ((GameScreen)screen).PlayRiteSound();
+                    Gauges.IncrementGaugeValue("Peuple", 15, screen);
+                    Gauges.IncrementGaugeValue("Senateurs", -5, screen);
+                    Miracle.ActualizeMiracleChances();
+                    System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
+                    Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 170, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
-                ((GameScreen)screen).PlayRiteSound();
-                Gauges.IncrementGaugeValue("Senateurs", 15, screen);
-                Gauges.IncrementGaugeValue("Philosophes", -5, screen);
-                System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
-                Gauges.ShowGaugesValues(); }),
+                    ((GameScreen)screen).SpendActionPoints(1);
+                    ((GameScreen)screen).PlayRiteSound();
+                    Gauges.IncrementGaugeValue("Senateurs", 15, screen);
+                    Gauges.IncrementGaugeValue("Philosophes", -5, screen);
+                    Miracle.ActualizeMiracleChances();
+                    System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
+                    Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 230, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
-                ((GameScreen)screen).PlayRiteSound();
-                Gauges.IncrementGaugeValue("Philosophes", 15, screen);
-                Gauges.IncrementGaugeValue("Militaires", -5, screen);
-                System.Diagnostics.Debug.WriteLine("Théâtre");
-                Gauges.ShowGaugesValues(); }),
+                    ((GameScreen)screen).SpendActionPoints(1);
+                    ((GameScreen)screen).PlayRiteSound();
+                    Gauges.IncrementGaugeValue("Philosophes", 15, screen);
+                    Gauges.IncrementGaugeValue("Militaires", -5, screen);
+                    Miracle.ActualizeMiracleChances();
+                    System.Diagnostics.Debug.WriteLine("Théâtre");
+                    Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 290, 130, 50, Game1.white, screen => {
-                ((GameScreen)screen).SpendActionPoints(1);
-                ((GameScreen)screen).PlayRiteSound();
-                Gauges.IncrementGaugeValue("Amants", 15, screen);
-                Gauges.IncrementGaugeValue("Peuple", -5, screen);
-                System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
-                Gauges.ShowGaugesValues(); }),
+                    ((GameScreen)screen).SpendActionPoints(1);
+                    ((GameScreen)screen).PlayRiteSound();
+                    Gauges.IncrementGaugeValue("Amants", 15, screen);
+                    Gauges.IncrementGaugeValue("Peuple", -5, screen);
+                    Miracle.ActualizeMiracleChances();
+                    System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
+                    Gauges.ShowGaugesValues(); }),
 
                 new Button(195, 350, 130, 50, Game1.white, screen => {
                 ((GameScreen)screen).SpendActionPoints(1);
@@ -154,27 +158,29 @@ namespace Cuivre.Code.Screens
 
         public void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
         {
-            if(currentEvent == 0)
+            if (!Gauges.gameEnd)
             {
-                MediaPlayer.Play(Game1.Musics["M_Egypte"]);
+                if (currentEvent == 0)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Egypte"]);
+                }
+                else if (currentEvent == 1)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain1"]);
+                }
+                else if (currentEvent == 4)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain2"]);
+                }
+                else if (currentEvent == 5)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain3"]);
+                }
+                else if (currentEvent == 6)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain4"]);
+                }
             }
-            else if(currentEvent == 1)
-            {
-                MediaPlayer.Play(Game1.Musics["M_Romain1"]);
-            }
-            else if(currentEvent == 4)
-            {
-                MediaPlayer.Play(Game1.Musics["M_Romain2"]);
-            }
-            else if(currentEvent == 5)
-            {
-                MediaPlayer.Play(Game1.Musics["M_Romain3"]);
-            }
-            else if(currentEvent == 6)
-            {
-                MediaPlayer.Play(Game1.Musics["M_Romain4"]);
-            }
-
         }
 
 
@@ -210,11 +216,7 @@ namespace Cuivre.Code.Screens
                 Timeline.CallEvent(this);
                 currentEvent += 1;
 
-                if (currentEvent == 0)
-                {
-                    MediaPlayer.Play(Game1.Musics["M_Egypte"]);
-                }
-                else if (currentEvent == 1)
+                if (currentEvent == 1)
                 {
                     MediaPlayer.Play(Game1.Musics["M_Transition"]);
                 }
@@ -234,11 +236,22 @@ namespace Cuivre.Code.Screens
                 MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
                 Game1.Sounds["Evenement"].Play();
 
+                if (Timeline.miracleCurrentDelay > 0)
+                {
+                    buttons[2].LockButton();
+                }
+
             }
             else
             {
                 Gauges.NaturalDecay();
                 Timeline.DecayMiracleDelay();
+
+                //verrouillage du bouton de miracle si le délai n'est pas écoulé
+                if(Timeline.miracleCurrentDelay > 0)
+                {
+                    buttons[2].LockButton();
+                }
 
                 string lowest = Gauges.GetLowestGauge();
                 poets[lowest].Call();
@@ -303,6 +316,14 @@ namespace Cuivre.Code.Screens
 
             Timeline.Draw(spriteBatch);
 
+            //Affichage de la chance de miracle
+            int y = 110;
+            foreach (string line in Utils.TextWrap.Wrap("Bonus de chance de miracle : " + Miracle.GetCurrentMiracleChance() + "%", 140, Game1.font))
+            {
+                spriteBatch.DrawString(Game1.font, line, new Vector2(355, y), Color.Black);
+                y += (int)Game1.font.MeasureString("l").Y + 5;
+            }
+
             if (Focused != null)
             {
                 //spriteBatch.Draw(Game1.semiTransp, new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.Black);
@@ -313,6 +334,9 @@ namespace Cuivre.Code.Screens
             {
                 poet.Draw(gameTime, spriteBatch);
             }
+
+            
+
         }
 
         public void ChangeScreen(bool victory, string lostGauge = "")

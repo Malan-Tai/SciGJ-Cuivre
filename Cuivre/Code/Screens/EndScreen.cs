@@ -70,8 +70,9 @@ namespace Cuivre.Code.Screens
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
                     GameScreen screen = new GameScreen();
-                    screen.Init(gameInstance);
-
+                    screen.Init(content, gameInstance);
+                    Gauges.gameEnd = false;
+                    Miracle.ResetMiracleChance();
                     gameInstance.ChangeScreen(screen);
                 }
             }

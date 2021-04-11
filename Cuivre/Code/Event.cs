@@ -113,7 +113,6 @@ namespace Cuivre.Code
             Gauges.ReinitDictionaries();
 
             Gauges.HandleEvent(this, screen);
-            Miracle.ResetMiracleChance();
         }
     }
 }

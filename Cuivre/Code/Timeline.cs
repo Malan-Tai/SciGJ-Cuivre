@@ -18,7 +18,7 @@ namespace Cuivre.Code
         private int timelineWidth = Game1.WIDTH - 2 * GameScreen.leftOffset;
         
         private const int miracleDelay = 5;
-        private int miracleCurrentDelay = 0;
+        public int miracleCurrentDelay = 0;
 
         private bool called = false;
         private const double oracleDelay = 500;
@@ -57,11 +57,7 @@ namespace Cuivre.Code
 
             if (amount > day.ActionPoints) return -1;
 
-            if(amount < 0 && miracleCurrentDelay > 0)
-            {
-                System.Diagnostics.Debug.WriteLine("Impossible de faire une offrande pour l'instant !");
-            }
-            else if(amount < 0 && miracleCurrentDelay == 0)
+            if(amount < 0)
             {
                 Miracle.AddMiracleChance(day.ActionPoints * Miracle.gainedMiracleChanceWithLowSatisfaction);
                 System.Diagnostics.Debug.WriteLine("Chance de miracle augmentée : " + Miracle.GetCurrentMiracleChance() + "%");
