@@ -414,9 +414,9 @@ namespace Cuivre.Code.Screens
             }
         }
 
-        public void ChangeScreen(bool victory, string lostGauge = "")
+        public void ChangeScreen(bool victory, string highestGauge = "")
         {
-            EndScreen screen = new EndScreen(victory, lostGauge);
+            EndScreen screen = new EndScreen(victory, highestGauge);
             screen.Init(gameInstance);
 
             gameInstance.ChangeScreen(screen);
