@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;
 using System.IO;
@@ -20,6 +21,7 @@ namespace Cuivre.Code.Screens
         private bool newDay = false;
         private bool eventDay = false;
 
+        public int currentEvent = 0;
 
         private List<Button> buttons = new List<Button>
         {
@@ -138,7 +140,37 @@ namespace Cuivre.Code.Screens
             {
                 poet.Init(content);
             }
+
+            MediaPlayer.Play(Game1.Musics["M_Egypte"]);
+            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+
         }
+
+        public void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
+        {
+            if(currentEvent == 0)
+            {
+                MediaPlayer.Play(Game1.Musics["M_Egypte"]);
+            }
+            else if(currentEvent == 1)
+            {
+                MediaPlayer.Play(Game1.Musics["M_Romain1"]);
+            }
+            else if(currentEvent == 4)
+            {
+                MediaPlayer.Play(Game1.Musics["M_Romain2"]);
+            }
+            else if(currentEvent == 5)
+            {
+                MediaPlayer.Play(Game1.Musics["M_Romain3"]);
+            }
+            else if(currentEvent == 6)
+            {
+                MediaPlayer.Play(Game1.Musics["M_Romain4"]);
+            }
+
+        }
+
 
         public void PlayRiteSound()
         {
@@ -170,7 +202,32 @@ namespace Cuivre.Code.Screens
             if (eventDay)
             {
                 Timeline.CallEvent(this);
+                currentEvent += 1;
+
+                if (currentEvent == 0)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Egypte"]);
+                }
+                else if (currentEvent == 1)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Transition"]);
+                }
+                else if (currentEvent == 4)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain2"]);
+                }
+                else if (currentEvent == 5)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain3"]);
+                }
+                else if (currentEvent == 6)
+                {
+                    MediaPlayer.Play(Game1.Musics["M_Romain4"]);
+                }
+
+                MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
                 Game1.Sounds["Evenement"].Play();
+
             }
             else
             {

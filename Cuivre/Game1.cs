@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Cuivre.Code;
 using Cuivre.Code.Screens;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace Cuivre
         public static SpriteFont font;
 
         public static Dictionary<string, SoundEffect> Sounds { get; set; } = new Dictionary<string, SoundEffect>();
+        public static Dictionary<string, Song> Musics { get; set; } = new Dictionary<string, Song>();
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -53,16 +56,17 @@ namespace Cuivre
             Sounds.Add("Rite1", Content.Load<SoundEffect>("Rite_1"));
             Sounds.Add("Rite2", Content.Load<SoundEffect>("Rite_2"));
             Sounds.Add("Rite3", Content.Load<SoundEffect>("Rite_3"));
-            //Sounds.Add("M_Egypte", Content.Load<SoundEffect>("M_Egypte"));
-            //Sounds.Add("M_Final", Content.Load<SoundEffect>("M_Final"));
-            //Sounds.Add("M_Romain1", Content.Load<SoundEffect>("M_Romain_1"));
-            //Sounds.Add("M_Romain2", Content.Load<SoundEffect>("M_Romain_2"));
-            //Sounds.Add("M_Romain3", Content.Load<SoundEffect>("M_Romain_3"));
-            //Sounds.Add("M_Romain4", Content.Load<SoundEffect>("M_Romain_4"));
-            //Sounds.Add("M_Transition", Content.Load<SoundEffect>("M_Transition_2_eg"));
 
+            Musics.Add("M_Egypte", Content.Load<Song>("M_Egypte"));
+            Musics.Add("M_Final", Content.Load<Song>("M_Final"));
+            Musics.Add("M_Romain1", Content.Load<Song>("M_Romain1"));
+            Musics.Add("M_Romain2", Content.Load<Song>("M_Romain2"));
+            Musics.Add("M_Romain3", Content.Load<Song>("M_Romain3"));
+            Musics.Add("M_Romain4", Content.Load<Song>("M_Romain4"));
+            Musics.Add("M_Transition", Content.Load<Song>("M_Transition"));
 
         }
+
 
         protected override void Update(GameTime gameTime)
         {
