@@ -31,11 +31,11 @@ namespace Cuivre.Code.Screens
             spriteBatch.Draw(Game1.Textures["menu_debut"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
 
             Rectangle newR = new Rectangle(newRect.Location, newRect.Size);
-            if (hoverNew) newR = new Rectangle(newRect.Location + new Point(-5, -5), newRect.Size + new Point(10, 10));
+            if (hoverNew) newR = new Rectangle(newRect.Location + new Point(-10, -10), newRect.Size + new Point(20, 20));
             spriteBatch.Draw(Game1.Textures["bouton_jouer"], newR, Color.White);
 
             Rectangle quit = new Rectangle(quitRect.Location, quitRect.Size);
-            if (hoverQuit) quit = new Rectangle(quitRect.Location + new Point(-5, -5), quitRect.Size + new Point(10, 10));
+            if (hoverQuit) quit = new Rectangle(quitRect.Location + new Point(-10, -10), quitRect.Size + new Point(20, 20));
             spriteBatch.Draw(Game1.Textures["bouton_quitter"], quit, Color.White);
         }
 
