@@ -7,8 +7,12 @@ namespace Cuivre.Code
 {
     class Quad
     {
-        private List<Point> points; //upper left, upper right, lower left (+lower right j'imagine ?)
+        private List<Point> points; //upper left, upper right, lower left, lower right
 
+        public Quad(List<Point> points)
+        {
+            this.points = points;
+        }
 
         private float Trace(Point p1, Point p2, Point p3)
         {

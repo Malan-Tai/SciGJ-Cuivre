@@ -362,12 +362,6 @@
 /processorParam:Quality=Best
 /build:M_Final.mp3
 
-#begin M_Romain1.ogg
-/importer:OggImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:M_Romain1.ogg
-
 #begin M_Romain1.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -380,29 +374,11 @@
 /processorParam:Quality=Best
 /build:M_Romain2.mp3
 
-#begin M_Romain2.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:M_Romain2.mp3
-
 #begin M_Romain3.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:M_Romain3.mp3
-
-#begin M_Romain3.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:M_Romain3.mp3
-
-#begin M_Romain4.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:M_Romain4.mp3
 
 #begin M_Romain4.mp3
 /importer:Mp3Importer

@@ -17,7 +17,7 @@ namespace Cuivre.Code
 
         protected bool reclickable = false;
         protected bool clickedToday = false;
-        protected bool hovered = false;
+        public bool Hovered { get; set; } = false;
 
         private Texture2D texture;
 
@@ -28,7 +28,7 @@ namespace Cuivre.Code
             get
             {
                 int off = 2 * GameScreen.betweenOffset;
-                if (hovered) return new Rectangle(x - off, y - off, w + 2 * off, h + 2 * off);
+                if (Hovered) return new Rectangle(x - off, y - off, w + 2 * off, h + 2 * off);
                 return new Rectangle(x, y, w, h);
             }
         }
@@ -44,7 +44,7 @@ namespace Cuivre.Code
             this.reclickable = reclickable;
         }
 
-        public bool Hovered() { return hovered; }
+        //public bool Hovered() { return hovered; }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -59,7 +59,7 @@ namespace Cuivre.Code
         {
             if ((!clickedToday || reclickable) && Rectangle.Contains(mouseState.X, mouseState.Y))
             {
-                hovered = true;
+                Hovered = true;
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                 {
                     clickedToday = true;
@@ -68,7 +68,7 @@ namespace Cuivre.Code
             }
             else
             {
-                hovered = false;
+                Hovered = false;
             }
         }
 
@@ -76,7 +76,7 @@ namespace Cuivre.Code
         {
             if ((!clickedToday || reclickable) && quad.Contains(mouseState.X, mouseState.Y))
             {
-                hovered = true;
+                Hovered = true;
                 if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                 {
                     clickedToday = true;
@@ -85,7 +85,7 @@ namespace Cuivre.Code
             }
             else
             {
-                hovered = false;
+                Hovered = false;
             }
         }
 

@@ -38,8 +38,8 @@ namespace Cuivre.Code.Screens
         private bool help = false;
         private Rectangle helpRectangle = new Rectangle(Game1.WIDTH - 3 * leftOffset / 2 - betweenOffset, Game1.HEIGHT / 12, 3 * leftOffset / 2, 3 * leftOffset / 2);
 
-        private static int[] leftCoords = new int[] { 230 * cardWidth / 371, 380 * cardWidth / 371, 540 * cardWidth / 371, 790 * cardWidth / 371 };
-        private static int[] rightCoords = new int[] { 140 * cardWidth / 371, 380 * cardWidth / 371, 630 * cardWidth / 371, 700 * cardWidth / 371 };
+        public static int[] leftCoords = new int[] { 149 * Game1.HEIGHT / 1080, 363 * Game1.HEIGHT / 1080, 514 * Game1.HEIGHT / 1080, 668 * Game1.HEIGHT / 1080, 924 * Game1.HEIGHT / 1080, 1036 * Game1.HEIGHT / 1080 };
+        public static int[] rightCoords = new int[] { 149 * Game1.HEIGHT / 1080, 274 * Game1.HEIGHT / 1080, 514 * Game1.HEIGHT / 1080, 757 * Game1.HEIGHT / 1080, 835 * Game1.HEIGHT / 1080, 1036 * Game1.HEIGHT / 1080 };
 
         private const int introWidthOffset = 400;
         private const int introHeightOffset = 200;
@@ -79,26 +79,26 @@ namespace Cuivre.Code.Screens
             //poetes
             new CollapseButton(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_poetes"], Game1.Textures["card_poetes_verso"], true, new List<Button>
             {
-                new Button(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6, cardWidth, leftCoords[0], Game1.Textures["juvenal_vignette"], screen => {
+                new Button(leftOffset + cardWidth, leftCoords[0], cardWidth, leftCoords[1] - leftCoords[0], Game1.Textures["juvenal_vignette"], screen => {
                 ((GameScreen)screen).poets["Senateurs"].Call();}, true),
 
-                new Button(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6 + rightCoords[0], cardWidth, leftCoords[1] - rightCoords[0], Game1.Textures["lucrece_vignette"], screen => {
+                new Button(leftOffset + cardWidth, rightCoords[1], cardWidth, leftCoords[2] - rightCoords[1], Game1.Textures["lucrece_vignette"], screen => {
                 ((GameScreen)screen).poets["Philosophes"].Call();}, true),
 
-                new Button(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6 + leftCoords[1], cardWidth, rightCoords[2] - rightCoords[1], Game1.Textures["virgile_vignette"], screen => {
+                new Button(leftOffset + cardWidth, leftCoords[2], cardWidth, rightCoords[3] - rightCoords[2], Game1.Textures["virgile_vignette"], screen => {
                 ((GameScreen)screen).poets["Militaires"].Call();}, true),
 
-                new Button(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6 + leftCoords[2], cardWidth, leftCoords[3] - leftCoords[2], Game1.Textures["ovide_vignette"], screen => {
+                new Button(leftOffset + cardWidth, leftCoords[3], cardWidth, leftCoords[4] - leftCoords[3], Game1.Textures["ovide_vignette"], screen => {
                 ((GameScreen)screen).poets["Amants"].Call();}, true),
 
-                new Button(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6 + rightCoords[3], cardWidth, (int)(cardWidth * ratio) - rightCoords[3] + leftOffset, Game1.Textures["martial_vignette"], screen => {
+                new Button(leftOffset + cardWidth, rightCoords[4], cardWidth, leftCoords[5] - rightCoords[4], Game1.Textures["martial_vignette"], screen => {
                 ((GameScreen)screen).poets["Peuple"].Call();}, true)
             }, screen => { ((GameScreen)screen).SpendActionPoints(1); }),
 
             //bienfaits
             new CollapseButton(leftOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_bienfaits"], Game1.Textures["card_miracle_verso"], false, new List<Button>
             {
-                new Button(leftOffset, Game1.HEIGHT / 6, cardWidth, leftCoords[0], Game1.Textures["nourriture"], screen => {
+                new Button(leftOffset - betweenOffset, leftCoords[0], cardWidth, leftCoords[1] - leftCoords[0], Game1.Textures["nourriture"], screen => {
                     ((GameScreen)screen).SpendActionPoints(1);
                     ((GameScreen)screen).PlayRiteSound();
                     Gauges.IncrementGaugeValue("Peuple", 15, screen);
@@ -107,7 +107,7 @@ namespace Cuivre.Code.Screens
                     System.Diagnostics.Debug.WriteLine("Distribution de nourriture");
                     Gauges.ShowGaugesValues(); }),
 
-                new Button(leftOffset, Game1.HEIGHT / 6 + rightCoords[0], cardWidth, leftCoords[1] - rightCoords[0], Game1.Textures["processions religieuses"], screen => {
+                new Button(leftOffset - betweenOffset, rightCoords[1], cardWidth, leftCoords[2] - rightCoords[1], Game1.Textures["processions religieuses"], screen => {
                     ((GameScreen)screen).SpendActionPoints(1);
                     ((GameScreen)screen).PlayRiteSound();
                     Gauges.IncrementGaugeValue("Senateurs", 15, screen);
@@ -116,7 +116,7 @@ namespace Cuivre.Code.Screens
                     System.Diagnostics.Debug.WriteLine("Organisation des precessions religieuses");
                     Gauges.ShowGaugesValues(); }),
 
-                new Button(leftOffset, Game1.HEIGHT / 6 + leftCoords[1], cardWidth, rightCoords[2] - rightCoords[1], Game1.Textures["theatre"], screen => {
+                new Button(leftOffset - betweenOffset, leftCoords[2], cardWidth, rightCoords[3] - rightCoords[2], Game1.Textures["theatre"], screen => {
                     ((GameScreen)screen).SpendActionPoints(1);
                     ((GameScreen)screen).PlayRiteSound();
                     Gauges.IncrementGaugeValue("Philosophes", 15, screen);
@@ -125,7 +125,7 @@ namespace Cuivre.Code.Screens
                     System.Diagnostics.Debug.WriteLine("Théâtre");
                     Gauges.ShowGaugesValues(); }),
 
-                new Button(leftOffset, Game1.HEIGHT / 6 + leftCoords[2], cardWidth, leftCoords[3] - leftCoords[2], Game1.Textures["gladiateurs"], screen => {
+                new Button(leftOffset - betweenOffset, leftCoords[3], cardWidth, leftCoords[4] - leftCoords[3], Game1.Textures["gladiateurs"], screen => {
                     ((GameScreen)screen).SpendActionPoints(1);
                     ((GameScreen)screen).PlayRiteSound();
                     Gauges.IncrementGaugeValue("Militaires", 15, screen);
@@ -134,7 +134,7 @@ namespace Cuivre.Code.Screens
                     System.Diagnostics.Debug.WriteLine("Fabrication d'icônes");
                     Gauges.ShowGaugesValues(); }),
 
-                new Button(leftOffset, Game1.HEIGHT / 6 + rightCoords[3], cardWidth, (int)(cardWidth * ratio) - rightCoords[3] + leftOffset, Game1.Textures["fabriquer_icones"], screen => {
+                new Button(leftOffset - betweenOffset, rightCoords[4], cardWidth, leftCoords[5] - rightCoords[4], Game1.Textures["fabriquer_icones"], screen => {
                     ((GameScreen)screen).SpendActionPoints(1);
                     ((GameScreen)screen).PlayRiteSound();
                     Gauges.IncrementGaugeValue("Amants", 15, screen);
