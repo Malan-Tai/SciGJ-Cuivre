@@ -65,7 +65,7 @@ namespace Cuivre.Code.Screens
                 if (Miracle.MiracleRoll())
                 {
                     ((GameScreen)screen).miracleSuccess = true;
-                    Game1.Sounds["Miracles"].Play();
+                    Game1.Sounds["Miracles"].Play(Game1.masterVolume, 0, 0);
                     List<string> keys = new List<string>(Gauges.gaugesItems.Keys);
                     foreach(string key in keys)
                     {
@@ -74,7 +74,7 @@ namespace Cuivre.Code.Screens
                 }
                 else
                 {
-                    Game1.Sounds["MiracleRate"].Play();
+                    Game1.Sounds["MiracleRate"].Play(Game1.masterVolume, 0, 0);
                 }}),
 
             //poetes
@@ -163,6 +163,7 @@ namespace Cuivre.Code.Screens
                 poet.Init();
             }
 
+            MediaPlayer.Volume = Game1.masterVolume;
             MediaPlayer.Play(Game1.Musics["M_Egypte"]);
             MediaPlayer.IsRepeating = true;
             //MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
@@ -180,7 +181,7 @@ namespace Cuivre.Code.Screens
         public void PlayRiteSound()
         {
             List<string> keys = new List<string>() { "Rite1", "Rite2", "Rite3" };
-            Game1.Sounds[keys[Utils.Dice.GetRandint(0, 2)]].Play();
+            Game1.Sounds[keys[Utils.Dice.GetRandint(0, 2)]].Play(Game1.masterVolume, 0, 0);
         }
 
         public bool SpendActionPoints(int amount, bool freeze = false)
@@ -233,7 +234,7 @@ namespace Cuivre.Code.Screens
                     MediaPlayer.IsRepeating = true;
                 }
 
-                Game1.Sounds["Evenement"].Play();
+                Game1.Sounds["Evenement"].Play(Game1.masterVolume, 0, 0);
 
                 if (Timeline.miracleCurrentDelay > 0)
                 {
