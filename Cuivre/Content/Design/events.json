@@ -239,7 +239,7 @@
     },
     {
         "Name": "Triumvirat",
-        "Description": "60 av. JC : Cesar, Crassus et Pompee s'allient desormais officiellement pour opposer un front politique fort au vieux Caton decrepi. Certains ont beau appeler cette alliance le « monstre a trois tetes », c'est enfin une victoire des progressistes contre les conservateurs !",
+        "Description": "60 av. JC : Cesar, Crassus et Pompee s'allient desormais officiellement pour opposer un front politique fort au vieux Caton decrepi. Certains ont beau appeler cette alliance le 'monstre a trois tetes', c'est enfin une victoire des progressistes contre les conservateurs !",
         "Hint": "La politique sera sourde et muette. Un chamboulement terrible affectera le peuple et l'Armee, mais... qui s'en sortira ? Cela dependra de vos choix.",
         "Explanation": "Le rapport de force entre le peuple et l'armee s'inverse. Les senateurs n'apprecient pas.",
         "RawStats": {
@@ -579,7 +579,7 @@
     },
     {
         "Name": "Grand incendie de Rome",
-        "Description": "64 ap JC : C'est aujourd'hui le sixieme jour que Rome brûle, et les vigiles font tout leur possible pour arreter l'incendie. Notons que ce n'est assurement absolument pas Neron qui a ordonne cet incendie. Pas du tout. Jamais. Quelle honte de penser ca !",
+        "Description": "64 ap JC : C'est aujourd'hui le sixieme jour que Rome brule, et les vigiles font tout leur possible pour arreter l'incendie. Notons que ce n'est assurement absolument pas Neron qui a ordonne cet incendie. Pas du tout. Jamais. Quelle honte de penser ca !",
         "Hint": "Les sept soeurs qui nous tiennent entre leurs bras s'effondreront jusqu'a tous vous etouffer.",
         "Explanation": "Tous les Romains souffrent grandement de cette tragedie.",
         "RawStats": {
