@@ -20,6 +20,8 @@ namespace Cuivre
         public static int WIDTH = (int)(res.Width * 0.92);
         public static int HEIGHT = (int)(res.Height * 0.92);
 
+        public static float masterVolume = .5f;
+
         public static Texture2D white;
         public static Texture2D semiTransp;
         public static SpriteFont font;
