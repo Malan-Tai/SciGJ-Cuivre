@@ -172,7 +172,7 @@ namespace Cuivre.Code
 
         public bool TodayHasEvent()
         {
-            if (currentDay > days.Count) return false;
+            if (currentDay >= days.Count) return false;
             return days[currentDay].HasEvent();
         }
 
