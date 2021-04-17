@@ -27,8 +27,9 @@ namespace Cuivre.Code
         {
             get
             {
-                int off = 2 * GameScreen.betweenOffset;
-                if (Hovered) return new Rectangle(x - off, y - off, w + 2 * off, h + 2 * off);
+                int off = GameScreen.betweenOffset;
+                int yOff = (int)((texture.Height / (float)texture.Width) * off);
+                if (Hovered) return new Rectangle(x - off, y - yOff, w + 2 * off, h + 2 * yOff);
                 return new Rectangle(x, y, w, h);
             }
         }

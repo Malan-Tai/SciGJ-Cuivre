@@ -60,7 +60,7 @@ namespace Cuivre.Code.Screens
                 }}),
 
             //Methode de miracle appelée dans le SpendActionPoints pour tenir compte des PA
-            new Button(leftOffset + 2 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_miracle"], screen => {
+            new Button(leftOffset + 2 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["carte_miracle_v2"], screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 ((GameScreen)screen).miracle = true;
                 ((GameScreen)screen).curLetter = 0;
@@ -82,20 +82,20 @@ namespace Cuivre.Code.Screens
             //poetes
             new CollapseButton(leftOffset + cardWidth + betweenOffset, Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_poetes"], Game1.Textures["card_poetes_verso"], true, new List<Button>
             {
-                new Button(leftOffset + cardWidth, leftCoords[0], cardWidth, leftCoords[1] - leftCoords[0], Game1.Textures["juvenal_vignette"], screen => {
+                new Button(leftOffset + cardWidth, leftCoords[0], cardWidth, leftCoords[1] - leftCoords[0], Game1.Textures["martial_vignette"], screen => {
+                ((GameScreen)screen).poets["Peuple"].Call();}, true),
+
+                new Button(leftOffset + cardWidth, rightCoords[1], cardWidth, leftCoords[2] - rightCoords[1], Game1.Textures["juvenal_vignette"], screen => {
                 ((GameScreen)screen).poets["Senateurs"].Call();}, true),
 
-                new Button(leftOffset + cardWidth, rightCoords[1], cardWidth, leftCoords[2] - rightCoords[1], Game1.Textures["lucrece_vignette"], screen => {
+                new Button(leftOffset + cardWidth, leftCoords[2], cardWidth, rightCoords[3] - rightCoords[2], Game1.Textures["lucrece_vignette"], screen => {
                 ((GameScreen)screen).poets["Philosophes"].Call();}, true),
 
-                new Button(leftOffset + cardWidth, leftCoords[2], cardWidth, rightCoords[3] - rightCoords[2], Game1.Textures["virgile_vignette"], screen => {
+                new Button(leftOffset + cardWidth, leftCoords[3], cardWidth, leftCoords[4] - leftCoords[3], Game1.Textures["virgile_vignette"], screen => {
                 ((GameScreen)screen).poets["Militaires"].Call();}, true),
 
-                new Button(leftOffset + cardWidth, leftCoords[3], cardWidth, leftCoords[4] - leftCoords[3], Game1.Textures["ovide_vignette"], screen => {
-                ((GameScreen)screen).poets["Amants"].Call();}, true),
-
-                new Button(leftOffset + cardWidth, rightCoords[4], cardWidth, leftCoords[5] - rightCoords[4], Game1.Textures["martial_vignette"], screen => {
-                ((GameScreen)screen).poets["Peuple"].Call();}, true)
+                new Button(leftOffset + cardWidth, rightCoords[4], cardWidth, leftCoords[5] - rightCoords[4], Game1.Textures["ovide_vignette"], screen => {
+                ((GameScreen)screen).poets["Amants"].Call();}, true)
             }, screen => { ((GameScreen)screen).SpendActionPoints(1); }),
 
             //bienfaits
@@ -432,7 +432,7 @@ namespace Cuivre.Code.Screens
 
             if (help)
             {
-                spriteBatch.Draw(Game1.Textures["tutorial_layout"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
+                spriteBatch.Draw(Game1.Textures["tutorial_v2"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
             }
             spriteBatch.Draw(Game1.Textures["bouton_help"], helpRectangle, Color.White);
 

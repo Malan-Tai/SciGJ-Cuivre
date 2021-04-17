@@ -82,12 +82,13 @@ namespace Cuivre
             Musics.Add("M_Romain4", Content.Load<Song>("M_Romain4"));
             Musics.Add("M_Transition", Content.Load<Song>("M_Transition"));
 
-            List<string> textureNames = new List<string>() { "bouton_help", "bulle_poete", "card_bienfaits", "card_miracle_verso", "card_miracle", "card_oracle",
+            List<string> textureNames = new List<string>() { "bouton_help", "bulle_poete", "card_bienfaits", "card_miracle_verso", "carte_miracle_v2", "card_oracle",
                                                              "card_poetes_verso", "card_poetes", "fond", "stele_evenements", "baton_frise", "frise_cartouche", "frise_ornements_cotes",
-                                                             "icone_evenement", "bouton_jouer", "bouton_menu", "bouton_quitter", "bouton_rejouer", "fabriquer_icones",
-                                                             "gladiateurs", "nourriture", "processions religieuses", "theatre", "menu_debut", "menu_victoire", "tutorial_layout",
+                                                             "icone_evenement_v2", "bouton_jouer", "bouton_menu", "bouton_quitter", "bouton_rejouer", "fabriquer_icones",
+                                                             "gladiateurs", "nourriture", "processions religieuses", "theatre", "menu_debut", "tutorial_v2",
                                                              "menu_DEFAITE", "pannel_texte_debut", "pannel_texte_debut_1", "pannel_texte_debut_2", "pannel_texte_debut_3",
-                                                             "pannel_texte_debut_4", "pannel_texte_debut_5"};
+                                                             "pannel_texte_debut_4", "pannel_texte_debut_5", "menu_victoire_Senateurs", "menu_victoire_Amants",
+                                                             "menu_victoire_Militaires", "menu_victoire_Peuple", "menu_victoire_Philosophes" };
             List<string> temp = new List<string>() { "juvenal", "lucrece", "martial", "ovide", "virgile" };
             foreach (string name in temp)
             {

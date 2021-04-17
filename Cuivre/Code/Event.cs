@@ -40,11 +40,11 @@ namespace Cuivre.Code
         {
             if (!called && !explain)
             {
-                spriteBatch.Draw(Game1.Textures["icone_evenement"], new Rectangle(x - h, GameScreen.leftOffset - h / 2, 2 * h, 2 * h), Color.Green);
+                spriteBatch.Draw(Game1.Textures["icone_evenement_v2"], new Rectangle(x - h, GameScreen.leftOffset - h / 2, 2 * h, 2 * h), Color.White);
             }
             else
             {
-                spriteBatch.Draw(Game1.Textures["icone_evenement"], new Rectangle(x - h, GameScreen.betweenOffset - h / 2, 2 * h, 2 * h), Color.Green);
+                spriteBatch.Draw(Game1.Textures["icone_evenement_v2"], new Rectangle(x - h, GameScreen.betweenOffset - h / 2, 2 * h, 2 * h), Color.White);
             }
             
             if (called || explain)
