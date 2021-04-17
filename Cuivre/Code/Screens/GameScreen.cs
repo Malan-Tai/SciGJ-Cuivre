@@ -23,7 +23,9 @@ namespace Cuivre.Code.Screens
 
         public int currentEvent = 0;
 
-        private bool readIntro;
+        private int curIntro = 1;
+        private float introGamma = 0f;
+        private float introGammaRate = 0.005f;
 
         private int curLetter = 0;
         private int letterRate = 25;
@@ -43,10 +45,6 @@ namespace Cuivre.Code.Screens
 
         public static int[] leftCoords = new int[] { 149 * Game1.HEIGHT / 1080, 363 * Game1.HEIGHT / 1080, 514 * Game1.HEIGHT / 1080, 668 * Game1.HEIGHT / 1080, 924 * Game1.HEIGHT / 1080, 1036 * Game1.HEIGHT / 1080 };
         public static int[] rightCoords = new int[] { 149 * Game1.HEIGHT / 1080, 274 * Game1.HEIGHT / 1080, 514 * Game1.HEIGHT / 1080, 757 * Game1.HEIGHT / 1080, 835 * Game1.HEIGHT / 1080, 1036 * Game1.HEIGHT / 1080 };
-
-        private const int introWidthOffset = 400;
-        private const int introHeightOffset = 200;
-        private const int introCardWidth = 800;
 
         private int pulsingActions = 0;
 
@@ -150,7 +148,7 @@ namespace Cuivre.Code.Screens
         {
             base.Init(game);
 
-            readIntro = false;
+            curIntro = 1;
 
             //Afficher l'intro
 
@@ -275,7 +273,7 @@ namespace Cuivre.Code.Screens
         {
             MouseState mouseState = Mouse.GetState();
 
-            if (readIntro)
+            if (curIntro > 5)
             {
                 if (miracle)
                 {
@@ -354,9 +352,14 @@ namespace Cuivre.Code.Screens
                     }
                 }
             }
-            else if(mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
+            else if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
             {
-                readIntro = true;
+                curIntro++;
+                introGamma = 0f;
+            }
+            else if (introGamma < 1f)
+            {
+                introGamma += (float)(introGammaRate * gameTime.ElapsedGameTime.TotalMilliseconds);
             }
 
             prevMouseState = mouseState;
@@ -433,21 +436,14 @@ namespace Cuivre.Code.Screens
             }
             spriteBatch.Draw(Game1.Textures["bouton_help"], helpRectangle, Color.White);
 
-            if (!readIntro)
+            if (curIntro <= 5)
             {
-                spriteBatch.Draw(Game1.Textures["pannel_texte_debut"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
-                string introText = "Ovide raconte qu'en 204 av. JC, alors que les Romains etaient en train de perdre la guerre contre Carthage, les oracles demanderent l'arrivee d'une nouvelle deesse dans le pantheon romain : Cybele. Une flotte fut envoyee pour aller chercher la divinite en Phrygie. Comme le roi phrygien ne voulait pas laisser partir Cybele, celle-ci lui apparut et lui ordonna de la laisser partir. Un roi effraye plus tard, les navires romains voguaient à nouveau vers Rome, la deesse à leur bord. Mais le bateau qui la transportait resta bloque dans le Tibre, et il fallut encore un autre miracle pour que Cybele parvienne enfin à Rome. Une jeune vierge voulant prouver sa chastete tira à elle seule les cordages et debloqua le navire. La deesse entra enfin dans Rome et un temple lui fut installe sur le Palatin. Mais les rites et valeurs associes à Cybele suscitent des reactions tres variees chez les romains, allant de l'horreur à la fascination, en passant par l'indifference. C'est à vous maintenant de faire en sorte que Cybele puisse être acceptee comme tous les autres dieux du pantheon romain! Influencez judicieusement l'opinion publique de differentes parties de la societe romaine en sa faveur, et survivez aux evenements marquants qui viendront chambouler vos efforts.Si une partie de la population deteste trop Cybele, celle - ci risque bien de finir jetee aux lions.";
-                
-                List<string> introLines = Utils.TextWrap.Wrap(introText, introCardWidth, Game1.Fonts["CaviarDreams"]);
-
-                int yIntro = Game1.HEIGHT / 2 - introHeightOffset;
-                int xIntro = Game1.WIDTH / 2 - introWidthOffset;
-
-                foreach (string line in introLines)
+                for (int i = 1; i < curIntro; i++)
                 {
-                    spriteBatch.DrawString(Game1.Fonts["CaviarDreams"], line, new Vector2(xIntro, yIntro), Color.Black);
-                    yIntro += (int)Game1.font.MeasureString("l").Y + 5;
+                    spriteBatch.Draw(Game1.Textures["pannel_texte_debut_" + i], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
                 }
+
+                spriteBatch.Draw(Game1.Textures["pannel_texte_debut_" + curIntro], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White * introGamma);
             }
 
         }
