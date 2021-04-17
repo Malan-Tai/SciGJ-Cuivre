@@ -43,5 +43,10 @@ namespace Cuivre.Code.Utils
 
             return list;
         }
+
+        public static List<string> Wrap(string text, int width, SpriteFont font, int letterCount)
+        {
+            return Wrap(text.Substring(0, Math.Min(letterCount, text.Length)), width, font);
+        }
     }
 }

@@ -34,6 +34,9 @@ namespace Cuivre.Code
         private int minX = Game1.WIDTH - GameScreen.cardWidth - 3 * GameScreen.leftOffset;
         private int maxX = Game1.WIDTH;
 
+        private int curLetter = 0;
+        private int letterRate = 25;
+
         private bool called = false;
         private List<string> currentDialogues;
         private string nextLine;
@@ -62,6 +65,7 @@ namespace Cuivre.Code
         public void Call()
         {
             called = true;
+            curLetter = 0;
             int gauge = Gauges.gaugesItems[GaugeName];
 
             Game1.Sounds[soundEffectsList[Utils.Dice.GetRandint(0, soundEffectsList.Count - 1)]].Play();
@@ -122,7 +126,7 @@ namespace Cuivre.Code
 
             spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
 
-            List<string> lines = Utils.TextWrap.Wrap(nextLine, textW - 2 * GameScreen.betweenOffset, Game1.font);
+            List<string> lines = Utils.TextWrap.Wrap(nextLine, textW - 2 * GameScreen.betweenOffset, Game1.font, curLetter);
 
             y += textH / 5;
             foreach (string line in lines)
@@ -142,6 +146,7 @@ namespace Cuivre.Code
             if (called)
             {
                 x = Math.Max(minX, x - (int)(speed * gameTime.ElapsedGameTime.TotalMilliseconds));
+                curLetter += (int)Math.Ceiling(letterRate * gameTime.ElapsedGameTime.TotalSeconds);
             }
             else if (x != maxX)
             {

@@ -25,6 +25,9 @@ namespace Cuivre.Code.Screens
 
         private bool readIntro;
 
+        private int curLetter = 0;
+        private int letterRate = 25;
+
         public const int leftOffset = 50;
         public const int cardNumbers = 5;
         public const int betweenOffset = 10;
@@ -62,6 +65,7 @@ namespace Cuivre.Code.Screens
             new Button(leftOffset + 2 * (cardWidth + betweenOffset), Game1.HEIGHT / 6, cardWidth, (int)(cardWidth * ratio), Game1.Textures["card_miracle"], screen => {
                 ((GameScreen)screen).SpendActionPoints(-1);
                 ((GameScreen)screen).miracle = true;
+                ((GameScreen)screen).curLetter = 0;
                 if (Miracle.MiracleRoll())
                 {
                     ((GameScreen)screen).miracleSuccess = true;
@@ -299,6 +303,10 @@ namespace Cuivre.Code.Screens
 
             if (readIntro)
             {
+                if (miracle)
+                {
+                    curLetter += (int)Math.Ceiling(letterRate * gameTime.ElapsedGameTime.TotalSeconds);
+                }
                 if (miracle && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                 {
                     miracle = false;
@@ -461,8 +469,6 @@ namespace Cuivre.Code.Screens
                 int yIntro = Game1.HEIGHT / 2 - introHeightOffset;
                 int xIntro = Game1.WIDTH / 2 - introWidthOffset;
 
-                //if (lines.Count <= 1) xIntro += (int)Game1.font.MeasureString(introText).X / 2;
-
                 foreach (string line in introLines)
                 {
                     spriteBatch.DrawString(Game1.Fonts["CaviarDreams"], line, new Vector2(xIntro, yIntro), Color.Black);
@@ -494,7 +500,7 @@ namespace Cuivre.Code.Screens
             }
 
             y += textH / 3;
-            foreach (string line in Utils.TextWrap.Wrap(text, textW, Game1.font))
+            foreach (string line in Utils.TextWrap.Wrap(text, textW, Game1.font, curLetter))
             {
                 spriteBatch.DrawString(Game1.font, line, new Vector2(leftOffset + textW / 20, y), Color.Black);
                 y += (int)Game1.font.MeasureString("l").Y + 5;

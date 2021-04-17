@@ -27,6 +27,9 @@ namespace Cuivre.Code
         private float pulseGamma = 0f;
         private float pulseGammaRate = 0.001f;
 
+        private int curLetter = 0;
+        private int letterRate = 25;
+
         public Timeline()
         {
             days = new List<Day>();
@@ -132,7 +135,7 @@ namespace Cuivre.Code
 
                 spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
 
-                List<string> lines = Utils.TextWrap.Wrap(hint, textW - 2 * GameScreen.betweenOffset, Game1.font);
+                List<string> lines = Utils.TextWrap.Wrap(hint, textW - 2 * GameScreen.betweenOffset, Game1.font, curLetter);
 
                 y += textH / 5;
                 foreach (string line in lines)
@@ -146,6 +149,10 @@ namespace Cuivre.Code
         public bool Update(GameTime gameTime, MouseState mouseState, MouseState prevMouseState, GameScreen screen)
         {
             bool nextDay = false;
+            if (called)
+            {
+                curLetter += (int)Math.Ceiling(letterRate * gameTime.ElapsedGameTime.TotalSeconds);
+            }
             if (called && curDelay <= 0 && mouseState.LeftButton == ButtonState.Pressed)
             {
                 called = false;
@@ -182,6 +189,7 @@ namespace Cuivre.Code
         public void CallOracle()
         {
             called = true;
+            curLetter = 0;
             curDelay = oracleDelay;
         }
 

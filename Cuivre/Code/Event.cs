@@ -32,7 +32,10 @@ namespace Cuivre.Code
         private int speed = 1;
         private int minY = 300;
         private int maxY = 400;
-        
+
+        private int curLetter = 0;
+        private int letterRate = 25;
+
         public void Draw(SpriteBatch spriteBatch, int x, int h)
         {
             if (!called && !explain)
@@ -72,7 +75,7 @@ namespace Cuivre.Code
             }
 
             y += textH / 3;
-            foreach (string line in Utils.TextWrap.Wrap(text, 9 * textW / 10, Game1.font))
+            foreach (string line in Utils.TextWrap.Wrap(text, 9 * textW / 10, Game1.font, curLetter))
             {
                 spriteBatch.DrawString(Game1.font, line, new Vector2(GameScreen.leftOffset + textW / 20, y), Color.Black);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
@@ -85,6 +88,7 @@ namespace Cuivre.Code
             bool nextDay = false;
             if (called && y <= minY && mouseState.LeftButton == ButtonState.Pressed)
             {
+                curLetter = 0;
                 called = false;
                 explain = true;
                 curDelay = explainDelay;
@@ -97,6 +101,7 @@ namespace Cuivre.Code
 
             if (called || explain)
             {
+                curLetter += (int)Math.Ceiling(letterRate * gameTime.ElapsedGameTime.TotalSeconds);
                 y = Math.Max(minY, y - (int)(speed * gameTime.ElapsedGameTime.TotalMilliseconds));
             }
             else if (y != maxY)
@@ -110,6 +115,7 @@ namespace Cuivre.Code
         public void TakePlace(Screen screen)
         {
             called = true;
+            curLetter = 0;
             Gauges.ReinitDictionaries();
 
             Gauges.HandleEvent(this, screen);
