@@ -27,6 +27,7 @@ namespace Cuivre
         public static Dictionary<string, SoundEffect> Sounds { get; set; } = new Dictionary<string, SoundEffect>();
         public static Dictionary<string, Song> Musics { get; set; } = new Dictionary<string, Song>();
         public static Dictionary<string, Texture2D> Textures { get; set; } = new Dictionary<string, Texture2D>();
+        public static Dictionary<string, SpriteFont> Fonts { get; set; } = new Dictionary<string, SpriteFont>();
 
         public Game1()
         {
@@ -56,6 +57,8 @@ namespace Cuivre
             white = Content.Load<Texture2D>("white");
             semiTransp = Content.Load<Texture2D>("semiTransp");
             font = Content.Load<SpriteFont>("defaultFont");
+
+            Fonts.Add("CaviarDreams", Content.Load<SpriteFont>("CaviarDreams"));
 
             Sounds.Add("Miracles", Content.Load<SoundEffect>("Miracles"));
             Sounds.Add("Evenement", Content.Load<SoundEffect>("Evenement"));

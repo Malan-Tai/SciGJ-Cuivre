@@ -405,7 +405,7 @@ namespace Cuivre.Code.Screens
                 spriteBatch.Draw(Game1.Textures["pannel_texte_debut"], new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
                 string introText = "Ovide raconte qu'en 204 av. JC, alors que les Romains etaient en train de perdre la guerre contre Carthage, les oracles demanderent l'arrivee d'une nouvelle deesse dans le pantheon romain : Cybele. Une flotte fut envoyee pour aller chercher la divinite en Phrygie. Comme le roi phrygien ne voulait pas laisser partir Cybele, celle-ci lui apparut et lui ordonna de la laisser partir. Un roi effraye plus tard, les navires romains voguaient à nouveau vers Rome, la deesse à leur bord. Mais le bateau qui la transportait resta bloque dans le Tibre, et il fallut encore un autre miracle pour que Cybele parvienne enfin à Rome. Une jeune vierge voulant prouver sa chastete tira à elle seule les cordages et debloqua le navire. La deesse entra enfin dans Rome et un temple lui fut installe sur le Palatin. Mais les rites et valeurs associes à Cybele suscitent des reactions tres variees chez les romains, allant de l'horreur à la fascination, en passant par l'indifference. C'est à vous maintenant de faire en sorte que Cybele puisse être acceptee comme tous les autres dieux du pantheon romain! Influencez judicieusement l'opinion publique de differentes parties de la societe romaine en sa faveur, et survivez aux evenements marquants qui viendront chambouler vos efforts.Si une partie de la population deteste trop Cybele, celle - ci risque bien de finir jetee aux lions.";
                 
-                List<string> introLines = Utils.TextWrap.Wrap(introText, introCardWidth, Game1.font);
+                List<string> introLines = Utils.TextWrap.Wrap(introText, introCardWidth, Game1.Fonts["CaviarDreams"]);
 
                 int yIntro = Game1.HEIGHT / 2 - introHeightOffset;
                 int xIntro = Game1.WIDTH / 2 - introWidthOffset;
@@ -414,7 +414,7 @@ namespace Cuivre.Code.Screens
 
                 foreach (string line in introLines)
                 {
-                    spriteBatch.DrawString(Game1.font, line, new Vector2(xIntro, yIntro), Color.Black);
+                    spriteBatch.DrawString(Game1.Fonts["CaviarDreams"], line, new Vector2(xIntro, yIntro), Color.Black);
                     yIntro += (int)Game1.font.MeasureString("l").Y + 5;
                 }
             }
