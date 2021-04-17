@@ -45,6 +45,7 @@ namespace Cuivre.Code.Screens
         private const int introHeightOffset = 200;
         private const int introCardWidth = 800;
 
+        private int pulsingActions = 0;
 
         private List<Button> buttons = new List<Button>
         {
@@ -219,6 +220,7 @@ namespace Cuivre.Code.Screens
             {
                 newDay = true;
             }
+            if (res < 2) buttons[0].LockButton();
 
             return true;
         }
@@ -311,16 +313,44 @@ namespace Cuivre.Code.Screens
 
                 if (!help)
                 {
+                    pulsingActions = 0;
+
                     if (!eventDay && Focused == null)
                     {
+                        int i = 0;
                         foreach (Button b in buttons)
                         {
                             b.Update(gameTime, prevMouseState, mouseState, this);
+                            if (b.Hovered)
+                            {
+                                switch (i)
+                                {
+                                    case 0:
+                                        pulsingActions += 2; //oracle
+                                        break;
+                                    case 1:
+                                        pulsingActions += 5; //miracle
+                                        break;
+                                    case 2:
+                                        pulsingActions += 1; //poetes
+                                        break;
+                                    case 3:
+                                        pulsingActions += 0; //bienfaits
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            i++;
                         }
                     }
                     else if (Focused != null)
                     {
                         Focused.Update(gameTime, prevMouseState, mouseState, this);
+                        if (Focused == buttons[3]) //bienfaits
+                        {
+                            pulsingActions += Focused.GetHovered();
+                        }
                     }
 
                     foreach (Poet poet in poets.Values)
@@ -360,22 +390,43 @@ namespace Cuivre.Code.Screens
                 if (b != Focused) b.Draw(gameTime, spriteBatch);
             }
 
-            Timeline.Draw(spriteBatch);
+            Timeline.Draw(spriteBatch, pulsingActions);
 
-            //Affichage de la chance de miracle
-            int chance = Miracle.GetCurrentMiracleChance() + Timeline.GetLeftActionPoints() * Miracle.gainedMiracleChanceWithLowSatisfaction;
-            string text = "Chance de miracle : " + chance + "%";
-            List<string> lines = Utils.TextWrap.Wrap(text, cardWidth, Game1.font);
-
-            int y = Game1.HEIGHT / 2;
-            int x = leftOffset + 2 * (betweenOffset + cardWidth);
-
-            if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
-
-            foreach (string line in lines)
+            if (Timeline.miracleCurrentDelay <= 0)
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(x, y), Color.White);
-                y += (int)Game1.font.MeasureString("l").Y + 5;
+                //Affichage de la chance de miracle
+                int chance = Miracle.GetCurrentMiracleChance() + Timeline.GetLeftActionPoints() * Miracle.gainedMiracleChanceWithLowSatisfaction;
+                string text = "Chance de miracle : " + chance + "%";
+                List<string> lines = Utils.TextWrap.Wrap(text, cardWidth, Game1.font);
+
+                int y = Game1.HEIGHT / 2;
+                int x = leftOffset + 2 * (betweenOffset + cardWidth);
+
+                if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
+
+                foreach (string line in lines)
+                {
+                    spriteBatch.DrawString(Game1.font, line, new Vector2(x, y), Color.White);
+                    y += (int)Game1.font.MeasureString("l").Y + 5;
+                }
+            }
+            else
+            {
+                //Affichage du cooldown de miracle
+                int t = Timeline.miracleCurrentDelay;
+                string text = "Utilisable dans " + t + " tours";
+                List<string> lines = Utils.TextWrap.Wrap(text, cardWidth, Game1.font);
+
+                int y = Game1.HEIGHT / 2;
+                int x = leftOffset + 2 * (betweenOffset + cardWidth);
+
+                if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
+
+                foreach (string line in lines)
+                {
+                    spriteBatch.DrawString(Game1.font, line, new Vector2(x, y), Color.White);
+                    y += (int)Game1.font.MeasureString("l").Y + 5;
+                }
             }
 
             if (Focused != null)
