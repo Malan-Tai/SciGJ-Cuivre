@@ -59,7 +59,6 @@ namespace Cuivre.Code
             if (focused)
             {
                 spriteBatch.Draw(focusTexture, new Rectangle(0, 0, Game1.WIDTH, Game1.HEIGHT), Color.White);
-                int i = 0;
                 foreach (Button b in collapsedButtons)
                 {
                     if (b.Hovered) b.Draw(gameTime, spriteBatch);
@@ -109,6 +108,16 @@ namespace Cuivre.Code
                 b.Reset();
             }
             base.Reset();
+        }
+
+        public int GetHovered()
+        {
+            int res = 0;
+            foreach (Button b in collapsedButtons)
+            {
+                if (b.Hovered) res++;
+            }
+            return res;
         }
     }
 }

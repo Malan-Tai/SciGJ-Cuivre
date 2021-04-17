@@ -44,7 +44,7 @@ namespace Cuivre.Code
             if (dayEvent != null) dayEvent.Draw(spriteBatch, x + w / 2, w / 3);
         }
 
-        public void DrawCurrent(SpriteBatch spriteBatch, int x, int dayWidth, int apWidth)
+        public void DrawCurrent(SpriteBatch spriteBatch, int x, int dayWidth, int apWidth, int pulseActions, float gamma)
         {
             Color color = new Color(120, 176, 222);
             int h = 2 * (GameScreen.leftOffset - GameScreen.betweenOffset) + apWidth / 3;
@@ -55,6 +55,11 @@ namespace Cuivre.Code
             {
                 if (i == ActionPoints) color = new Color(229, 199, 80);
                 spriteBatch.Draw(Game1.white, new Rectangle(x, GameScreen.betweenOffset, apWidth, h), color);
+                if (i <= ActionPoints && i > ActionPoints - pulseActions)
+                {
+                    spriteBatch.Draw(Game1.white, new Rectangle(x, GameScreen.betweenOffset, apWidth, h), new Color(120, 176, 222) * gamma);
+                }
+
                 spriteBatch.Draw(Game1.Textures["baton_frise"], new Rectangle(x + 2 * apWidth / 3, GameScreen.betweenOffset - h / 2, 2 * apWidth / 3, 2 * h), Color.White);
 
                 x += apWidth;

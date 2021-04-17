@@ -24,6 +24,9 @@ namespace Cuivre.Code
         private const double oracleDelay = 500;
         private double curDelay = 0;
 
+        private float pulseGamma = 0f;
+        private float pulseGammaRate = 0.001f;
+
         public Timeline()
         {
             days = new List<Day>();
@@ -82,7 +85,7 @@ namespace Cuivre.Code
             return day.ActionPoints;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int pulsingActions)
         {
             int x = GameScreen.leftOffset;
             int w = timelineWidth / (totalDays + Day.dailyActionpoints);
@@ -92,7 +95,7 @@ namespace Cuivre.Code
             {
                 if (i == currentDay)
                 {
-                    days[i].DrawCurrent(spriteBatch, x, Day.dailyActionpoints * w, w);
+                    days[i].DrawCurrent(spriteBatch, x, Day.dailyActionpoints * w, w, pulsingActions, pulseGamma);
                     x += Day.dailyActionpoints * w;
                     color = new Color(229, 199, 80);
                 }
@@ -159,6 +162,18 @@ namespace Cuivre.Code
                 {
                     screen.ChangeScreen(true, Gauges.GetHighestGauge());
                 }
+            }
+
+            pulseGamma += pulseGammaRate * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (pulseGamma >= 1f)
+            {
+                pulseGamma = 1f;
+                pulseGammaRate *= -1;
+            }
+            else if (pulseGamma <= 0f)
+            {
+                pulseGamma = 0f;
+                pulseGammaRate *= -1;
             }
 
             return nextDay;
