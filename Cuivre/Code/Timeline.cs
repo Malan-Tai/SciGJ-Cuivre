@@ -137,7 +137,7 @@ namespace Cuivre.Code
 
                 List<string> lines = Utils.TextWrap.Wrap(hint, textW - 2 * GameScreen.betweenOffset, Game1.font, curLetter);
 
-                y += textH / 5;
+                y += 2 * textH / 5;
                 foreach (string line in lines)
                 {
                     spriteBatch.DrawString(Game1.font, line, new Vector2(textW / 10 + GameScreen.leftOffset, y), Color.Black);

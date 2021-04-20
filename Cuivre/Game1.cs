@@ -58,9 +58,7 @@ namespace Cuivre
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             white = Content.Load<Texture2D>("white");
             semiTransp = Content.Load<Texture2D>("semiTransp");
-            font = Content.Load<SpriteFont>("defaultFont");
-
-            Fonts.Add("CaviarDreams", Content.Load<SpriteFont>("CaviarDreams"));
+            font = Content.Load<SpriteFont>("CaviarDreams");
 
             Sounds.Add("Miracles", Content.Load<SoundEffect>("Miracles"));
             Sounds.Add("Evenement", Content.Load<SoundEffect>("Evenement"));

@@ -153,7 +153,7 @@ namespace Cuivre.Code.Screens
             //Afficher l'intro
 
             poets = new Dictionary<string, Poet>();
-            List<Poet> tempPoets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json"));
+            List<Poet> tempPoets = JsonConvert.DeserializeObject<List<Poet>>(File.ReadAllText("Content\\Design\\poets.json", Encoding.GetEncoding(28591))); ;
             foreach (Poet p in tempPoets)
             {
                 poets.Add(p.GaugeName, p);
@@ -387,7 +387,7 @@ namespace Cuivre.Code.Screens
                 int y = Game1.HEIGHT / 2;
                 int x = leftOffset + 2 * (betweenOffset + cardWidth);
 
-                if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
+                if (lines.Count <= 1) x += cardWidth / 2 - (int)Game1.font.MeasureString(text).X / 2;
 
                 foreach (string line in lines)
                 {
@@ -405,7 +405,7 @@ namespace Cuivre.Code.Screens
                 int y = Game1.HEIGHT / 2;
                 int x = leftOffset + 2 * (betweenOffset + cardWidth);
 
-                if (lines.Count <= 1) x += (int)Game1.font.MeasureString(text).X / 2;
+                if (lines.Count <= 1) x += cardWidth / 2 - (int)Game1.font.MeasureString(text).X / 2;
 
                 foreach (string line in lines)
                 {
@@ -462,17 +462,17 @@ namespace Cuivre.Code.Screens
             string text;
             if (miracleSuccess)
             {
-                text = "Les dieux ont repondu a votre priere.";
+                text = "Les dieux ont repondu à votre prière.";
             }
             else
             {
-                text = "Les dieux sont restes silencieux.";
+                text = "Les dieux sont restés silencieux.";
             }
 
             y += textH / 3;
             foreach (string line in Utils.TextWrap.Wrap(text, textW, Game1.font, curLetter))
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(leftOffset + textW / 20, y), Color.Black);
+                spriteBatch.DrawString(Game1.font, line, new Vector2(leftOffset + textW / 20, y), Color.White);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
             }
         }

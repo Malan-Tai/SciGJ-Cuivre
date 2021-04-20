@@ -77,7 +77,7 @@ namespace Cuivre.Code
             y += textH / 3;
             foreach (string line in Utils.TextWrap.Wrap(text, 9 * textW / 10, Game1.font, curLetter))
             {
-                spriteBatch.DrawString(Game1.font, line, new Vector2(GameScreen.leftOffset + textW / 20, y), Color.Black);
+                spriteBatch.DrawString(Game1.font, line, new Vector2(GameScreen.leftOffset + textW / 20, y), Color.White);
                 y += (int)Game1.font.MeasureString("l").Y + 5;
             }
         }
@@ -86,7 +86,7 @@ namespace Cuivre.Code
         {
             if (explain) curDelay -= gameTime.ElapsedGameTime.TotalMilliseconds;
             bool nextDay = false;
-            if (called && y <= minY && mouseState.LeftButton == ButtonState.Pressed)
+            if (called && y <= minY && mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
             {
                 curLetter = 0;
                 called = false;

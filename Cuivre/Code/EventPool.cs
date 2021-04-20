@@ -17,7 +17,7 @@ namespace Cuivre.Code
         //On sélectionne un event au hasard par pool et on l'ajoute à notre liste pour la timeline
         public static List<Event> PickEventsFromLists()
         {
-            List<Event> temp = JsonConvert.DeserializeObject<List<Event>>(File.ReadAllText("Content\\Design\\events.json"));
+            List<Event> temp = JsonConvert.DeserializeObject<List<Event>>(File.ReadAllText("Content\\Design\\events.json", Encoding.GetEncoding(28591)));
 
             List<List<Event>> eventPoolsList = new List<List<Event>>();
             for (int i = 0; i < eventAmountInTimeLine; i++)

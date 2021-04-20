@@ -126,9 +126,9 @@ namespace Cuivre.Code
 
             spriteBatch.Draw(bubble, new Rectangle(GameScreen.leftOffset, y, textW, textH), Color.White);
 
-            List<string> lines = Utils.TextWrap.Wrap(nextLine, textW - 2 * GameScreen.betweenOffset, Game1.font, curLetter);
+            List<string> lines = Utils.TextWrap.Wrap(nextLine, 4 * textW / 5 - 2 * GameScreen.betweenOffset, Game1.font, curLetter);
 
-            y += textH / 5;
+            y += 2 * textH / 5;
             foreach (string line in lines)
             {
                 spriteBatch.DrawString(Game1.font, line, new Vector2(textW / 10 + GameScreen.leftOffset, y), Color.Black);
